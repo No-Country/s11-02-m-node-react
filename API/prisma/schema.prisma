@@ -17,9 +17,9 @@ model User {
   email            String    @unique
   password         String
   address          String
-  coords           String
+  coords           String?
   currentProducts  Product[]
-  sellProducts     String[]
+  soldProducts     String[]
   purchaseProducts String[]
   reviews          String
 }
@@ -28,11 +28,17 @@ model Product {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   name         String
   description  String
-  img          String
+  img          String[]
   currentOffer Float
   userId       String   @db.ObjectId
   user         User     @relation(fields: [userId], references: [id])
   endDate      DateTime
   tags         String
-  sell         Boolean
+  status       Status
+}
+
+enum Status {
+  ACTIVE
+  ENDED
+  CANCELLED
 }
