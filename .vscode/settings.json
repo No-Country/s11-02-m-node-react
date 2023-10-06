@@ -53,7 +53,7 @@
     "prettier.bracketSameLine": true,
     "prettier.embeddedLanguageFormatting": "off",
     "prettier.singleQuote": true,
-    "prettier.tabWidth": 2,
+    "prettier.tabWidth": 5,
     "editor.language.brackets": [],
     "gitlens.advanced.externalDirectoryDiffTool": "",
     "workbench.settings.applyToAllProfiles": [],
