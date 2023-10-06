@@ -1,0 +1,74 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[html]": {
+      "editor.defaultFormatter": "vscode.html-language-features",
+      "editor.formatOnSave": true
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+  
+      "editor.wordWrap": "off",
+      "editor.wrappingIndent": "indent",
+      
+    },
+    "workbench.activityBar.visible": true,
+    "editor.minimap.enabled": false,
+    "jsx-beautify.format_on_save": true,
+    "jsx-beautify.indent_char": " ",
+    "jsx-beautify.indent_size": 2,
+    "jsx-beautify.e4x": true,
+    "jsx-beautify.quote_type": "single",
+    "html.format.contentUnformatted": "",
+    "html.format.indentHandlebars": true,
+    "editor.formatOnPaste": true,
+    "settingsSync.ignoredExtensions": [],
+    "settingsSync.ignoredSettings": [],
+    "prettier.endOfLine": "auto",
+    "prettier.bracketSameLine": true,
+    "prettier.embeddedLanguageFormatting": "off",
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 2,
+    "editor.language.brackets": [],
+    "gitlens.advanced.externalDirectoryDiffTool": "",
+    "workbench.settings.applyToAllProfiles": [],
+    "cSpell.languageSettings": [],
+    "files.exclude": {
+      "**/build": true,
+      "**/publish": true,
+      "**/node_modules": true,
+      "package-lock.json": true
+    },
+    "workbench.colorCustomizations": {
+      //  a  unique titlebar  color  scheme  helps  differentiate  project windows (eg: Windows taskbar hover preview)}
+      "activityBar.background": "#033c79",
+      "titleBar.activeBackground": "#455256",
+      "titleBar.activeForeground": "#FEFCFE"
+    }
+  }
+  
