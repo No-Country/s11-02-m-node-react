@@ -21,6 +21,7 @@ const Registerform = () => {
 
                email: Yup.string()
                     .email('El email no es válido')
+                    .matches(/.*@.*\.com/, 'El email no es válido')
                     .required('El email es obligatorio'),
                password: Yup.string()
                     .required('La contraseña es obligatoria')
@@ -63,7 +64,8 @@ const Registerform = () => {
                                         onClick={formik.handleBlur}
                                    />
 
-                                   {formik.touched.name &&
+                                   {formik.dirty &&
+                                   formik.touched.name &&
                                    formik.errors.name ? (
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center">
                                              <p className="text-sm">
@@ -89,7 +91,8 @@ const Registerform = () => {
                                         onClick={formik.handleBlur}
                                    />
 
-                                   {formik.touched.email &&
+                                   {formik.dirty &&
+                                   formik.touched.email &&
                                    formik.errors.email ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
                                              <p className=" text-sm">
@@ -115,7 +118,8 @@ const Registerform = () => {
                                         onClick={formik.handleBlur}
                                    />
 
-                                   {formik.touched.password &&
+                                   {formik.dirty &&
+                                   formik.touched.password &&
                                    formik.errors.password ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
                                              <p className=" text-sm">
@@ -140,7 +144,8 @@ const Registerform = () => {
                                         onChange={formik.handleChange}
                                         onClick={formik.handleBlur}
                                    />
-                                   {formik.touched.confirmpass &&
+                                   {formik.dirty &&
+                                   formik.touched.confirmpass &&
                                    formik.errors.confirmpass ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
                                              <p className=" text-sm">
