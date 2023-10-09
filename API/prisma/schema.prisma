@@ -21,7 +21,9 @@ model User {
   currentProducts  Product[]
   soldProducts     String[]
   purchaseProducts String[]
-  reviews          String
+  reviews          String?
+  hashedAt         String?
+  hashedRt         String?
 }
 
 model Product {
