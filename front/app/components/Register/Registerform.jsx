@@ -12,7 +12,12 @@ const Registerform = () => {
                confirmpass: '',
           },
           validationSchema: Yup.object({
-               name: Yup.string().required('El nombre es obligatorio'),
+               name: Yup.string()
+                    .required('El nombre es obligatorio')
+                    .matches(
+                         /^[A-Za-z]+$/,
+                         'El nombre solo puede contener letras'
+                    ),
 
                email: Yup.string()
                     .email('El email no es válido')
@@ -31,6 +36,7 @@ const Registerform = () => {
           onSubmit: () => {
                console.log('enviando');
           },
+          validateOnChange: true,
      });
 
      return (
@@ -39,7 +45,7 @@ const Registerform = () => {
                     <h2 className="text-3xl font-sans font-bold text-white-800 text-center mb-4">
                          Regístrate!
                     </h2>
-                    <div className="bg-indigo-50 rounded-lg shadow-md px-8 py-6">
+                    <div className="bg-indigo-50 rounded-lg shadow-md px-16 py-6">
                          <form action="" onSubmit={formik.handleSubmit}>
                               <div className="mb-10">
                                    <label
@@ -49,20 +55,17 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="name"
                                         placeholder="Ingrese su nombre"
                                         value={formik.values.name}
                                         onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
+                                        onClick={formik.handleBlur}
                                    />
 
                                    {formik.touched.name &&
                                    formik.errors.name ? (
-                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
-                                             <p className="font-bold text-sm">
-                                                  Error
-                                             </p>
+                                        <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center">
                                              <p className="text-sm">
                                                   {formik.errors.name}
                                              </p>
@@ -78,20 +81,17 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="email"
                                         placeholder="Ingrese su Email"
                                         value={formik.values.email}
                                         onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
+                                        onClick={formik.handleBlur}
                                    />
 
                                    {formik.touched.email &&
                                    formik.errors.email ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
-                                             <p className="font-bold text-sm">
-                                                  Error
-                                             </p>
                                              <p className=" text-sm">
                                                   {formik.errors.email}
                                              </p>
@@ -107,20 +107,17 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="password"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.password}
                                         onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
+                                        onClick={formik.handleBlur}
                                    />
 
                                    {formik.touched.password &&
                                    formik.errors.password ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
-                                             <p className="font-bold text-sm">
-                                                  Error
-                                             </p>
                                              <p className=" text-sm">
                                                   {formik.errors.password}
                                              </p>
@@ -136,19 +133,16 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="confirmpass"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.confirmPassword}
                                         onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
+                                        onClick={formik.handleBlur}
                                    />
                                    {formik.touched.confirmpass &&
                                    formik.errors.confirmpass ? (
                                         <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
-                                             <p className="font-bold text-sm">
-                                                  Error
-                                             </p>
                                              <p className=" text-sm">
                                                   {formik.errors.confirmpass}
                                              </p>
