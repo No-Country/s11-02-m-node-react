@@ -26,15 +26,14 @@ export class AuthService {
   //     }
 
   async signupLocal(dto: AuthDto): Promise<Tokens> {
-    const hashedAt = await this.hashData(dto.password);
+    const hash = await this.hashData(dto.password);
     const newUser = await this.prisma.user.create({
       data: {
         email: dto.email,
-        hashedAt,
-        firstName: '',
-        lastName: '',
-        address: '',
-        password: '',
+        firstName: 'Mario',
+        lastName: 'Pintos',
+        address: 'Vaca 123',
+        password: hash,
       },
     });
     const tokens = await this.getTokens(newUser.id, newUser.email);
@@ -43,21 +42,17 @@ export class AuthService {
   }
 
   async signinLocal(dto: AuthDto): Promise<Tokens> {
-    const user = this.prisma.user.findUnique({
+    const user = await this.prisma.user.findUnique({
       where: {
         email: dto.email,
       },
     });
     if (!user) throw new ForbiddenException('Acceso denegado');
-
-    const passwordMatches = await bcrypt.compare(
-      dto.password,
-      (await user).hashedAt,
-    );
+    const passwordMatches = await bcrypt.compare(dto.password, user.password);
     if (!passwordMatches) throw new ForbiddenException('Acceso denegado');
 
-    const tokens = await this.getTokens((await user).id, (await user).email);
-    await this.updateRtHash((await user).id, tokens.refresh_token);
+    const tokens = await this.getTokens(user.id, user.email);
+    await this.updateRtHash(user.id, tokens.refresh_token);
     return tokens;
   }
 
