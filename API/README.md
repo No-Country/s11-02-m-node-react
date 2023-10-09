@@ -1,35 +1,14 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API documentation
 
 ## Installation
 
 ```bash
+#Install dependences
 $ npm install
+#Generate Prisma client
+$ npx prisma generate
 ```
 
 ## Running the app
@@ -45,29 +24,161 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Products API Documentation
 
-```bash
-# unit tests
-$ npm run test
+## Endpoints
 
-# e2e tests
-$ npm run test:e2e
+### Create a Product
 
-# test coverage
-$ npm run test:cov
-```
+- **Endpoint:** `POST /products`
+- **Description:** Create a new product.
+- **Request Body:** A JSON object representing the product to be created.
+**Request Parameters**
 
-## Support
+  | Field       | Type     | Description                                           |
+  | :---------- | :------- | :---------------------------------------------------- |
+  | `name` | `string` | **Required**. Product name                            |
+  | `description`  | `string` | **Required**. Product Description                               |
+  | `img`     | `array of strings` | **Required**. Product img url                                   |
+  | `currentOffer`  | `number` | **Required**. Product price                                |
+  | `userId`     | `string` | **Required**. User id owner                                   |
+  | `endDate`  | `string` | **Required**. Date in formart ISO 8601 (YYYY-MM-DDTHH:MM:SS)                               |
+  | `tags`      | `array of strings` | **Required**. Product tags        |
+   `status`   | `'ACTIVE' 'ENDED' 'CANCELLED'` | **Optional (default ACTIVE)**. Product status |
+- **Request Example:**
+  ```json
+  {
+    "name": "Product Name",
+    "description": "Product Description",
+    "img": ["image_url_1", "image_url_2"],
+    "currentOffer": 100,
+    "userId": "5f78e66347b723456c55d5e8",
+    "endDate": "2023-12-31T23:59:59Z",
+    "tags": ["tag1", "tag2"]
+  }
+  ```
+- **Response:** If successful, returns the newly created product and a success message.
+- **Response Example:**
+  ```json
+    {
+      "product": {
+        "id": "5f78e66347b723456c55d5e8",
+        "name": "Product Name",
+        "description": "Product Description",
+        "img": ["image_url_1", "image_url_2"],
+        "currentOffer": 100,
+        "userId": "5f78e66347b723456c55d5e8",
+        "endDate": "2023-12-31T23:59:59Z",
+        "tags": ["tag1", "tag2"],
+        "status": "ACTIVE"
+      },
+      "message": "Product created successfully"
+    }
+    ```
+### Retrieve All Products
+- **Endpoint:** `GET /products`
+- **Description:** Retrieve a list of all products.
+- **Responde:** If successful, returns an array of products and a success message.
+- **Response Example:**
+  ```json
+    {
+      "products": [
+        {
+          "id": "5f78e66347b723456c55d5e8",
+          "name": "Product 1",
+          "description": "Description 1",
+          "img": ["image_url_1"],
+          "currentOffer": 50,
+          "userId": "5f78e66347b723456c55d5e8",
+          "endDate": "2023-12-31T23:59:59Z",
+          "tags": ["tag1"],
+          "status": "ACTIVE"
+        },
+        {
+          "id": "5f78e66347b723456c55d5e8",
+          "name": "Product 2",
+          "description": "Description 2",
+          "img": ["image_url_2"],
+          "currentOffer": 75,
+          "userId": "5f78e66347b723456c55d5e8",
+          "endDate": "2023-12-31T23:59:59Z",
+          "tags": ["tag2"],
+          "status": "ACTIVE"
+        }
+      ],
+      "message": "Products found successfully"
+    }
+    ```
+### Retrieve a Product by ID
+- **Endpoint:** `GET /products/:id`
+- **Description:** Retrieve a product by its unique ID.
+- **Response:** If successful and the product exists, returns the product and a success message.
+- **Response Example:**
+  ```json
+    {
+      "product": {
+        "id": "5f78e66347b723456c55d5e8",
+        "name": "Product Name",
+        "description": "Product Description",
+        "img": ["image_url_1", "image_url_2"],
+        "currentOffer": 100,
+        "userId": "5f78e66347b723456c55d5e8",
+        "endDate": "2023-12-31T23:59:59Z",
+        "tags": ["tag1", "tag2"],
+        "status": "ACTIVE"
+      },
+      "message": "Product found successfully"
+    }
+    ```
+### Update a Product
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Endpoint:** `PACTH /products/:id`
+- **Description:** Update an existing product by its unique ID.
+- **Request Body:** A JSON object representing the product updates.
+- **Request Example:**
+  ```json
+  {
+    "name": "Updated Product Name",
+    "currentOffer": 120
+  }
+  ```
+- **Response:** If successful and the product exists, returns the updated product and a success message.
+- **Response Example:**
+  ```json
+    {
+      "product": {
+        "id": "5f78e66347b723456c55d5e8",
+        "name": "Updated Product Name",
+        "description": "Product Description",
+        "img": ["image_url_1", "image_url_2"],
+        "currentOffer": 120,
+        "userId": "5f78e66347b723456c55d5e8",
+        "endDate": "2023-12-31T23:59:59Z",
+        "tags": ["tag1", "tag2"],
+        "status": "ACTIVE"
+      },
+      "message": "Product updated successfully"
+    }
+    ```
+### Delete a Product
 
-## Stay in touch
+- **Endpoint:** `DELETE /products/:id`
+- **Description:** Delete a product by its unique ID.
+- **Response:** If successful, returns a success message.
+- **Response Example:**
+  ```json
+    {
+      "message": "Product id 5f78e66347b723456c55d5e8 deleted"
+    }
+    ```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Environment Variables
 
-## License
+To run this project, you need to set up the following environment variables. Create a file named `.env` in the root of /API and add the required variables with their values.
 
-Nest is [MIT licensed](LICENSE).
+```json
+#DATABASE CONNECTION
+DATABASE_URL="MONGODB URI"
+#API PORT
+PORT=3001
+``````
