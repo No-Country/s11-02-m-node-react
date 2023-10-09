@@ -1,0 +1,143 @@
+'use client';
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const Registerform = () => {
+     //
+     const formik = useFormik({
+          initialValues: {
+               name: '',
+               email: '',
+               password: '',
+               confirmPassword: '',
+          },
+          validationSchema: Yup.object({
+               name: Yup.string().required('El nombre es obligatorio'),
+
+               email: Yup.string()
+                    .email('El email no es válido')
+                    .required('El email es obligatorio'),
+               password: Yup.string()
+                    .required('La contraseña es obligatoria')
+                    .min(6, 'La contraseña debe tener 6 carecteres'),
+          }),
+
+          onSubmit: () => {
+               console.log('enviando');
+          },
+     });
+
+     return (
+          <div className="flex justify-center ">
+               <div className="w-full max-w-xl">
+                    <h2 className="text-3xl font-sans font-bold text-gray-800 text-center mb-4">
+                         Crea una cuenta!
+                    </h2>
+                    <div className="bg-indigo-50 rounded-lg shadow-md px-8 py-6">
+                         <form action="" onSubmit={formik.handleSubmit}>
+                              <div className="mb-10">
+                                   <label
+                                        htmlFor="name"
+                                        className="block text-black text-md font-bold mb-2">
+                                        Nombre
+                                   </label>
+                                   <input
+                                        type="text"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="name"
+                                        placeholder="Ingrese su nombre"
+                                        value={formik.values.name}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+
+                                   {formik.touched.name &&
+                                   formik.errors.name ? (
+                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
+                                             <p className="font-bold text-sm">
+                                                  Error
+                                             </p>
+                                             <p className="text-sm">
+                                                  {formik.errors.name}
+                                             </p>
+                                        </div>
+                                   ) : null}
+                              </div>
+
+                              <div className="mb-10">
+                                   <label
+                                        htmlFor="email"
+                                        className="block text-black text-md font-bold mb-2">
+                                        Email
+                                   </label>
+                                   <input
+                                        type="text"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="email"
+                                        placeholder="Ingrese su Email"
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+
+                                   {formik.touched.email &&
+                                   formik.errors.email ? (
+                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1">
+                                             <p className="font-bold text-sm">
+                                                  Error
+                                             </p>
+                                             <p className=" text-sm">
+                                                  {formik.errors.email}
+                                             </p>
+                                        </div>
+                                   ) : null}
+                              </div>
+
+                              <div className="mb-10">
+                                   <label
+                                        htmlFor="password"
+                                        className="block text-black text-md font-bold mb-2">
+                                        Contraseña
+                                   </label>
+                                   <input
+                                        type="password"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="password"
+                                        placeholder="Ingrese su contraseña"
+                                        value={formik.values.password}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+                              </div>
+
+                              <div className="mb-10">
+                                   <label
+                                        htmlFor="password_confirmation"
+                                        className="block text-black text-md font-bold mb-2">
+                                        Confirmar Contraseña
+                                   </label>
+                                   <input
+                                        type="password"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="password_confirmation"
+                                        placeholder="Ingrese su contraseña"
+                                        value={formik.values.confirmPassword}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+                              </div>
+
+                              <input
+                                   type="submit"
+                                   className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer"
+                                   value="Crear cuenta"
+                              />
+                         </form>
+                    </div>
+               </div>
+          </div>
+     );
+};
+
+export default Registerform;
