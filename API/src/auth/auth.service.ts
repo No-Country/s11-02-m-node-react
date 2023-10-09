@@ -4,38 +4,19 @@ import { AuthDto } from './dto';
 import { Tokens } from './types';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
+    private usersService: UsersService,
   ) {}
 
-  // Add error catcher inv password and existing user
-  //   const errors = await validate(createUserDto);
-  //   if (errors.length > 0) {
-  //     throw new BadRequestException(errors);
-  //   }
-  //   try {
-  //     const existingUser = await this.prisma.user.findUnique({
-  //       where: { email: createUserDto.email },
-  //     });
-  //     if (existingUser) {
-  //       throw new ConflictException('Email already exist');
-  //     }
-
-  async signupLocal(dto: AuthDto): Promise<Tokens> {
-    const hash = await this.hashData(dto.password);
-    const newUser = await this.prisma.user.create({
-      data: {
-        email: dto.email,
-        firstName: 'Mario',
-        lastName: 'Pintos',
-        address: 'Vaca 123',
-        password: hash,
-      },
-    });
+  async signupLocal(dto: CreateUserDto): Promise<Tokens> {
+    const newUser = await this.usersService.create(dto);
     const tokens = await this.getTokens(newUser.id, newUser.email);
     await this.updateRtHash(newUser.id, tokens.refresh_token);
     return tokens;
@@ -50,7 +31,6 @@ export class AuthService {
     if (!user) throw new ForbiddenException('Acceso denegado');
     const passwordMatches = await bcrypt.compare(dto.password, user.password);
     if (!passwordMatches) throw new ForbiddenException('Acceso denegado');
-
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
     return tokens;
