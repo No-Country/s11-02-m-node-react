@@ -29,7 +29,7 @@ const GetAccount = () => {
                          </button>
                          <button
                               onClick={handleRegister}
-                              className="bg-blue-500 text-white px-24 py-2 rounded-lg hover:bg-blue-600">
+                              className="bg-blue-500 border-2 border-blue-500 text-white px-24 py-2 rounded-lg hover:bg-blue-600 hover:font-bold">
                               Crear Cuenta
                          </button>
                     </div>
