@@ -3,27 +3,27 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
-import isEmpty from 'lodash/isEmpty';
+import { toast } from 'react-toastify';
 
 const Registerform = () => {
      const formik = useFormik({
           initialValues: {
-               firstname: '',
-               lastname: '',
+               firstName: '',
+               lastName: '',
                address: '',
                email: '',
                password: '',
                confirmpass: '',
           },
           validationSchema: Yup.object({
-               firstname: Yup.string()
+               firstName: Yup.string()
                     .required('El nombre es obligatorio')
                     .matches(
                          /^[A-Za-z]+$/,
                          'El nombre sólo puede contener letras'
                     ),
 
-               lastname: Yup.string()
+               lastName: Yup.string()
                     .required('El apellido es obligatorio')
                     .matches(
                          /^[A-Za-z]+$/,
@@ -49,10 +49,45 @@ const Registerform = () => {
                     .required('Debe confirmar la contraseña'),
           }),
 
-          onSubmit: (values, action) => {
-               console.log(formik.values);
-               console.log(values);
+          onSubmit: async (values) => {
+               const { confirmpass, ...userData } = values;
+               try {
+                    const response = await fetch(
+                         'http://localhost:3001/auth/local/signup',
+                         {
+                              method: 'POST',
+                              headers: {
+                                   'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify(userData),
+                         }
+                    );
+                    if (!response.ok) {
+                         throw new Error('Error en la solicitud al backend');
+                    }
+                    const data = await response.json();
+
+                    console.log(data);
+
+                    toast.success('Usuario creado correctamente', {
+                         position: 'bottom-right',
+                         autoClose: 3000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                    });
+               } catch (error) {
+                    console.log(error);
+                    toast.error('Error al crear el usuario', {
+                         position: 'bottom-right',
+                         autoClose: 3000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                    });
+               }
           },
+
           validateOnChange: true,
      });
 
@@ -69,25 +104,25 @@ const Registerform = () => {
                               className="flex flex-wrap">
                               <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
-                                        htmlFor="firstname"
+                                        htmlFor="firstName"
                                         className="block text-black text-md font-bold mb-2">
                                         Nombre
                                    </label>
                                    <input
                                         type="text"
                                         className="border border-gray-300 py-3 px-4  rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
-                                        id="firstname"
+                                        id="firstName"
                                         placeholder="Ingrese su nombre"
-                                        value={formik.values.firstname}
+                                        value={formik.values.firstName}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                    />
 
-                                   {formik.touched.firstname &&
-                                   formik.errors.firstname ? (
+                                   {formik.touched.firstName &&
+                                   formik.errors.firstName ? (
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
                                              <p className="text-sm">
-                                                  {formik.errors.firstname}
+                                                  {formik.errors.firstName}
                                              </p>
                                         </div>
                                    ) : null}
@@ -95,25 +130,25 @@ const Registerform = () => {
 
                               <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
-                                        htmlFor="lastname"
+                                        htmlFor="lastName"
                                         className="block text-black text-md font-bold mb-2">
                                         Apellido
                                    </label>
                                    <input
                                         type="text"
                                         className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
-                                        id="lastname"
+                                        id="lastName"
                                         placeholder="Ingrese su apellido"
-                                        value={formik.values.lastname}
+                                        value={formik.values.lastName}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                    />
 
-                                   {formik.touched.lastname &&
-                                   formik.errors.lastname ? (
+                                   {formik.touched.lastName &&
+                                   formik.errors.lastName ? (
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
                                              <p className="text-sm">
-                                                  {formik.errors.lastname}
+                                                  {formik.errors.lastName}
                                              </p>
                                         </div>
                                    ) : null}
