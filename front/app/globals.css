@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -25,14 +24,12 @@ body {
                rgb(var(--background-end-rgb))
           )
           rgb(var(--background-start-rgb));
-
 }
-
 
 .categoryDiv {
      border-top-left-radius: 0.75rem;
      border-bottom-right-radius: 0.75rem;
-     background-color: rgb(100 116 139);
+     background-color: white;
      height: 10rem;
      width: 10rem;
      display: flex;
