@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
                </head>
                <body>
                     <Navbar />
-                    <main className="flex min-h-screen flex-col items-center  p-8 mt-8 md:p-24">
+                    <main className="min-h-screen">
+                         {/* <main className="flex min-h-screen items-center  p-8 mt-8 md:p-24"> */}
                          {children}
                     </main>
                     <Footer />
