@@ -8,7 +8,9 @@ import { Tokens } from './types';
 import { AtGuard, RtGuard } from 'src/common/guards';
 import { GetCurrentUser } from 'src/common/decorators';
 import { GetCurrentUserId } from 'src/common/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
