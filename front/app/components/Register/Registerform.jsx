@@ -31,7 +31,7 @@ const Registerform = () => {
                     ),
 
                address: Yup.string()
-                    .required('La dirección es obligatorio')
+                    .required('La dirección es obligatoria')
                     .matches(/^[A-Za-z0-9\s]+$/, 'Caracteres inválidos'),
 
                email: Yup.string()
@@ -57,14 +57,17 @@ const Registerform = () => {
      });
 
      return (
-          <div className="flex justify-center ">
+          <div className="flex justify-center my-10">
                <div className="w-full max-w-xl">
-                    <h2 className="text-3xl font-sans font-bold text-white-800 text-center mb-4">
+                    <h2 className="text-2xl font-sans font-bold text-white-800 text-center mb-4">
                          Regístrate!
                     </h2>
-                    <div className="bg-indigo-50 rounded-lg shadow-md px-16 py-6">
-                         <form action="" onSubmit={formik.handleSubmit}>
-                              <div className="mb-10">
+                    <div className="bg-indigo-50 rounded-lg shadow-md px-6 py-8 ">
+                         <form
+                              action=""
+                              onSubmit={formik.handleSubmit}
+                              className="flex flex-wrap">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="firstname"
                                         className="block text-black text-md font-bold mb-2">
@@ -72,7 +75,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4  rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="firstname"
                                         placeholder="Ingrese su nombre"
                                         value={formik.values.firstname}
@@ -90,7 +93,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="lastname"
                                         className="block text-black text-md font-bold mb-2">
@@ -98,7 +101,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="lastname"
                                         placeholder="Ingrese su apellido"
                                         value={formik.values.lastname}
@@ -116,7 +119,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="address"
                                         className="block text-black text-md font-bold mb-2">
@@ -124,7 +127,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="address"
                                         placeholder="Ingrese su dirección"
                                         value={formik.values.address}
@@ -142,7 +145,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="email"
                                         className="block text-black text-md font-bold mb-2">
@@ -150,7 +153,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="email"
                                         placeholder="Ingrese su Email"
                                         value={formik.values.email}
@@ -168,7 +171,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="password"
                                         className="block text-black text-md font-bold mb-2">
@@ -176,7 +179,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="password"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.password}
@@ -194,7 +197,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
                                         htmlFor="confirmpass"
                                         className="block text-black text-md font-bold mb-2">
@@ -202,10 +205,10 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-8 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
                                         id="confirmpass"
-                                        placeholder="Ingrese su contraseña"
-                                        value={formik.values.confirmPassword}
+                                        placeholder="Confirme su contraseña"
+                                        value={formik.values.confirmpass}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                    />
@@ -218,7 +221,7 @@ const Registerform = () => {
                                         </div>
                                    ) : null}
                               </div>
-                              <Link href="/LoginPage">
+                              <div className="w-full p-2">
                                    <input
                                         type="submit"
                                         className={`bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-4 ease-in-out duration-300 ${
@@ -231,7 +234,16 @@ const Registerform = () => {
                                              !formik.isValid || !formik.dirty
                                         }
                                    />
-                              </Link>
+
+                                   <div className="flex justify-center mt-4 text-base">
+                                        ¿Ya tienes cuenta?
+                                        <Link href="LoginPage">
+                                             <span className=" font-medium cursor-pointer text-base hover:text-indigo-700 ml-1">
+                                                  Inicia sesión
+                                             </span>
+                                        </Link>
+                                   </div>
+                              </div>
                          </form>
                     </div>
                </div>
