@@ -32,7 +32,11 @@ export class UsersService {
 
   async findAll(): Promise<UserEntity[]> {
     try {
-      const users = await this.prisma.user.findMany({});
+      const users = await this.prisma.user.findMany({
+        include: {
+          currentProducts: true,
+        },
+      });
       return users;
     } catch (error) {
       throw error;
@@ -46,6 +50,9 @@ export class UsersService {
       const user = await this.prisma.user.findUnique({
         where: {
           id: id,
+        },
+        include: {
+          currentProducts: true,
         },
       });
       if (!user) throw new NotFoundException('user not found');

@@ -14,6 +14,7 @@ import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductEntity } from './entities/product.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 const handleErrors = (error) => {
   if (error instanceof BadRequestException) {
@@ -33,6 +34,7 @@ const handleErrors = (error) => {
   }
 };
 
+@ApiTags('products')
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}

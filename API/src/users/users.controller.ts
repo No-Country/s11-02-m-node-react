@@ -14,6 +14,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 const handleErrors = (error) => {
   if (error instanceof BadRequestException) {
@@ -30,16 +31,17 @@ const handleErrors = (error) => {
   }
 };
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
   async create(
-    @Body() createProductDto: CreateUserDto,
+    @Body() createUserDto: CreateUserDto,
   ): Promise<{ newUser: UserEntity; message: string }> {
     try {
-      const newUser = await this.usersService.create(createProductDto);
+      const newUser = await this.usersService.create(createUserDto);
       return { newUser, message: 'user created successfully' };
     } catch (error) {
       throw handleErrors(error);
