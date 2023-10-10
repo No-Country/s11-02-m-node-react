@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsEmail, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: 'The "firstName" field is required' })
@@ -21,12 +21,4 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'The "address" field is required' })
   @IsString({ message: 'The "address" field must be a string' })
   address: string;
-
-  @IsOptional()
-  @IsString({ message: 'The "hashedAt" field must be a string' })
-  hashedAt: string;
-
-  @IsOptional()
-  @IsString({ message: 'The "hashedRt" field must be a string' })
-  hashedRt: string;
 }
