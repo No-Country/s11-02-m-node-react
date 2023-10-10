@@ -106,7 +106,7 @@ const Loginform = () => {
 
                               <div className="flex justify-center mt-4 text-base">
                                    ¿No tienes cuenta?
-                                   <Link href="LoginPage">
+                                   <Link href="RegisterPage">
                                         <span className=" font-medium cursor-pointer text-base hover:text-indigo-700 ml-1">
                                              Regístrate
                                         </span>
