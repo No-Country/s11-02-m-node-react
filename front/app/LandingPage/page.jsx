@@ -1,4 +1,5 @@
 import React from 'react';
+import Category from './../components/Category/Category';
 import SearchBar from '../components/SearchBar/Index';
 import AboutUs from '../components/AboutUs/Index';
 import Products from '../components/Products/Index';
@@ -11,6 +12,7 @@ const LandingPage = () => {
                <AboutUs />
                <Products />
                <GetAccount />
+               <Category />
           </div>
      );
 };
