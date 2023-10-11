@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Loginform from '../components/Login/Loginform';
 
-const Login = ()=> {
-  return (
-    <div>Login de Usuario</div>
-  )
-}
+const Login = () => {
+     return (
+          <div>
+               <Loginform />
+          </div>
+     );
+};
 
 export default Login;
