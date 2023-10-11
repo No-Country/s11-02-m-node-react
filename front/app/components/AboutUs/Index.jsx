@@ -4,7 +4,7 @@ import imagen from '../../../public/reciclaje-123604.jpeg';
 
 function AboutUs() {
      return (
-          <div className="bg-white p-4 md:p-12 md:pl-28 md:pr-28 rounded-md shadow-md mx-auto justify-center flex items-center">
+          <div className="bg-gray-200  p-4 md:p-12 md:pl-28 md:pr-28 rounded-md shadow-md mx-auto justify-center flex items-center">
                <div className="md:flex justify-center">
                     <div className="md:w-1/2 ">
                          <h2 className="text-3xl font-semibold mb-10">
