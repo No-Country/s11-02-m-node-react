@@ -4,8 +4,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Registerform = () => {
+     const router = useRouter();
      const formik = useFormik({
           initialValues: {
                firstName: '',
@@ -76,9 +78,10 @@ const Registerform = () => {
                          closeOnClick: true,
                          pauseOnHover: true,
                     });
+                    router.push('/LoginPage');
                } catch (error) {
                     console.log(error);
-                    toast.error('Error al crear el usuario', {
+                    toast.error('El mail ya fue registrado', {
                          position: 'bottom-right',
                          autoClose: 3000,
                          hideProgressBar: false,

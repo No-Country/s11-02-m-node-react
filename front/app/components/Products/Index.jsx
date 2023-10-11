@@ -4,7 +4,7 @@ import { products } from './productos';
 
 function Products() {
      return (
-          <div className="bg-gray-200 p-4 md:pb-20 md:pt-20 md:pl-24 md:pr-24 rounded-md shadow-md">
+          <div className="bg-white p-4 md:pb-20 md:pt-20 md:pl-24 md:pr-24 rounded-md shadow-md">
                <h2 className="text-3xl font-semibold mb-16">
                     Productos destacados
                </h2>
