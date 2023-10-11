@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-     title: 'ReciclApp',
+     title: 'ReutilizApp',
      description: 'Economía Circular',
+     favicon: '../public/recycle.svg',
 };
 
 export default function RootLayout({ children }) {
@@ -18,12 +19,16 @@ export default function RootLayout({ children }) {
                <head>
                     <title>{metadata.title}</title>
                     <meta name="description" content={metadata.description} />
+                    <link
+                         rel="icon"
+                         type="image/x-icon"
+                         href={metadata.favicon}
+                    />
                </head>
                <body>
                     <Navbar />
                     <main className="min-h-screen">
                          <ToastContainer />
-                         {/* <main className="flex min-h-screen items-center  p-8 mt-8 md:p-24"> */}
                          {children}
                     </main>
                     <Footer />
