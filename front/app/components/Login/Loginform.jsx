@@ -3,8 +3,11 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 const Loginform = () => {
+     const router = useRouter();
      const formik = useFormik({
           initialValues: {
                email: '',
@@ -20,9 +23,48 @@ const Loginform = () => {
                     .min(6, 'La contraseña debe tener 6 carecteres'),
           }),
 
-          onSubmit: (values) => {
-               console.log(formik.values);
-               console.log(values);
+          onSubmit: async (values) => {
+               const { ...userData } = values;
+               try {
+                    const response = await fetch(
+                         'http://localhost:3001/auth/local/signin',
+                         {
+                              method: 'POST',
+                              headers: {
+                                   'Content-Type': 'application/json',
+                              },
+
+                              body: JSON.stringify(userData),
+                         }
+                    );
+                    if (!response.ok) {
+                         throw new Error('Error en la solicitud al backend');
+                    }
+                    const data = await response.json();
+
+                    //
+                    localStorage.setItem('access_token', data.access_token);
+
+                    console.log(data);
+
+                    toast.success('Inicio de sesión exitoso', {
+                         position: 'bottom-right',
+                         autoClose: 3000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                    });
+                    router.push('/');
+               } catch (error) {
+                    console.log(error);
+                    toast.error('Inicio de sesión incorrecto', {
+                         position: 'bottom-right',
+                         autoClose: 3000,
+                         hideProgressBar: false,
+                         closeOnClick: true,
+                         pauseOnHover: true,
+                    });
+               }
           },
           validateOnChange: true,
      });
