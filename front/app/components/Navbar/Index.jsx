@@ -31,12 +31,12 @@ const Navbar = () => {
                          <button
                               className="hidden md:inline border-2 border-white text-white font-bold px-16 py-2 rounded-lg transition duration-300 hover:bg-blue-500 hover:font-black mb-4 sm:mb-0 mr-4"
                               onClick={handleLogIn}>
-                              Log In
+                              Iniciar sesión
                          </button>
                          <button
                               className="hidden md:inline border-2 border-white bg-white text-blue-500 font-bold px-16 py-2 rounded-lg hover:bg-blue-700 hover:text-white"
                               onClick={handleRegister}>
-                              Register
+                              Crear cuenta
                          </button>
                     </div>
                </div>
