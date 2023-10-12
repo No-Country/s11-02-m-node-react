@@ -50,12 +50,12 @@ const Registerform = () => {
                     )
                     .required('Debe confirmar la contraseña'),
           }),
-
+          // 'http://localhost:3001/auth/local/signup'
           onSubmit: async (values) => {
                const { confirmpass, ...userData } = values;
                try {
                     const response = await fetch(
-                         'http://localhost:3001/auth/local/signup',
+                         'https://reutilizzappapi.onrender.com/auth/local/signup',
                          {
                               method: 'POST',
                               headers: {

@@ -28,14 +28,14 @@ const HamburgerMenu = () => {
                               </li>
                               <li className="mb-2">
                                    <Link href="/LoginPage" onClick={toggleMenu}>
-                                        Login
+                                        Iniciar sesión
                                    </Link>
                               </li>
                               <li>
                                    <Link
                                         href="/RegisterPage"
                                         onClick={toggleMenu}>
-                                        Register
+                                        Crear cuenta
                                    </Link>
                               </li>
                          </ul>
