@@ -34,7 +34,11 @@ export class UsersService {
     try {
       const users = await this.prisma.user.findMany({
         include: {
-          currentProducts: true,
+          sellingProducts: true,
+          soldProducts: true,
+          buyingProducts: true,
+          purchasedProducts: true,
+          losingProducts: true,
         },
       });
       return users;
@@ -52,7 +56,11 @@ export class UsersService {
           id: id,
         },
         include: {
-          currentProducts: true,
+          sellingProducts: true,
+          soldProducts: true,
+          buyingProducts: true,
+          purchasedProducts: true,
+          losingProducts: true,
         },
       });
       if (!user) throw new NotFoundException('user not found');

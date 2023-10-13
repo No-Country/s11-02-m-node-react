@@ -21,4 +21,15 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'The "address" field is required' })
   @IsString({ message: 'The "address" field must be a string' })
   address: string;
+
+  // @IsArray({ message: '' })
+  // sellingProducts: string[];
+  // @IsOptional()
+  // soldProducts: string[];
+  // @IsOptional()
+  // buyingProducts: string[];
+  // @IsOptional()
+  // purchasedProducts: string[];
+  // @IsOptional()
+  // losingProducts: string[];
 }
