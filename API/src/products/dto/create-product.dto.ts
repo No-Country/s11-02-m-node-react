@@ -42,22 +42,6 @@ export class CreateProductDto {
 
   status: Status = Status.ACTIVE;
 
-  // @IsString({ message: 'The "currentBuyerId" field must be a string' })
-  @IsMongoId()
-  currentBuyerId: string;
-
-  // @IsString({ message: 'The "purchasedById" field must be a string' })
-  @IsMongoId()
-  purchasedById: string;
-
-  // @IsString({ message: 'The "soldById" field must be a string' })
-  @IsMongoId()
-  soldById: string;
-
-  // @IsString({ message: 'The "pastBuyersIds" field must be a string' }) // Array?
-  @IsMongoId()
-  pastBuyersIds: string;
-
   //ESTOS NO PUEDO INTEGRARLOS!!!
   // currentBuyer: string;
   // purchasedBy: string;
