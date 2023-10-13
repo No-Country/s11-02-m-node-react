@@ -4,5 +4,5 @@ import { Exclude } from 'class-transformer';
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {
   @Exclude()
-  userId?: string;
+  sellerId?: string;
 }
