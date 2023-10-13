@@ -11,32 +11,42 @@ datasource db {
 }
 
 model User {
-  id               String    @id @default(auto()) @map("_id") @db.ObjectId
-  firstName        String
-  lastName         String
-  email            String    @unique
-  password         String
-  address          String
-  coords           String?
-  currentProducts  Product[]
-  soldProducts     String[]
-  purchaseProducts String[]
-  reviews          String?
-  hashedAt         String?
-  hashedRt         String?
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  firstName         String
+  lastName          String
+  email             String     @unique
+  password          String
+  address           String
+  coords            String?
+  sellingProducts   Product[]  @relation("sellingProducts")
+  soldProducts      Product[]  @relation("soldProducts")
+  buyingProducts    Product[]  @relation("buyingProducts")
+  losingProducts    Product[]  @relation("losingProducts")
+  purchasedProducts Product[]  @relation("purchasedProducts")
+  reviews           String?
+  hashedAt          String?
+  hashedRt          String?
 }
 
 model Product {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  description  String
-  img          String[]
-  currentOffer Float
-  userId       String   @db.ObjectId
-  user         User     @relation(fields: [userId], references: [id])
-  endDate      DateTime
-  tags         String[]
-  status       Status
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  description     String
+  img             String[]
+  currentOffer    Float?
+  currentBuyer    User?    @relation("buyingProducts", fields: [currentBuyerId], references: [id])
+  currentBuyerId  String?   @db.ObjectId
+  purchasedBy     User?    @relation("purchasedProducts", fields: [purchasedById], references: [id])
+  purchasedById   String?   @db.ObjectId
+  seller          User    @relation("sellingProducts", fields: [sellerId], references: [id])
+  sellerId        String   @db.ObjectId
+  soldBy          User?    @relation("soldProducts", fields: [soldById], references: [id])
+  soldById        String?   @db.ObjectId
+  pastBuyers      User?    @relation("losingProducts", fields: [pastBuyersIds], references: [id])
+  pastBuyersIds   String?   @db.ObjectId
+  endDate         DateTime
+  tags            String[]
+  status          Status
 }
 
 enum Status {
