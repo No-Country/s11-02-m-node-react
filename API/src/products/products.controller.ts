@@ -9,7 +9,6 @@ import {
   BadRequestException,
   ConflictException,
   NotFoundException,
-  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -53,19 +52,8 @@ export class ProductsController {
   }
 
   @Get()
-  async findAll(
-    @Query() categories: object,
-  ): Promise<{ products: ProductEntity[]; message: string }> {
+  async findAll(): Promise<{ products: ProductEntity[]; message: string }> {
     try {
-      if (categories) {
-        const products = await this.productsService.filterByCategories(
-          Object.values(categories),
-        );
-        return {
-          products,
-          message: `Filter products by categories`,
-        };
-      }
       const products = await this.productsService.findAll();
       return { products: products, message: 'Products found successfully' };
     } catch (error) {

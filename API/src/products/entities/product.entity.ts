@@ -5,12 +5,8 @@ export class ProductEntity implements ProductModel {
   name: string;
   description: string;
   img: string[];
-  currentOffer: number | undefined;
-  currentBuyerId: string | undefined;
-  purchasedById: string | undefined;
-  sellerId: string;
-  soldById: string | undefined;
-  pastBuyersIds: string | undefined;
+  currentOffer: number;
+  userId: string;
   endDate: Date;
   tags: string[];
   status: $Enums.Status;
