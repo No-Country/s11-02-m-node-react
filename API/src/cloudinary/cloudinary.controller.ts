@@ -2,8 +2,8 @@ import {
   ConflictException,
   Controller,
   Post,
-  UploadedFile,
   UploadedFiles,
+  UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { CloudinaryService } from './cloudinary.service';
