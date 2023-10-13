@@ -1,4 +1,4 @@
-import { Product, User as UserModel } from '@prisma/client';
+import { User as UserModel } from '@prisma/client';
 export class UserEntity implements UserModel {
   id: string;
   firstName: string;
@@ -7,11 +7,8 @@ export class UserEntity implements UserModel {
   password: string;
   address: string;
   coords: string;
-  sellingProducts?: Product[];
-  soldProducts?: Product[];
-  buyingProducts?: Product[];
-  purchasedProducts?: Product[];
-  losingProducts?: Product[];
+  soldProducts: string[];
+  purchaseProducts: string[];
   reviews: string;
   hashedAt: string;
   hashedRt: string;

@@ -22,14 +22,14 @@ export class CreateProductDto {
   //@IsString({ message: 'The "img" field must be a string' })
   img: string[];
 
-  // @IsNotEmpty({ message: 'The "currentOffer" field is required' })
+  @IsNotEmpty({ message: 'The "currentOffer" field is required' })
   @IsNumber({}, { message: 'The "currentOffer" field must be a number' })
   currentOffer: number;
 
-  // @IsNotEmpty({ message: 'The "sellerId" field is required' })
-  // @IsString({ message: 'The "sellerId" field must be a string' })
+  @IsNotEmpty({ message: 'The "userId" field is required' })
+  @IsString({ message: 'The "userId" field must be a string' })
   @IsMongoId()
-  sellerId: string;
+  userId: string;
 
   @IsString({ message: 'The "endDate" field must be a string' })
   @IsISO8601({}, { message: 'The "endDate" field must be in ISO8601 format' })
@@ -39,16 +39,5 @@ export class CreateProductDto {
   @IsArray({ message: 'The "tags" field must be an array' })
   //@IsString({ message: 'The "tags" field must be a string' })
   tags: string[];
-
   status: Status = Status.ACTIVE;
-
-  //ESTOS NO PUEDO INTEGRARLOS!!!
-  // currentBuyer: string;
-  // purchasedBy: string;
-  // seller: string;
-  // soldBy: string;
-  // pastBuyers: string;
-  // @IsNotEmpty({ message: 'The "sellerId" field is required' })
-  // @IsString({ message: 'The "sellerId" field must be a string' })
-  // seller: string;
 }

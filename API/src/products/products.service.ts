@@ -51,26 +51,6 @@ export class ProductsService {
     }
   }
 
-  async filterByCategories(
-    categories: Array<string>,
-  ): Promise<ProductEntity[]> {
-    try {
-      const filterProducts = await this.prisma.product.findMany({
-        where: {
-          tags: {
-            hasEvery: categories,
-          },
-        },
-      });
-
-      if (filterProducts.length === 0)
-        throw new NotFoundException('No products found for those categories');
-      return filterProducts;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   async update(
     id: string,
     updateProductDto: UpdateProductDto,
