@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-     title: 'ReutilizApp',
+     title: 'EcoSubasta',
      description: 'Economía Circular',
      favicon: '../public/recycle.svg',
 };
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
                <Providers>
                     <body>
                          <Navbar />
-                         <main className="min-h-screen">
+                         <main className="min-h-screen font-inter">
                               <ToastContainer />
                               {children}
                          </main>
