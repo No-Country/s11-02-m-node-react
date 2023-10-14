@@ -14,6 +14,7 @@ import {
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CreateOfferDto } from './dto/create-offer.dto';
 import { ProductEntity } from './entities/product.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -47,6 +48,19 @@ export class ProductsController {
     try {
       const newProduct = await this.productsService.create(createProductDto);
       return { product: newProduct, message: 'Product created successfully' };
+    } catch (error) {
+      handleErrors(error);
+    }
+  }
+
+  @Post('create-offer')
+  async createOffer(
+    @Body() createOfferDto: CreateOfferDto,
+  ): Promise<{ updateProduct: ProductEntity; message: string }> {
+    try {
+      const updateProduct =
+        await this.productsService.createOffer(createOfferDto);
+      return { updateProduct, message: 'Offer created successfully' };
     } catch (error) {
       handleErrors(error);
     }

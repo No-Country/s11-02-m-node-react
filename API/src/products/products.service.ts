@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CreateOfferDto } from './dto/create-offer.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductEntity } from './entities/product.entity';
 import { isMongoId, validate } from 'class-validator';
@@ -105,6 +106,42 @@ export class ProductsService {
       await this.prisma.product.delete({
         where: { id: id },
       });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async createOffer(createOfferDto: CreateOfferDto): Promise<ProductEntity> {
+    try {
+      if (
+        !isMongoId(createOfferDto.productId) ||
+        !isMongoId(createOfferDto.userId)
+      )
+        throw new BadRequestException('Id must be a mongodb id');
+
+      const product = await this.findOne(createOfferDto.productId);
+      if (!product) throw new NotFoundException('Product not found');
+
+      if (createOfferDto.userId === product.sellerId)
+        throw new BadRequestException(
+          'The product owner cannot perform the action',
+        );
+
+      if (createOfferDto.newOffer > product.currentOffer) {
+        const updateProduct = await this.prisma.product.update({
+          where: {
+            id: createOfferDto.productId,
+          },
+          data: {
+            currentBuyerId: createOfferDto.userId,
+            currentOffer: createOfferDto.newOffer,
+          },
+        });
+        return updateProduct;
+      } else
+        throw new BadRequestException(
+          'the new offer does not exceed the current offer',
+        );
     } catch (error) {
       throw error;
     }
