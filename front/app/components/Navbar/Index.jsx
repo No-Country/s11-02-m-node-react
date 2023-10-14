@@ -59,12 +59,12 @@ const Navbar = () => {
                          ) : (
                               <>
                                    <button
-                                        className="hidden md:inline text-Gunmetal/2 font-bold px-12 py-4 text-xl rounded-full hover:bg-green "
+                                        className="hidden md:inline text-Gunmetal/2  px-12 py-4 text-xl rounded-full hover:bg-green "
                                         onClick={handleRegister}>
                                         Registrarse
                                    </button>
                                    <button
-                                        className="hidden md:inline border-2  bg-Fern/green text-Isabelline font-bold px-12 py-4 text-xl rounded-full mb-4 sm:mb-0 mr-4"
+                                        className="hidden md:inline border-2  bg-Fern/green text-Isabelline  px-12 py-4 text-xl rounded-full mb-4 sm:mb-0 mr-4"
                                         onClick={handleLogIn}>
                                         Iniciar sesión
                                    </button>
