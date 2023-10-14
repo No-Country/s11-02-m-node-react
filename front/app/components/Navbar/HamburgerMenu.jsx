@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ isUserAuthenticated, handleLogOut }) => {
      const [menuOpen, setMenuOpen] = useState(false);
 
      const toggleMenu = () => {
@@ -26,18 +26,30 @@ const HamburgerMenu = () => {
                                         Inicio
                                    </Link>
                               </li>
-                              <li className="mb-2">
-                                   <Link href="/LoginPage" onClick={toggleMenu}>
-                                        Iniciar sesión
-                                   </Link>
-                              </li>
-                              <li>
-                                   <Link
-                                        href="/RegisterPage"
-                                        onClick={toggleMenu}>
-                                        Crear cuenta
-                                   </Link>
-                              </li>
+                              {isUserAuthenticated ? (
+                                   <li className="mb-2">
+                                        <Link href="/" onClick={handleLogOut}>
+                                             Cerrar sesión
+                                        </Link>
+                                   </li>
+                              ) : (
+                                   <>
+                                        <li className="mb-2">
+                                             <Link
+                                                  href="/LoginPage"
+                                                  onClick={toggleMenu}>
+                                                  Iniciar sesión
+                                             </Link>
+                                        </li>
+                                        <li>
+                                             <Link
+                                                  href="/RegisterPage"
+                                                  onClick={toggleMenu}>
+                                                  Crear cuenta
+                                             </Link>
+                                        </li>
+                                   </>
+                              )}
                          </ul>
                     </div>
                )}

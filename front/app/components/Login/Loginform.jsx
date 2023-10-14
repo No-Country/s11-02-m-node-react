@@ -2,11 +2,15 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { login } from '@/app/store/authSlice';
+import { setUser } from '@/app/store/userSlice';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
 const Loginform = () => {
+     const dispatch = useDispatch();
      const router = useRouter();
      const formik = useFormik({
           initialValues: {
@@ -47,6 +51,8 @@ const Loginform = () => {
                     //
                     localStorage.setItem('access_token', data.access_token);
 
+                    dispatch(login());
+                    dispatch(setUser(userData));
                     console.log(data);
 
                     toast.success('Inicio de sesión exitoso', {
