@@ -9,10 +9,10 @@ const HamburgerMenu = ({ isUserAuthenticated, handleLogOut }) => {
      };
 
      return (
-          <div className="">
+          <div className=" flex items-center">
                {/* Botón de hamburguesa */}
                <button
-                    className="md:hidden block text-white text-4xl"
+                    className="md:hidden text-black text-4xl flex items-center"
                     onClick={toggleMenu}>
                     &#9776;
                </button>
