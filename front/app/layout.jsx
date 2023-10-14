@@ -1,4 +1,5 @@
 import './globals.css';
+import Providers from './store/provider';
 import { Inter } from 'next/font/google';
 import Navbar from './components/Navbar/Index';
 import Footer from './components/Footer/Index';
@@ -25,14 +26,16 @@ export default function RootLayout({ children }) {
                          href={metadata.favicon}
                     />
                </head>
-               <body>
-                    <Navbar />
-                    <main className="min-h-screen">
-                         <ToastContainer />
-                         {children}
-                    </main>
-                    <Footer />
-               </body>
+               <Providers>
+                    <body>
+                         <Navbar />
+                         <main className="min-h-screen">
+                              <ToastContainer />
+                              {children}
+                         </main>
+                         <Footer />
+                    </body>
+               </Providers>
           </html>
      );
 }
