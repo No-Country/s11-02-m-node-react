@@ -5,7 +5,16 @@ const userSlice = createSlice({
      initialState: null,
      reducers: {
           setUser: (state, action) => {
-               return action.payload;
+               // Verifica que action.payload sea un objeto serializable
+               if (
+                    typeof action.payload === 'object' &&
+                    action.payload !== null
+               ) {
+                    return action.payload;
+               } else {
+                    // Si no es serializable, no realices ningún cambio en el estado
+                    return state;
+               }
           },
      },
 });
