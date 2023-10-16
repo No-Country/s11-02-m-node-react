@@ -33,9 +33,7 @@ const Registerform = () => {
                          'El apellido sólo puede contener letras'
                     ),
 
-               address: Yup.string()
-                    .required('La dirección es obligatoria')
-                    .matches(/^[A-Za-z0-9\s]+$/, 'Caracteres inválidos'),
+               address: Yup.string().required('La dirección es obligatoria'),
 
                email: Yup.string()
                     .email('El email no es válido')
