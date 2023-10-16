@@ -26,16 +26,17 @@ export default function RootLayout({ children }) {
                          href={metadata.favicon}
                     />
                </head>
-               <Providers>
-                    <body>
+
+               <body>
+                    <Providers>
                          <Navbar />
                          <main className="min-h-screen font-poppins">
                               <ToastContainer />
                               {children}
                          </main>
                          <Footer />
-                    </body>
-               </Providers>
+                    </Providers>
+               </body>
           </html>
      );
 }
