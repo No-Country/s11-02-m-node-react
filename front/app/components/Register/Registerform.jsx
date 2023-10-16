@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import mainRoute from '@/route';
 
 const Registerform = () => {
      const router = useRouter();
@@ -50,12 +51,12 @@ const Registerform = () => {
                     )
                     .required('Debe confirmar la contraseña'),
           }),
-          // 'http://localhost:3001/auth/local/signup'
+
           onSubmit: async (values) => {
                const { confirmpass, ...userData } = values;
                try {
                     const response = await fetch(
-                         'https://reutilizzappapi.onrender.com/auth/local/signup',
+                         `${mainRoute}/auth/local/signup`,
                          {
                               method: 'POST',
                               headers: {
