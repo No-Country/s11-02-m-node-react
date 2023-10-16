@@ -23,6 +23,7 @@ module.exports = {
                     'Fern/green': '#517957',
                     Isabelline: '#F5F4F0',
                     'Gunmetal/2': '#1D262B',
+                    'Tea/green': '#D5ECB8',
                },
           },
      },
