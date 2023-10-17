@@ -9,8 +9,9 @@ const LandingPage = () => {
           <div className="">
                <Info />
                <AboutUs />
-               <Products />
                <Category />
+               <Products />
+               <GetAccount />
           </div>
      );
 };

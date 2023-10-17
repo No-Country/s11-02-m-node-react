@@ -28,20 +28,17 @@ body {
 }
 
 .categoryDiv {
-     border-top-left-radius: 0.75rem;
-     border-bottom-right-radius: 0.75rem;
-     background-color: white;
-     height: 10rem;
-     width: 10rem;
+     position: relative;
      display: flex;
      justify-content: center;
      align-items: center;
      cursor: pointer;
      transition: ease-in, 0.3s;
 }
-
-.categoryDiv:hover {
-     transform: scale(1.05);
+.categoryImg {
+     border-top-left-radius: 0.75rem;
+     border-bottom-right-radius: 0.75rem;
+     object-fit: cover;
 }
 
 .vertical-bar {
