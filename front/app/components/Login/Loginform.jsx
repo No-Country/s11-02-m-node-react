@@ -53,7 +53,7 @@ const Loginform = () => {
                     localStorage.setItem('access_token', data.access_token);
 
                     dispatch(login());
-                    dispatch(setUser(userData));
+                    dispatch(setUser(data.user));
                     console.log(data);
 
                     toast.success('Inicio de sesión exitoso', {
