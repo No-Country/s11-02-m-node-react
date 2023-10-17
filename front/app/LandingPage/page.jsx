@@ -11,9 +11,9 @@ const LandingPage = () => {
                <SearchBar />
                <Info />
                <AboutUs />
+               <Category />
                <Products />
                <GetAccount />
-               <Category />
           </div>
      );
 };
