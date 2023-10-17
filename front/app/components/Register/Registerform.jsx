@@ -35,6 +35,8 @@ const Registerform = () => {
 
                address: Yup.string().required('La dirección es obligatoria'),
 
+               city: Yup.string().required('La localidad es obligatoria'),
+
                email: Yup.string()
                     .email('El email no es válido')
                     .matches(/.*@.*\.com/, 'El email no es válido')
@@ -177,6 +179,32 @@ const Registerform = () => {
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
                                              <p className="text-sm">
                                                   {formik.errors.address}
+                                             </p>
+                                        </div>
+                                   ) : null}
+                              </div>
+
+                              <div className="w-full md:w-1/2 mb-10 p-2">
+                                   <label
+                                        htmlFor="city"
+                                        className="block text-black text-md font-bold mb-2">
+                                        Localidad
+                                   </label>
+                                   <input
+                                        type="text"
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="city"
+                                        placeholder="Ingrese su localidad"
+                                        value={formik.values.city}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+
+                                   {formik.touched.city &&
+                                   formik.errors.city ? (
+                                        <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
+                                             <p className="text-sm">
+                                                  {formik.errors.city}
                                              </p>
                                         </div>
                                    ) : null}
