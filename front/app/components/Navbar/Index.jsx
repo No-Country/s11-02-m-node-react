@@ -20,6 +20,9 @@ const Navbar = () => {
      const handleInicio = () => {
           router.push('/');
      };
+     const handleHome = () => {
+          router.push('/HomePage');
+     };
      const handleLogIn = () => {
           router.push('/LoginPage');
      };
@@ -46,11 +49,16 @@ const Navbar = () => {
                               onClick={handleInicio}
                          />
                     </div>
-                    <div>
+                    <div className="flex items-center justify-center">
                          <HamburgerMenu
                               isUserAuthenticated={isUserAuthenticated}
                               handleLogOut={handleLogOut}
                          />
+                         <button
+                              className="hidden md:inline text-Gunmetal/2  px-12 py-2 text-xl rounded-full hover:bg-green "
+                              onClick={handleHome}>
+                              Home
+                         </button>
                          {isUserAuthenticated ? (
                               <button
                                    className="hidden md:inline border-2 border-Fern/green bg-white text-Fern/green px-16 py-2 rounded-full hover:bg-green-700 hover:text-white "
@@ -58,7 +66,8 @@ const Navbar = () => {
                                    Cerrar sesión
                               </button>
                          ) : (
-                              <>
+                              <div className="flex items-center justify-center">
+                                   <span className="vertical-bar hidden md:inline"></span>
                                    <button
                                         className="hidden md:inline text-Gunmetal/2  px-12 py-2 text-xl rounded-full hover:bg-green "
                                         onClick={handleRegister}>
@@ -69,7 +78,7 @@ const Navbar = () => {
                                         onClick={handleLogIn}>
                                         Iniciar sesión
                                    </button>
-                              </>
+                              </div>
                          )}
                     </div>
                </div>

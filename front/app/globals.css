@@ -43,3 +43,11 @@ body {
 .categoryDiv:hover {
      transform: scale(1.05);
 }
+
+.vertical-bar {
+     height: 28px; /* Altura de la barra vertical */
+     width: 1px; /* Ancho de la barra vertical */
+     background-color: #000; /* Color de la barra vertical */
+     /* Permite alinearla verticalmente con los botones */
+     margin: 0 10px; /* Espacio entre la barra y los botones */
+}
