@@ -31,6 +31,7 @@ const Navbar = () => {
           dispatch(setUser(null));
           dispatch(logout());
           router.push('/');
+          localStorage.clear();
      };
      console.log('usuario', isUserAuthenticated);
      console.log('usuario completo', loggedUser);
