@@ -28,8 +28,53 @@ export class ProductsService {
     }
   }
 
-  async findAll(): Promise<ProductEntity[]> {
+  async findAll(
+    firstCategory: string,
+    secondCategory: string,
+    thirdCategory: string,
+    name: string,
+  ): Promise<ProductEntity[]> {
     try {
+      const categories = [];
+      if (firstCategory !== undefined) categories.push(firstCategory);
+      if (secondCategory !== undefined) categories.push(secondCategory);
+      if (thirdCategory !== undefined) categories.push(thirdCategory);
+
+      if (categories.length > 0 && name) {
+        const products = await this.prisma.product.findMany({
+          where: {
+            tags: {
+              hasEvery: categories,
+            },
+            name: {
+              startsWith: name,
+            },
+          },
+        });
+        return products;
+      }
+
+      if (categories.length > 0) {
+        const products = await this.prisma.product.findMany({
+          where: {
+            tags: {
+              hasEvery: categories,
+            },
+          },
+        });
+        return products;
+      }
+
+      if (name) {
+        const products = await this.prisma.product.findMany({
+          where: {
+            name: {
+              startsWith: name,
+            },
+          },
+        });
+        return products;
+      }
       const products = await this.prisma.product.findMany({});
       return products;
     } catch (error) {
@@ -47,26 +92,6 @@ export class ProductsService {
       });
       if (!product) throw new NotFoundException('Product not found');
       return product;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async filterByCategories(
-    categories: Array<string>,
-  ): Promise<ProductEntity[]> {
-    try {
-      const filterProducts = await this.prisma.product.findMany({
-        where: {
-          tags: {
-            hasEvery: categories,
-          },
-        },
-      });
-
-      if (filterProducts.length === 0)
-        throw new NotFoundException('No products found for those categories');
-      return filterProducts;
     } catch (error) {
       throw error;
     }
