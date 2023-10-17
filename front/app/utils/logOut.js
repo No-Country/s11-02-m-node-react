@@ -1,15 +1,14 @@
+import mainRoute from '@/route';
+
 export const logOutUser = async () => {
      try {
-          const response = await fetch(
-               'https://reutilizzappapi.onrender.com/auth/logout',
-               {
-                    method: 'POST',
-                    headers: {
-                         'Content-Type': 'application/json', // Ajusta el encabezado según sea necesario
-                    },
-                    //body: JSON.stringify({ /* Tus datos de logout */ }),
-               }
-          );
+          const response = await fetch(`${mainRoute}/auth/logout`, {
+               method: 'POST',
+               headers: {
+                    'Content-Type': 'application/json', // Ajusta el encabezado según sea necesario
+               },
+               //body: JSON.stringify({ /* Tus datos de logout */ }),
+          });
           if (response.ok) {
                console.log('Sesion de usuario finalizada');
                // Borrar token de localStorage
