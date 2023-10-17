@@ -68,19 +68,20 @@ export class ProductsController {
 
   @Get()
   async findAll(
-    @Query() categories: object,
+    @Query('firstCategory') firstCategory: string,
+    @Query('secondCategory') secondCategory: string,
+    @Query('thirdCategory') thirdCategory: string,
+    @Query('name') name: string,
   ): Promise<{ products: ProductEntity[]; message: string }> {
     try {
-      if (categories) {
-        const products = await this.productsService.filterByCategories(
-          Object.values(categories),
-        );
-        return {
-          products,
-          message: `Filter products by categories`,
-        };
-      }
-      const products = await this.productsService.findAll();
+      const products = await this.productsService.findAll(
+        firstCategory,
+        secondCategory,
+        thirdCategory,
+        name,
+      );
+      if (products.length === 0)
+        throw new BadRequestException('Products not found');
       return { products: products, message: 'Products found successfully' };
     } catch (error) {
       handleErrors(error);
