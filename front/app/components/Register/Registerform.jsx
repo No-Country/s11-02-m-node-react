@@ -106,7 +106,7 @@ const Registerform = () => {
                               <div className="mb-10">
                                    <label
                                         htmlFor="firstName"
-                                        className="block text-black text-md font mb-2">
+                                        className="block text-black text-md mb-2">
                                         Nombre
                                    </label>
                                    <input
