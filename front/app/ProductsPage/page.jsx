@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ProductCard from '../components/Products/ProductCard';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { fetchProducts } from '../utils/getProducts';
 
 const ProductsPage = () => {
@@ -22,12 +23,15 @@ const ProductsPage = () => {
                try {
                     const data = await fetchProducts();
                     setProducts(data);
+                    Loading.remove();
                } catch (error) {
                     console.error('Error al obtener productos', error);
+                    Loading.remove();
                }
           };
 
           fetchData();
+          Loading.circle('Cargando Productos');
      }, []);
 
      return (
