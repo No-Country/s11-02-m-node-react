@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -15,14 +16,19 @@ export class AuthService {
     private usersService: UsersService,
   ) {}
 
-  async signupLocal(dto: CreateUserDto): Promise<Tokens> {
+  async signupLocal(
+    dto: CreateUserDto,
+  ): Promise<{ tokens: Tokens; user: UserEntity }> {
     const newUser = await this.usersService.create(dto);
     const tokens = await this.getTokens(newUser.id, newUser.email);
     await this.updateRtHash(newUser.id, tokens.refresh_token);
-    return tokens;
+    delete newUser.password;
+    return { tokens: tokens, user: newUser };
   }
 
-  async signinLocal(dto: AuthDto): Promise<Tokens> {
+  async signinLocal(
+    dto: AuthDto,
+  ): Promise<{ tokens: Tokens; user: UserEntity }> {
     const user = await this.prisma.user.findUnique({
       where: {
         email: dto.email,
@@ -33,7 +39,8 @@ export class AuthService {
     if (!passwordMatches) throw new ForbiddenException('Acceso denegado');
     const tokens = await this.getTokens(user.id, user.email);
     await this.updateRtHash(user.id, tokens.refresh_token);
-    return tokens;
+    delete user.password;
+    return { tokens: tokens, user: user };
   }
 
   async logout(userId: string) {

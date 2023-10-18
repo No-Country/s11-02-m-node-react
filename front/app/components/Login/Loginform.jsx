@@ -50,11 +50,14 @@ const Loginform = () => {
                     const data = await response.json();
 
                     //
-                    localStorage.setItem('access_token', data.access_token);
+                    localStorage.setItem(
+                         'access_token',
+                         data.tokens.access_token
+                    );
 
                     dispatch(login());
-                    dispatch(setUser(userData));
-                    console.log(data);
+                    dispatch(setUser(data.user));
+                    //console.log('data!!', data);
 
                     toast.success('Inicio de sesión exitoso', {
                          position: 'bottom-right',

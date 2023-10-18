@@ -40,4 +40,76 @@ export const products = [
           image: parlante,
           category: 'Electro',
      },
+     {
+          id: 5,
+          name: 'Bicicleta MTB marca BH',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$83.000',
+          image: bici,
+          category: 'Otros',
+     },
+     {
+          id: 6,
+          name: 'Chaqueta marrón',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$4.100',
+          image: chaqueta,
+          category: 'Ropa',
+     },
+     {
+          id: 7,
+          name: 'Licuadora marca Atma',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$10.200',
+          image: procesadora,
+          category: 'Hogar',
+     },
+     {
+          id: 8,
+          name: 'Parlante marca JBL',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$18.480',
+          image: parlante,
+          category: 'Electro',
+     },
+     {
+          id: 9,
+          name: 'Bicicleta MTB marca BH',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$83.000',
+          image: bici,
+          category: 'Otros',
+     },
+     {
+          id: 10,
+          name: 'Chaqueta marrón',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$4.100',
+          image: chaqueta,
+          category: 'Ropa',
+     },
+     {
+          id: 11,
+          name: 'Licuadora marca Atma',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$10.200',
+          image: procesadora,
+          category: 'Hogar',
+     },
+     {
+          id: 12,
+          name: 'Parlante marca JBL',
+          description:
+               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
+          price: '$18.480',
+          image: parlante,
+          category: 'Electro',
+     },
 ];
