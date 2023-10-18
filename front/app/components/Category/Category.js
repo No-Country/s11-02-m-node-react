@@ -15,7 +15,9 @@ function Category() {
                          <h1 className="text-black lg:text-4xl lg:m-0 ">
                               Categorias mas populares
                          </h1>
-                         <button className="border-[#6F9F77] border-2 rounded-full w-24 p-2">
+                         <button
+                              onClick={() => router.push(`/HomePage`)}
+                              className="border-[#6F9F77] border-2 rounded-full w-24 p-2">
                               ver todo
                          </button>
                     </div>
@@ -42,7 +44,7 @@ function Category() {
                          </li>
                          <li
                               className="categoryDiv lg:h-[35rem] lg:hover:scale-105"
-                              onClick={() => onClick('consolas')}>
+                              onClick={() => onClick('electrodomesticos')}>
                               <img
                                    src="consolas.avif"
                                    alt="consolas"
