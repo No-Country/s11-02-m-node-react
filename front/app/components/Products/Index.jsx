@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchProducts } from '../../utils/getProducts';
-//import { products } from './productos';
 import ProductCard from './ProductCard';
 
 function Products() {
@@ -38,8 +37,8 @@ function Products() {
                </div>
 
                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-28">
-                    {products.slice(0, 4).map((product) => (
-                         <ProductCard product={product} />
+                    {products.slice(0, 4).map((product, index) => (
+                         <ProductCard product={product} key={index} />
                     ))}
                </div>
           </div>
