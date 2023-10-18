@@ -35,6 +35,8 @@ const Registerform = () => {
 
                address: Yup.string().required('La dirección es obligatoria'),
 
+               city: Yup.string().required('La localidad es obligatoria'),
+
                email: Yup.string()
                     .email('El email no es válido')
                     .matches(/.*@.*\.com/, 'El email no es válido')
@@ -96,23 +98,23 @@ const Registerform = () => {
      return (
           <div className="flex justify-center mt-10 md:mt-20">
                <div className="w-full max-w-xl">
-                    <div className="bg-Isabelline rounded-lg shadow-xl px-6 py-8 ">
-                         <h2 className="text-xl font-sans text-white-800 text-center mb-6">
+
+                    <div className="bg-neutral-100 rounded-lg shadow-2xl px-6 py-8 ">
+                         <h2 className="text-xl font-sans text-white-800 text-center mb-4">
                               Registro
                          </h2>
-                         <form
-                              action=""
-                              onSubmit={formik.handleSubmit}
-                              className="flex flex-wrap">
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                         <form action="" onSubmit={formik.handleSubmit}>
+                              <div className="mb-10">
                                    <label
                                         htmlFor="firstName"
-                                        className="block text-black text-md  mb-2">
+                                        className="block text-black text-md mb-2">
                                         Nombre
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4  rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
+
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+
                                         id="firstName"
                                         placeholder="Ingrese su nombre"
                                         value={formik.values.firstName}
@@ -130,16 +132,20 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                              <div className="mb-10">
                                    <label
                                         htmlFor="lastName"
-                                        className="block text-black text-md mb-2">
+
+                                        className="block text-black text-md  mb-2">
+
+
                                         Apellido
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
-                                        id="lastName"
+
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                    id="lastName"
                                         placeholder="Ingrese su apellido"
                                         value={formik.values.lastName}
                                         onChange={formik.handleChange}
@@ -156,15 +162,20 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                              <div className="mb-10">
                                    <label
                                         htmlFor="address"
-                                        className="block text-black text-md mb-2">
+
+                                        className="block text-black text-md  mb-2">
+
+
                                         Dirección
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
+
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+
                                         id="address"
                                         placeholder="Ingrese su dirección"
                                         value={formik.values.address}
@@ -182,15 +193,45 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                              <div className="mb-10">
+                                   <label
+                                        htmlFor="city"
+                                        className="block text-black text-md  mb-2">
+                                        Localidad
+                                   </label>
+                                   <input
+                                        type="text"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        id="city"
+                                        placeholder="Ingrese su localidad"
+                                        value={formik.values.city}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                   />
+
+                                   {formik.touched.city &&
+                                   formik.errors.city ? (
+                                        <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
+                                             <p className="text-sm">
+                                                  {formik.errors.city}
+                                             </p>
+                                        </div>
+                                   ) : null}
+                              </div>
+
+                              <div className="mb-10">
                                    <label
                                         htmlFor="email"
-                                        className="block text-black text-md mb-2">
+
+                                        className="block text-black text-md  mb-2">
+
                                         Email
                                    </label>
                                    <input
                                         type="text"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
+
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+
                                         id="email"
                                         placeholder="Ingrese su Email"
                                         value={formik.values.email}
@@ -208,15 +249,21 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                              <div className="mb-10">
                                    <label
                                         htmlFor="password"
-                                        className="block text-black text-md mb-2">
+
+                                        className="block text-black text-md  mb-2">
+
+
                                         Contraseña
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
+
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+
+
                                         id="password"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.password}
@@ -226,23 +273,26 @@ const Registerform = () => {
 
                                    {formik.touched.password &&
                                    formik.errors.password ? (
-                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute">
+                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute mt-1 z-10">
                                              <p className=" text-sm">
                                                   {formik.errors.password}
                                              </p>
                                         </div>
                                    ) : null}
                               </div>
-
-                              <div className="w-full md:w-1/2 mb-10 p-2">
+                              <div className="mb-10">
                                    <label
                                         htmlFor="confirmpass"
-                                        className="block text-black text-md mb-2">
+
+                                        className="block text-black text-md  mb-2">
+
                                         Confirmar Contraseña
                                    </label>
                                    <input
                                         type="password"
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+
+
                                         id="confirmpass"
                                         placeholder="Confirme su contraseña"
                                         value={formik.values.confirmpass}
@@ -251,7 +301,7 @@ const Registerform = () => {
                                    />
                                    {formik.touched.confirmpass &&
                                    formik.errors.confirmpass ? (
-                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute">
+                                        <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute mt-1 z-10">
                                              <p className=" text-sm">
                                                   {formik.errors.confirmpass}
                                              </p>
@@ -261,7 +311,10 @@ const Registerform = () => {
                               <div className="w-full p-2">
                                    <input
                                         type="submit"
-                                        className={`bg-Fern/green hover:bg-green text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-4 ease-in-out duration-300 ${
+
+                                        className={`bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-4 ease-in-out duration-300 ${
+
+
                                              (!formik.isValid ||
                                                   !formik.dirty) &&
                                              'bg-green cursor-not-allowed opacity-60 pointer-events-none hover:cursor-not-allowed'
@@ -275,7 +328,10 @@ const Registerform = () => {
                                    <div className="flex justify-center mt-4 text-base">
                                         ¿Ya tienes cuenta?
                                         <Link href="LoginPage">
-                                             <span className=" font-medium cursor-pointer text-base hover:text-Fern/green ml-1">
+
+                                             <span className=" font-medium cursor-pointer text-base hover:text-green-700 ml-1">
+
+
                                                   Inicia sesión
                                              </span>
                                         </Link>
