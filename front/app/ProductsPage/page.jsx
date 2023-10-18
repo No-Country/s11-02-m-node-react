@@ -1,13 +1,29 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ProductCard from '../components/Products/ProductCard';
-import { products } from '../components/Products/productos';
+import { fetchProducts } from '../utils/getProducts';
+//import { products } from '../components/Products/productos';
 
 const ProductsPage = () => {
+     const [products, setProducts] = useState([]);
      const router = useRouter();
      const handleBack = () => {
           router.back();
      };
+
+     useEffect(() => {
+          const fetchData = async () => {
+               try {
+                    const data = await fetchProducts();
+                    setProducts(data);
+               } catch (error) {
+                    console.error('Error al obtener productos', error);
+               }
+          };
+
+          fetchData();
+     }, []);
 
      return (
           <div className="bg-white pl-4 pr-4 pt-4 md:pb-20 md:pt-10 md:pl-24 md:pr-24 ">

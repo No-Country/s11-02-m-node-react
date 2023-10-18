@@ -54,7 +54,7 @@ const Loginform = () => {
 
                     dispatch(login());
                     dispatch(setUser(data.user));
-                    console.log(data);
+                    console.log('data', data);
 
                     toast.success('Inicio de sesión exitoso', {
                          position: 'bottom-right',

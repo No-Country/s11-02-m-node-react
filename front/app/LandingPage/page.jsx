@@ -11,7 +11,7 @@ const LandingPage = () => {
                <AboutUs />
                <Category />
                <Products />
-               <GetAccount />
+               {/* <GetAccount /> */}
           </div>
      );
 };
