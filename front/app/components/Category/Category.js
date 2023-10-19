@@ -6,7 +6,7 @@ import ButtonInfo from './ButtonInfo';
 function Category() {
      const router = useRouter();
      function onClick(category = '') {
-          router.push(`Products/${category}`);
+          router.push(`ProductsPage/${category}`);
      }
      return (
           <div className="lg:p-16 mt-4 ">
@@ -16,7 +16,7 @@ function Category() {
                               Categorias mas populares
                          </h1>
                          <button
-                              onClick={() => router.push(`/HomePage`)}
+                              onClick={() => router.push(`/ProductsPage`)}
                               className="border-[#6F9F77] border-2 rounded-full w-24 p-2">
                               ver todo
                          </button>

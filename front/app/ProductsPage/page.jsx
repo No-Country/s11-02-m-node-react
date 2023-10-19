@@ -15,25 +15,26 @@ const ProductsPage = () => {
      const productsToDisplay = products.slice(startIndex, endIndex);
 
      const handleBack = () => {
-          router.back();
+          router.push('/');
      };
+     function seeProduct(id) {
+          router.push(`/Product/${id}`);
+     }
 
      useEffect(() => {
           const fetchData = async () => {
                try {
                     const data = await fetchProducts();
                     setProducts(data);
-                    Loading.remove();
                } catch (error) {
                     console.error('Error al obtener productos', error);
-                    Loading.remove();
                }
           };
 
           fetchData();
-          Loading.circle('Cargando Productos');
      }, []);
-
+     if (products.length === 0) Loading.circle('Cargando Productos');
+     else Loading.remove();
      return (
           <div className="bg-white pl-4 pr-4 pt-4 md:pb-20 md:pt-10 md:pl-24 md:pr-24">
                <div className="flex flex-row mb-4 md:mb-10">
@@ -49,7 +50,9 @@ const ProductsPage = () => {
 
                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-16">
                     {productsToDisplay.map((product, index) => (
-                         <ProductCard product={product} key={index} />
+                         <div onClick={() => seeProduct(product.id)}>
+                              <ProductCard product={product} key={index} />
+                         </div>
                     ))}
                </div>
 

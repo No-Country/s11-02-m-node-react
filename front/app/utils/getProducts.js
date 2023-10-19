@@ -1,8 +1,8 @@
+const backendURL = 'https://reutilizzappapi.onrender.com';
+
 export const fetchProducts = async () => {
      try {
-          const response = await fetch(
-               'https://reutilizzappapi.onrender.com/products'
-          );
+          const response = await fetch(`${backendURL}/products`);
           if (!response.ok) {
                throw new Error('No se pudo obtener la lista de productos');
           }
@@ -17,7 +17,7 @@ export const fetchProducts = async () => {
 export const fetchProductsFilter = async (category) => {
      try {
           const response = await fetch(
-               `https://reutilizzappapi.onrender.com/products?firstCategory=${category}`
+               `${backendURL}/products?firstCategory=${category}`
           );
           if (!response.ok) {
                throw new Error('No se pudo obtener la lista de productos');
@@ -26,6 +26,20 @@ export const fetchProductsFilter = async (category) => {
           return data.products;
      } catch (error) {
           console.error('Error al obtener productos', error);
+          return [];
+     }
+};
+
+export const getProduct = async (id) => {
+     try {
+          const response = await fetch(`${backendURL}/products/${id}`);
+          if (!response.ok) {
+               throw new Error('No se pudo obtener el producto');
+          }
+          const data = await response.json();
+          return data.product;
+     } catch (error) {
+          console.error('Error al obtener el producto', error);
           return [];
      }
 };
