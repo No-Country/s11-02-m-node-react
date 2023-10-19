@@ -16,7 +16,7 @@ model User {
   lastName          String
   email             String     @unique
   password          String
-  address           String
+  city              String
   coords            String?
   sellingProducts   Product[]  @relation("sellingProducts")
   soldProducts      Product[]  @relation("soldProducts")
