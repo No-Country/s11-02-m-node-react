@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchProducts } from '../../utils/getProducts';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import ProductCard from './ProductCard';
 
 function Products() {
      const router = useRouter();
+
      const [products, setProducts] = useState([]);
      const handleProductsPage = () => {
           router.push('/ProductsPage');
@@ -16,15 +16,12 @@ function Products() {
                try {
                     const data = await fetchProducts();
                     setProducts(data);
-                    Loading.remove();
                } catch (error) {
                     console.error('Error al obtener productos', error);
-                    Loading.remove();
                }
           };
 
           fetchData();
-          Loading.circle('Cargando Productos');
      }, []);
 
      return (
