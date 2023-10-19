@@ -25,7 +25,7 @@ function Info() {
                />
                <Description
                     img="/Frame3.svg"
-                    text="Lo subaste y colabore al mediambniente"
+                    text="Lo subasté y colaboré al medioambiente"
                />
           </div>
      );

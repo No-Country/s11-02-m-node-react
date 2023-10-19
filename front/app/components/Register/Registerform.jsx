@@ -14,6 +14,7 @@ const Registerform = () => {
                firstName: '',
                lastName: '',
                address: '',
+               // city: '',
                email: '',
                password: '',
                confirmpass: '',
@@ -35,7 +36,7 @@ const Registerform = () => {
 
                address: Yup.string().required('La dirección es obligatoria'),
 
-               city: Yup.string().required('La localidad es obligatoria'),
+               // city: Yup.string().required('La localidad es obligatoria'),
 
                email: Yup.string()
                     .email('El email no es válido')
@@ -181,7 +182,7 @@ const Registerform = () => {
                                    ) : null}
                               </div>
 
-                              <div className="mb-10">
+                              {/* <div className="mb-10">
                                    <label
                                         htmlFor="city"
                                         className="block text-black text-md  mb-2">
@@ -205,7 +206,7 @@ const Registerform = () => {
                                              </p>
                                         </div>
                                    ) : null}
-                              </div>
+                              </div> */}
 
                               <div className="mb-10">
                                    <label
