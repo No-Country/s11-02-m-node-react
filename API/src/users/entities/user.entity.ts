@@ -5,7 +5,7 @@ export class UserEntity implements UserModel {
   lastName: string;
   email: string;
   password: string;
-  address: string;
+  city: string;
   coords: string;
   sellingProducts?: Product[];
   soldProducts?: Product[];
