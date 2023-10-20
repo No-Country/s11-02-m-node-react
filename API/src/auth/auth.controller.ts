@@ -9,6 +9,7 @@ import { AtGuard, RtGuard } from 'src/common/guards';
 import { GetCurrentUser } from 'src/common/decorators';
 import { GetCurrentUserId } from 'src/common/decorators';
 import { ApiTags } from '@nestjs/swagger';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -17,13 +18,17 @@ export class AuthController {
 
   @Post('/local/signup')
   @HttpCode(HttpStatus.CREATED)
-  signupLocal(@Body() dto: CreateUserDto): Promise<Tokens> {
+  signupLocal(
+    @Body() dto: CreateUserDto,
+  ): Promise<{ tokens: Tokens; user: UserEntity }> {
     return this.authService.signupLocal(dto);
   }
 
   @Post('/local/signin')
   @HttpCode(HttpStatus.OK)
-  signinLocal(@Body() dto: AuthDto): Promise<Tokens> {
+  signinLocal(
+    @Body() dto: AuthDto,
+  ): Promise<{ tokens: Tokens; user: UserEntity }> {
     return this.authService.signinLocal(dto);
   }
 

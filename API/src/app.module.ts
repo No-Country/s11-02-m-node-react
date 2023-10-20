@@ -9,10 +9,27 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users/users.service';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { MercadopagoController } from './mercadopago/mercadopago.controller';
+import { MercadopagoModule } from './mercadopago/mercadopago.module';
+import { MercadopagoService } from './mercadopago/mercadopago.service';
 
 @Module({
-  imports: [UsersModule, ProductsModule, PrismaModule, AuthModule],
-  controllers: [AppController, AuthController],
-  providers: [AppService, AuthService, JwtService, UsersService],
+  imports: [
+    UsersModule,
+    ProductsModule,
+    PrismaModule,
+    AuthModule,
+    CloudinaryModule,
+    MercadopagoModule,
+  ],
+  controllers: [AppController, AuthController, MercadopagoController],
+  providers: [
+    AppService,
+    AuthService,
+    JwtService,
+    UsersService,
+    MercadopagoService,
+  ],
 })
 export class AppModule {}

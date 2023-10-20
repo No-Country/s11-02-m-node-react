@@ -9,10 +9,12 @@ import {
   BadRequestException,
   ConflictException,
   NotFoundException,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { CreateOfferDto } from './dto/create-offer.dto';
 import { ProductEntity } from './entities/product.entity';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -51,10 +53,35 @@ export class ProductsController {
     }
   }
 
-  @Get()
-  async findAll(): Promise<{ products: ProductEntity[]; message: string }> {
+  @Post('create-offer')
+  async createOffer(
+    @Body() createOfferDto: CreateOfferDto,
+  ): Promise<{ updateProduct: ProductEntity; message: string }> {
     try {
-      const products = await this.productsService.findAll();
+      const updateProduct =
+        await this.productsService.createOffer(createOfferDto);
+      return { updateProduct, message: 'Offer created successfully' };
+    } catch (error) {
+      handleErrors(error);
+    }
+  }
+
+  @Get()
+  async findAll(
+    @Query('firstCategory') firstCategory: string,
+    @Query('secondCategory') secondCategory: string,
+    @Query('thirdCategory') thirdCategory: string,
+    @Query('name') name: string,
+  ): Promise<{ products: ProductEntity[]; message: string }> {
+    try {
+      const products = await this.productsService.findAll(
+        firstCategory,
+        secondCategory,
+        thirdCategory,
+        name,
+      );
+      if (products.length === 0)
+        throw new BadRequestException('Products not found');
       return { products: products, message: 'Products found successfully' };
     } catch (error) {
       handleErrors(error);
