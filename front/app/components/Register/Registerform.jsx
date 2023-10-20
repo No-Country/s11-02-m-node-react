@@ -13,8 +13,7 @@ const Registerform = () => {
           initialValues: {
                firstName: '',
                lastName: '',
-               address: '',
-               // city: '',
+               city: '',
                email: '',
                password: '',
                confirmpass: '',
@@ -34,9 +33,11 @@ const Registerform = () => {
                          'El apellido sólo puede contener letras'
                     ),
 
-               address: Yup.string().required('La dirección es obligatoria'),
 
-               // city: Yup.string().required('La localidad es obligatoria'),
+               city: Yup.string()
+                    .required('La dirección es obligatoria')
+                    .matches(/^[A-Za-z0-9\s]+$/, 'Caracteres inválidos'),
+
 
                email: Yup.string()
                     .email('El email no es válido')
@@ -158,25 +159,29 @@ const Registerform = () => {
 
                               <div className="mb-10">
                                    <label
-                                        htmlFor="address"
-                                        className="block text-black text-md  mb-2">
+
+                                        htmlFor="city"
+                                        className="block text-black text-md font-bold mb-2">
+
                                         Dirección
                                    </label>
                                    <input
                                         type="text"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
-                                        id="address"
+
+                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
+                                        id="city"
+
                                         placeholder="Ingrese su dirección"
-                                        value={formik.values.address}
+                                        value={formik.values.city}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                    />
 
-                                   {formik.touched.address &&
-                                   formik.errors.address ? (
+                                   {formik.touched.city &&
+                                   formik.errors.city ? (
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
                                              <p className="text-sm">
-                                                  {formik.errors.address}
+                                                  {formik.errors.city}
                                              </p>
                                         </div>
                                    ) : null}
