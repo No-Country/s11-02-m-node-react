@@ -6,8 +6,13 @@ import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import mainRoute from '@/route';
+import { useState, useEffect } from 'react';
 
 const Registerform = () => {
+     const [cityResults, setCityResults] = useState([]);
+     const [cityInput, setCityInput] = useState('');
+     const [fetchError, setFetchError] = useState(null);
+
      const router = useRouter();
      const formik = useFormik({
           initialValues: {
@@ -22,30 +27,28 @@ const Registerform = () => {
                firstName: Yup.string()
                     .required('El nombre es obligatorio')
                     .matches(
-                         /^[A-Za-z]+$/,
+                         /^[A-Za-z\s]+$/,
                          'El nombre sólo puede contener letras'
                     ),
 
                lastName: Yup.string()
                     .required('El apellido es obligatorio')
                     .matches(
-                         /^[A-Za-z]+$/,
+                         /^[A-Za-z\s]+$/,
                          'El apellido sólo puede contener letras'
                     ),
 
-
-               city: Yup.string()
-                    .required('La dirección es obligatoria')
-                    .matches(/^[A-Za-z0-9\s]+$/, 'Caracteres inválidos'),
-
+               city: Yup.string().required('La ciudad es obligatoria'),
 
                email: Yup.string()
                     .email('El email no es válido')
                     .matches(/.*@.*\.com/, 'El email no es válido')
                     .required('El email es obligatorio'),
+
                password: Yup.string()
                     .required('La contraseña es obligatoria')
                     .min(6, 'La contraseña debe tener 6 carecteres'),
+
                confirmpass: Yup.string()
                     .oneOf(
                          [Yup.ref('password'), null],
@@ -96,6 +99,29 @@ const Registerform = () => {
 
           validateOnChange: true,
      });
+
+     useEffect(() => {
+          if (cityInput) {
+               fetch(`http://localhost:3001/users/get-city?q=${cityInput}`)
+                    .then((response) => {
+                         if (!response.ok) {
+                              throw new Error('Error en la solicitud');
+                         }
+                         return response.json();
+                    })
+                    .then((data) => {
+                         console.log(data);
+                         setCityResults(data);
+                    })
+                    .catch((error) => {
+                         console.error('Error en la solicitud: ', error);
+                         setFetchError('Error en la solicitud');
+                         setCityResults([]);
+                    });
+          } else {
+               setCityResults([]);
+          }
+     }, [cityInput]);
 
      return (
           <div className="flex justify-center md:mt-8 mb-8">
@@ -159,60 +185,54 @@ const Registerform = () => {
 
                               <div className="mb-10">
                                    <label
-
-                                        htmlFor="city"
-                                        className="block text-black text-md font-bold mb-2">
-
-                                        Dirección
-                                   </label>
-                                   <input
-                                        type="text"
-
-                                        className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
-                                        id="city"
-
-                                        placeholder="Ingrese su dirección"
-                                        value={formik.values.city}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                   />
-
-                                   {formik.touched.city &&
-                                   formik.errors.city ? (
-                                        <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
-                                             <p className="text-sm">
-                                                  {formik.errors.city}
-                                             </p>
-                                        </div>
-                                   ) : null}
-                              </div>
-
-                              {/* <div className="mb-10">
-                                   <label
                                         htmlFor="city"
                                         className="block text-black text-md  mb-2">
-                                        Localidad
+                                        Ciudad
                                    </label>
                                    <input
                                         type="text"
                                         className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
                                         id="city"
-                                        placeholder="Ingrese su localidad"
-                                        value={formik.values.city}
-                                        onChange={formik.handleChange}
+                                        placeholder="Ingrese su ciudad"
+                                        value={cityInput}
+                                        onChange={(e) =>
+                                             setCityInput(e.target.value)
+                                        }
                                         onBlur={formik.handleBlur}
                                    />
-
-                                   {formik.touched.city &&
-                                   formik.errors.city ? (
-                                        <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
-                                             <p className="text-sm">
-                                                  {formik.errors.city}
-                                             </p>
-                                        </div>
-                                   ) : null}
-                              </div> */}
-
+                                   {cityResults.length > 0 && (
+                                        <ul className="bg-white absolute w-20% border border-gray-300 rounded-t-lg border-t-0 z-10">
+                                             {cityResults
+                                                  .slice(0, 6)
+                                                  .map((result, index) => (
+                                                       <li
+                                                            key={index}
+                                                            className="p-2 cursor-pointer text-black hover:bg-indigo-100"
+                                                            onClick={() => {
+                                                                 setCityInput(
+                                                                      result
+                                                                 );
+                                                                 setCityResults(
+                                                                      []
+                                                                 );
+                                                                 formik.setFieldValue(
+                                                                      'city',
+                                                                      result
+                                                                 );
+                                                            }}>
+                                                            {result}
+                                                       </li>
+                                                  ))}
+                                        </ul>
+                                   )}
+                              </div>
+                              {formik.touched.city && formik.errors.city ? (
+                                   <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute">
+                                        <p className=" text-sm">
+                                             {formik.errors.city}
+                                        </p>
+                                   </div>
+                              ) : null}
                               <div className="mb-10">
                                    <label
                                         htmlFor="email"
@@ -223,7 +243,7 @@ const Registerform = () => {
                                         type="text"
                                         className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
                                         id="email"
-                                        placeholder="Ingrese su Email"
+                                        placeholder="mail@mail.com"
                                         value={formik.values.email}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
