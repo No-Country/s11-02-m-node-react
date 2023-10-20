@@ -30,7 +30,7 @@ const Registerform = () => {
                          'El apellido sólo puede contener letras'
                     ),
 
-               address: Yup.string()
+               city: Yup.string()
                     .required('La dirección es obligatoria')
                     .matches(/^[A-Za-z0-9\s]+$/, 'Caracteres inválidos'),
 
@@ -156,25 +156,25 @@ const Registerform = () => {
 
                               <div className="w-full md:w-1/2 mb-10 p-2">
                                    <label
-                                        htmlFor="address"
+                                        htmlFor="city"
                                         className="block text-black text-md font-bold mb-2">
                                         Dirección
                                    </label>
                                    <input
                                         type="text"
                                         className="border border-gray-300 py-3 px-4 rounded-lg focus:border-indigo-500 outline-none focus:ring-1 focus:ring-indigo-500 text-black"
-                                        id="address"
+                                        id="city"
                                         placeholder="Ingrese su dirección"
-                                        value={formik.values.address}
+                                        value={formik.values.city}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
                                    />
 
-                                   {formik.touched.address &&
-                                   formik.errors.address ? (
+                                   {formik.touched.city &&
+                                   formik.errors.city ? (
                                         <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
                                              <p className="text-sm">
-                                                  {formik.errors.address}
+                                                  {formik.errors.city}
                                              </p>
                                         </div>
                                    ) : null}
