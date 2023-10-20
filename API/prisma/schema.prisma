@@ -11,42 +11,63 @@ datasource db {
 }
 
 model User {
-  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  id                String        @id @default(auto()) @map("_id") @db.ObjectId
   firstName         String
   lastName          String
-  email             String     @unique
+  email             String        @unique
   password          String
   city              String
   coords            String?
-  sellingProducts   Product[]  @relation("sellingProducts")
-  soldProducts      Product[]  @relation("soldProducts")
-  buyingProducts    Product[]  @relation("buyingProducts")
-  losingProducts    Product[]  @relation("losingProducts")
-  purchasedProducts Product[]  @relation("purchasedProducts")
+  sellingProducts   Product[]     @relation("sellingProducts")
+  soldProducts      Product[]     @relation("soldProducts")
+  buyingProducts    Product[]     @relation("buyingProducts")
+  losingProducts    Product[]     @relation("losingProducts")
+  purchasedProducts Product[]     @relation("purchasedProducts")
+  transactions      Transaction[]
+  wallet            Wallet?
   reviews           String?
   hashedAt          String?
   hashedRt          String?
 }
 
 model Product {
-  id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  name            String
-  description     String
-  img             String[]
-  currentOffer    Float?
-  currentBuyer    User?    @relation("buyingProducts", fields: [currentBuyerId], references: [id])
-  currentBuyerId  String?   @db.ObjectId
-  purchasedBy     User?    @relation("purchasedProducts", fields: [purchasedById], references: [id])
-  purchasedById   String?   @db.ObjectId
-  seller          User    @relation("sellingProducts", fields: [sellerId], references: [id])
-  sellerId        String   @db.ObjectId
-  soldBy          User?    @relation("soldProducts", fields: [soldById], references: [id])
-  soldById        String?   @db.ObjectId
-  pastBuyers      User?    @relation("losingProducts", fields: [pastBuyersIds], references: [id])
-  pastBuyersIds   String?   @db.ObjectId
-  endDate         DateTime
-  tags            String[]
-  status          Status
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  description    String
+  img            String[]
+  currentOffer   Float?
+  currentBuyer   User?    @relation("buyingProducts", fields: [currentBuyerId], references: [id])
+  currentBuyerId String?  @db.ObjectId
+  purchasedBy    User?    @relation("purchasedProducts", fields: [purchasedById], references: [id])
+  purchasedById  String?  @db.ObjectId
+  seller         User     @relation("sellingProducts", fields: [sellerId], references: [id])
+  sellerId       String   @db.ObjectId
+  soldBy         User?    @relation("soldProducts", fields: [soldById], references: [id])
+  soldById       String?  @db.ObjectId
+  pastBuyers     User?    @relation("losingProducts", fields: [pastBuyersIds], references: [id])
+  pastBuyersIds  String?  @db.ObjectId
+  endDate        DateTime
+  tags           String[]
+  status         Status
+}
+
+model Wallet {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique @db.ObjectId
+  user   User?  @relation(fields: [userId], references: [id])
+  amount Int
+  transactions  Transaction[]
+}
+
+model Transaction {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  TransactionId String
+  amount        Int
+  createdAt     DateTime @default(now())
+  userId        String   @db.ObjectId
+  user          User?    @relation(fields: [userId], references: [id])
+  walletId      String    @db.ObjectId
+  wallet        Wallet?   @relation(fields: [walletId], references: [id])
 }
 
 enum Status {
