@@ -38,7 +38,7 @@ const Registerform = () => {
                          'El apellido sólo puede contener letras'
                     ),
 
-               city: Yup.string().matches(/.+/, 'La dirección es obligatoria'),
+               city: Yup.string().required('La ciudad es obligatoria'),
 
                email: Yup.string()
                     .email('El email no es válido')
@@ -243,7 +243,7 @@ const Registerform = () => {
                                         type="text"
                                         className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
                                         id="email"
-                                        placeholder="Ingrese su Email"
+                                        placeholder="mail@mail.com"
                                         value={formik.values.email}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
