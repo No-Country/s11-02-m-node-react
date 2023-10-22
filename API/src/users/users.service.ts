@@ -24,6 +24,13 @@ export class UsersService {
       const newUser = await this.prisma.user.create({
         data: createUserDto,
       });
+      // Inicializa billetera al crear el user
+      await this.prisma.wallet.create({
+        data: {
+          userId: newUser.id,
+          amount: 0,
+        },
+      });
       return newUser;
     } catch (error) {
       throw error;
@@ -61,6 +68,11 @@ export class UsersService {
           buyingProducts: true,
           purchasedProducts: true,
           losingProducts: true,
+          wallet: {
+            include: {
+              transactions: true,
+            },
+          },
         },
       });
       if (!user) throw new NotFoundException('user not found');
