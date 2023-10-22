@@ -9,7 +9,8 @@ import {
 import { StripeService } from './stripe.service';
 import { CreateStripeIntentDto } from './dto/stripe-intent.dto';
 import RequestWithRawBody from './interface/requestWithRawBody.interface';
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('stripe')
 @Controller('stripe')
 export class StripeController {
   constructor(private readonly stripeService: StripeService) {}
@@ -17,7 +18,10 @@ export class StripeController {
   async generatePaymentIntent(
     @Body() createStripeIntentDto: CreateStripeIntentDto,
   ) {
-    return await this.stripeService.createPaymentIntent(createStripeIntentDto);
+    const paymentLink = await this.stripeService.createPaymentIntent(
+      createStripeIntentDto,
+    );
+    return { paymentLink, message: 'Payment link create success' };
   }
   @Post('webhook')
   async stripeWebHook(
