@@ -21,44 +21,44 @@ function Category() {
                               ver todo
                          </button>
                     </div>
-                    <div className="flex flex-col lg:flex-row lg:mt-4 justify-center items-center flex-wrap gap-4 lg:gap-8">
+                    <div className="flex flex-col lg:flex-row lg:mt-4 justify-center items-center flex-wrap gap-6 lg:gap-8">
                          <li
-                              className="categoryDiv lg:h-[35rem] lg:hover:scale-105"
+                              className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('artes')}>
                               <img
                                    src="/artes.avif"
                                    alt="artes"
-                                   className="categoryImg h-[12rem] lg:h-full w-[21rem] lg:w-[20rem]"
+                                   className="categoryImg h-[12rem] lg:h-full w-[14rem] lg:w-[18rem]"
                               />
                               <ButtonInfo text="Arte" />
                          </li>
                          <li
-                              className="categoryDiv lg:h-[35rem] lg:hover:scale-105"
+                              className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('cartas')}>
                               <img
                                    src="/cartas.avif"
                                    alt="cartas"
-                                   className="categoryImg lg:h-full h-[12rem] w-[21rem] lg:w-[20rem]"
+                                   className="categoryImg lg:h-full h-[12rem] w-[21rem] lg:w-[18rem]"
                               />
                               <ButtonInfo text="Cartas" />
                          </li>
                          <li
-                              className="categoryDiv lg:h-[35rem] lg:hover:scale-105"
+                              className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('electrodomesticos')}>
                               <img
                                    src="consolas.avif"
                                    alt="consolas"
-                                   className="categoryImg h-[12rem] lg:h-full w-[21rem] lg:w-[20rem]"
+                                   className="categoryImg h-[12rem] lg:h-full w-[16rem] lg:w-[18rem]"
                               />
                               <ButtonInfo text="Electrodomésticos" />
                          </li>
                          <li
-                              className="categoryDiv lg:h-[35rem] lg:hover:scale-105"
+                              className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('belleza')}>
                               <img
                                    src="/belleza.avif"
                                    alt="libros"
-                                   className="categoryImg h-[12rem] lg:h-full w-[21rem] lg:w-[20rem]"
+                                   className="categoryImg h-[12rem] lg:h-full w-[12rem] lg:w-[18rem]"
                               />
                               <ButtonInfo text="Belleza" />
                          </li>

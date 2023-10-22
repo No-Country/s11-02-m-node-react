@@ -12,7 +12,7 @@ const SubastarBtn = () => {
           <div className="  flex flex-wrap justify-center mt-12 mb-12 font-poppins">
                <button
                     onClick={handleRegister}
-                    className="border-2 border-Fern/green bg-Fern/green text-Isabelline px-24 py-4 md:text-2xl text-sm rounded-full m-2">
+                    className="border-2 border-Fern/green bg-Fern/green text-Isabelline px-28 py-1 md:text-2xl text-sm rounded-full m-2">
                     Subastar un producto
                </button>
           </div>

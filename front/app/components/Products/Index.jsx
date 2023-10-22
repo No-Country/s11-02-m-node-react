@@ -37,7 +37,7 @@ function Products() {
                     </button>
                </div>
 
-               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-28">
+               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
                     {products.slice(0, 4).map((product, index) => (
                          <ProductCard product={product} key={index} />
                     ))}

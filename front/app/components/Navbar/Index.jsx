@@ -39,7 +39,7 @@ const Navbar = () => {
      console.log('usuario', isUserAuthenticated);
      console.log('usuario completo', loggedUser);
      return (
-          <nav className="bg-Isabelline font-poppins p-4 flex items-center">
+          <nav className="bg-Isabelline font-poppins p-4 flex items-center shadow-2xl">
                <div className="container mx-auto flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                          <Image
@@ -55,13 +55,13 @@ const Navbar = () => {
                               handleLogOut={handleLogOut}
                          />
                          <button
-                              className="hidden md:inline text-Gunmetal/2  px-12 py-2 text-xl rounded-full hover:bg-green "
+                              className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-xl rounded-full hover:bg-green "
                               onClick={handleHome}>
-                              Home
+                              Subastas
                          </button>
                          {isUserAuthenticated ? (
                               <button
-                                   className="hidden md:inline border-2 border-Fern/green bg-white text-Fern/green px-16 py-2 rounded-full hover:bg-green-700 hover:text-white "
+                                   className="hidden md:inline border-2 border-Fern/green bg-white text-Fern/green px-16 py-1 rounded-full hover:bg-green-700 hover:text-white "
                                    onClick={handleLogOut}>
                                    Cerrar sesión
                               </button>
@@ -69,12 +69,12 @@ const Navbar = () => {
                               <div className="flex items-center justify-center">
                                    <span className="vertical-bar hidden md:inline"></span>
                                    <button
-                                        className="hidden md:inline text-Gunmetal/2  px-12 py-2 text-xl rounded-full hover:bg-green "
+                                        className="hidden md:inline text-Gunmetal/2  px-10 py-1 text-xl rounded-full hover:bg-green "
                                         onClick={handleRegister}>
                                         Registrarse
                                    </button>
                                    <button
-                                        className="hidden md:inline border-2  bg-Fern/green text-Isabelline  px-12 py-2 text-xl rounded-full mb-4 sm:mb-0 mr-4"
+                                        className="hidden md:inline border-2  bg-Fern/green text-Isabelline  px-10 py-1 text-xl rounded-full mb-4 sm:mb-0 mr-4"
                                         onClick={handleLogIn}>
                                         Iniciar sesión
                                    </button>

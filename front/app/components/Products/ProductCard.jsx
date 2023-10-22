@@ -25,7 +25,7 @@ function ProductCard({ product, className }) {
                          />
                     </div>
                </div>
-               <p className="md:text-xl mb-8 mt-6">{product.name}</p>
+               <p className="md:text-lg mb-8 mt-6">{product.name}</p>
                <p className="text-sm md:text-md text-gray-500">
                     Último precio ofertado
                </p>

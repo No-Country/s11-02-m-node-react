@@ -48,7 +48,7 @@ const ProductsPage = () => {
                     </h2>
                </div>
 
-               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-16">
+               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
                     {productsToDisplay.map((product, index) => (
                          <div onClick={() => seeProduct(product.id)}>
                               <ProductCard product={product} key={index} />

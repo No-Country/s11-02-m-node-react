@@ -23,13 +23,13 @@ const SearchBar = () => {
                     className="text-3xl md:text-4xl left-3 md:left-10 top-5 absolute">
                     {'<'}
                </button>
-               <div className="relative h-full md:pl-42 md:pr-42 lg:pl-68 lg:pr-68 xl:pl-96 xl:pr-96 text-black w-full mt-8 sm:mt-10 md:mt-40 items-center">
+               <div className="relative h-full md:pl-42 md:pr-42 lg:pl-64 lg:pr-64 lg:pb-44  text-black w-full mt-8 sm:mt-10 md:mt-40 items-center">
                     <input
                          type="text"
                          placeholder="Buscador"
                          className="w-full rounded-xl pl-12 pr-4 py-4 bg-white border-2 border-black focus:outline-none text-xl text-black placeholder-black::placeholder"
                     />
-                    <div className="absolute right-4 md:right-44 lg:right-72 xl:right-96 top-3  p-2 pr-4">
+                    <div className="absolute right-4 md:right-40 lg:right-72 xl:right-90 top-5">
                          <BiSearch
                               size={28}
                               className=""
