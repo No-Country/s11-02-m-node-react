@@ -8,6 +8,9 @@ import { setUser } from '@/app/store/userSlice';
 import { logout } from '@/app/store/authSlice';
 import { logOutUser } from '../../utils/logOut';
 import HamburgerMenu from './HamburgerMenu';
+import MiCuentaMenu from './MiCuentaMenu';
+import ComprasMenu from './ComprasMenu';
+import VentasMenu from './VentasMenu';
 import ecoLogo from '@/public/ecoLogo.png';
 
 const Navbar = () => {
@@ -35,6 +38,7 @@ const Navbar = () => {
           dispatch(logout());
           router.push('/');
           localStorage.clear();
+          console.log('hola');
      };
      console.log('usuario', isUserAuthenticated);
      console.log('usuario completo', loggedUser);
@@ -54,19 +58,20 @@ const Navbar = () => {
                               isUserAuthenticated={isUserAuthenticated}
                               handleLogOut={handleLogOut}
                          />
-                         <button
-                              className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-xl rounded-full hover:bg-green "
-                              onClick={handleHome}>
-                              Subastas
-                         </button>
+
                          {isUserAuthenticated ? (
-                              <button
-                                   className="hidden md:inline border-2 border-Fern/green bg-white text-Fern/green px-16 py-1 rounded-full hover:bg-green-700 hover:text-white "
-                                   onClick={handleLogOut}>
-                                   Cerrar sesión
-                              </button>
+                              <div className="flex flex-row">
+                                   <ComprasMenu />
+                                   <VentasMenu />
+                                   <MiCuentaMenu handleLogOut={handleLogOut} />
+                              </div>
                          ) : (
-                              <div className="flex items-center justify-center">
+                              <div className="flex items-center justify-center text-md">
+                                   <button
+                                        className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-xl rounded-full hover:bg-green "
+                                        onClick={handleHome}>
+                                        Subastas
+                                   </button>
                                    <span className="vertical-bar hidden md:inline"></span>
                                    <button
                                         className="hidden md:inline text-Gunmetal/2  px-10 py-1 text-xl rounded-full hover:bg-green "
