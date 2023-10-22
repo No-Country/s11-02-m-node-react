@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { config } from 'dotenv';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import rawBodyMiddleware from './middleware/rawBody.middleware';
 
 async function bootstrap() {
   config();
@@ -15,6 +16,8 @@ async function bootstrap() {
   const coloredText = `\x1b[32m\x1b[1m]> Server running on port\x1b[0m`;
   const message = `${coloredText} ${coloredPort}`;
   app.useGlobalPipes(new ValidationPipe());
+  // Raw body for stripe web hook
+  app.use(rawBodyMiddleware());
   //swagger
   const configSwagger = new DocumentBuilder()
     .setTitle('ReutilizApp API')

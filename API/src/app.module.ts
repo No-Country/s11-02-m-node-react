@@ -13,6 +13,7 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { MercadopagoController } from './mercadopago/mercadopago.controller';
 import { MercadopagoModule } from './mercadopago/mercadopago.module';
 import { MercadopagoService } from './mercadopago/mercadopago.service';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { MercadopagoService } from './mercadopago/mercadopago.service';
     AuthModule,
     CloudinaryModule,
     MercadopagoModule,
+    StripeModule,
   ],
   controllers: [AppController, AuthController, MercadopagoController],
   providers: [
