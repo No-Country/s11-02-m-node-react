@@ -42,9 +42,9 @@ function productCategory({ params }) {
                          <h1 className="text-2xl">Productos en Subasta</h1>
                     </div>
                     <div className="flex flex-wrap gap-4 justify-center items-center m-4 ">
-                         {products.map((product) => (
+                         {products.map((product, index) => (
                               <div
-                                   key={product.id}
+                                   key={index}
                                    onClick={() => seeProduct(product.id)}>
                                    <ProductCard
                                         product={product}

@@ -1,14 +1,21 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { formattedTime } from './formattedTime';
 
 function ProductCard({ product, className }) {
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
+     const router = useRouter();
      const formattedNumber = number.toLocaleString('es-ES', {
           minimumFractionDigits: 0,
      });
+     const handleClick = () => {
+          router.push(`/Product/${product.id}`);
+     };
+
      return (
           <div
+               onClick={handleClick}
                key={product.id}
                className={`bg-white border cursor-pointer p-2 md:p-8 rounded-2xl shadow-md hover:shadow-lg w-150 ${className}`}>
                <div className="w-full">
