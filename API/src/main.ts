@@ -20,10 +20,10 @@ async function bootstrap() {
   app.use(rawBodyMiddleware());
   //swagger
   const configSwagger = new DocumentBuilder()
-    .setTitle('ReutilizApp API')
-    .setDescription('The ReutilizApp API description')
+    .setTitle('Bienvenido/a a la API de Eco Subasta')
+    .setDescription('Las rutas disponibles: ')
     .setVersion('1.0')
-    .addTag('ReutilizApp')
+    .addTag('Eco Subasta')
     .build();
   const document = SwaggerModule.createDocument(app, configSwagger);
   SwaggerModule.setup('docs', app, document);
