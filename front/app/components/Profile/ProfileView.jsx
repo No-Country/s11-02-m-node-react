@@ -13,9 +13,9 @@ const ProfileView = () => {
                     <div className=" bg-Fern/green rounded-t-xl text-center mb-4 flex p-4 shadow-lg">
                          <div className="flex items-center ml-4 my-4">
                               <img
-                                   src="URL_DE_LA_IMAGEN"
-                                   alt="Img"
-                                   className="w-20 h-20 rounded-full mx-auto border-4 border-white"
+                                   src="/profile.svg"
+                                   alt="Logo"
+                                   className="w-20 h-22 rounded-full mx-auto border-2 border-black"
                               />
 
                               <div className="ml-4">
@@ -32,7 +32,7 @@ const ProfileView = () => {
 
                     <div className="text-center">
                          <div className="mb-4">
-                              <Link href="/informacion-personal">
+                              <Link href="ProfilePage/personalInfo">
                                    <div className="flex items-center">
                                         <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-green-900">
                                              <User2
