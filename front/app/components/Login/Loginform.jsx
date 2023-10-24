@@ -28,8 +28,6 @@ const Loginform = () => {
                     .min(6, 'La contraseña debe tener 6 carecteres'),
           }),
 
-          // 'http://localhost:3001/auth/local/signin'
-
           onSubmit: async (values) => {
                const { ...userData } = values;
                try {
@@ -82,12 +80,10 @@ const Loginform = () => {
      });
 
      return (
-
           <div className="flex justify-center mt-10">
                <div className="w-full max-w-lg">
                     <div className="bg-neutral-100 rounded-lg shadow-2xl px-6 py-8 ">
-                         <h2 className="text-xl font-sans font-bold text-white-800 text-center mb-4">
-
+                         <h2 className="text-xl font-sans  text-white-800 text-center mb-4">
                               Iniciar sesión
                          </h2>
                          <form
@@ -102,9 +98,7 @@ const Loginform = () => {
                                    </label>
                                    <input
                                         type="text"
-
-                                        className="border border-gray-300 py-3 px-4 rounded-lg w-full focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
-
+                                        className="border border-gray-300 py-3 px-4 rounded-lg w-full focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
                                         id="email"
                                         placeholder="Ingrese su Email"
                                         value={formik.values.email}
@@ -125,16 +119,12 @@ const Loginform = () => {
                               <div className="mb-10 ">
                                    <label
                                         htmlFor="password"
-
                                         className="block text-black text-md  mb-2">
                                         Contraseña
                                    </label>
                                    <input
                                         type="password"
-
-                                        className="border border-gray-300 py-3 px-4 rounded-lg w-full focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
-
-
+                                        className="border border-gray-300 py-3 px-4 rounded-lg w-full focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
                                         id="password"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.password}
@@ -154,10 +144,7 @@ const Loginform = () => {
                               <div>
                                    <input
                                         type="submit"
-
-                                        className={`bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-6  ease-in-out duration-300 ${
-
-
+                                        className={`bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-4 ease-in-out duration-300 ${
                                              (!formik.isValid ||
                                                   !formik.dirty) &&
                                              'bg-green cursor-not-allowed opacity-60 pointer-events-none hover:cursor-not-allowed'
@@ -172,8 +159,7 @@ const Loginform = () => {
                               <div className="flex justify-center mt-4 text-base">
                                    ¿No tienes cuenta?
                                    <Link href="RegisterPage">
-
-                                        <span className=" font-medium cursor-pointer text-base hover:text-green-700 ml-1">
+                                        <span className=" font-medium cursor-pointer text-base hover:text-Fern/green ml-1">
                                              Regístrate
                                         </span>
                                    </Link>
