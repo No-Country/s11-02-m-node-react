@@ -1,20 +1,31 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { fetchProducts } from '../../utils/getProducts';
+import { fetchProducts, fetchProductsFilter } from '../../utils/getProducts';
 import ProductCard from './ProductCard';
 
-function Products() {
+function Products({ category }) {
      const router = useRouter();
 
      const [products, setProducts] = useState([]);
      const handleProductsPage = () => {
-          router.push('/ProductsPage');
+          if (category) {
+               router.push(`/ProductsPage/${category}`);
+          } else {
+               router.push('/ProductsPage');
+          }
      };
      useEffect(() => {
           const fetchData = async () => {
                try {
-                    const data = await fetchProducts();
+                    let data;
+
+                    if (category) {
+                         data = await fetchProductsFilter(category);
+                    } else {
+                         data = await fetchProducts();
+                    }
+
                     setProducts(data);
                } catch (error) {
                     console.error('Error al obtener productos', error);
@@ -22,8 +33,9 @@ function Products() {
           };
 
           fetchData();
-     }, []);
+     }, [category]);
 
+     console.log('categoria', category);
      return (
           <div className="bg-white p-4 md:pb-20 md:pt-20 md:pl-24 md:pr-24 rounded-md shadow-md">
                <div className="flex flex-row justify-between items-center mt-4 mb-4 md:mb-10">

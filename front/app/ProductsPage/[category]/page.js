@@ -23,9 +23,10 @@ function productCategory({ params }) {
      if (products.length === 0 && location != '/')
           Loading.circle('Cargando Productos');
      else Loading.remove();
-     function onClickBack() {
-          router.push('/');
-     }
+
+     const handleBack = () => {
+          router.back();
+     };
      function seeProduct(id) {
           router.push(`/Product/${id}`);
      }
@@ -36,7 +37,7 @@ function productCategory({ params }) {
                          <img
                               src="/arrowBack.svg"
                               alt="arrow"
-                              onClick={onClickBack}
+                              onClick={handleBack}
                               className="cursor-pointer"
                          />
                          <h1 className="text-2xl">Productos en Subasta</h1>

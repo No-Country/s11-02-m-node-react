@@ -6,11 +6,12 @@ import Image from 'next/image';
 import CategoryBtn from './CategoryBtn';
 import buscadorBcnd from '@/public/buscadorBcnd.png';
 
-const SearchBar = () => {
+const SearchBar = ({ onCategoryChange }) => {
      const router = useRouter();
      const handleBack = () => {
           router.back();
      };
+
      return (
           <div className="min-h-128 p-4 rounded-md text-center relative">
                <Image
@@ -37,7 +38,7 @@ const SearchBar = () => {
                               tabIndex="0"
                          />
                     </div>
-                    <CategoryBtn />
+                    <CategoryBtn onCategoryChange={onCategoryChange} />
                </div>
           </div>
      );
