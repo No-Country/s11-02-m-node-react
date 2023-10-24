@@ -7,19 +7,11 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import mainRoute from '@/route';
 import { useState, useEffect } from 'react';
+import { Cloudinary } from '@cloudinary/url-gen';
 
 const Registerform = () => {
      const loggedUser = useSelector((state) => state.user);
      const accessToken = localStorage.getItem('access_token');
-     const [fetchError, setFetchError] = useState(null);
-     const MAX_FILE_SIZE = 1024 * 1024 * 5;
-     const SUPPORTED_FORMATS = [
-          'image/jpeg',
-          'image/png',
-          'image/gif',
-          'image/jpg',
-          'image/webp',
-     ]; // Formatos de imagen comunes
 
      const router = useRouter();
      const formik = useFormik({
@@ -59,11 +51,15 @@ const Registerform = () => {
                          values.img
                     );
 
-                    if (cloudinaryResponse && cloudinaryResponse.UrlImg) {
+                    if (cloudinaryResponse && cloudinaryResponse.urlImg) {
                          // Si la carga de la imagen en Cloudinary fue exitosa
                          const productData = {
                               ...values,
-                              img: [cloudinaryResponse.UrlImg], //] Usar la URL de la imagen desde Cloudinary
+                              endDate: new Date(
+                                   values.endDate + 'T00:00:00.000Z'
+                              ),
+                              img: [cloudinaryResponse.urlImg], //] Usar la URL de la imagen desde Cloudinary
+                              tags: [values.tags],
                          };
 
                          // Realizar la solicitud para crear un nuevo producto en tu backend
@@ -75,7 +71,7 @@ const Registerform = () => {
                               },
                               body: JSON.stringify(productData),
                          });
-
+                         //console.log('data!!', JSON.stringify(productData));
                          if (!response.ok) {
                               throw new Error(
                                    'Error en la solicitud al backend'
@@ -83,8 +79,6 @@ const Registerform = () => {
                          }
 
                          const data = await response.json();
-
-                         console.log(data);
 
                          toast.success('Subasta publicada con éxito.', {
                               position: 'bottom-right',
@@ -96,7 +90,7 @@ const Registerform = () => {
 
                          router.push('/ProductsPage');
                     } else {
-                         toast.error('Error al subir la imagen a Cloudinary');
+                         toast.error('Error al publicar producto');
                     }
                } catch (error) {
                     console.error(error);
@@ -112,28 +106,23 @@ const Registerform = () => {
           },
      });
      const uploadImageToCloudinary = async (imageFile) => {
-          const accessToken = localStorage.getItem('access_token');
-
-          console.log('imagen', imageFile);
+          //console.log('imagen', imageFile);
           const CLOUDINARY_API_URL =
                'https://reutilizzappapi.onrender.com/cloudinary/upload';
 
           try {
                const formData = new FormData();
+
                formData.append('file', imageFile);
-               formData.append('upload_preset', 'images');
 
                const response = await fetch(CLOUDINARY_API_URL, {
                     method: 'POST',
-                    headers: {
-                         //  'Content-Type': 'multipart/form-data',
-                         Authorization: `Bearer ${accessToken}`,
-                    },
                     body: formData,
                });
 
                if (response.ok) {
                     const data = await response.json();
+                    console.log('subida ok!!', data);
                     return data;
                } else {
                     console.error('No se pudo cargar la imagen a Cloudinary');
@@ -144,7 +133,7 @@ const Registerform = () => {
                return null;
           }
      };
-     console.log('token', accessToken);
+
      return (
           <div className="flex justify-center md:mt-8 mb-8">
                <div className="w-full max-w-xl">
@@ -232,7 +221,7 @@ const Registerform = () => {
                                         <option value="belleza">Belleza</option>
                                         <option value="arte">Arte</option>
                                         <option value="cartas">Cartas</option>
-                                        <option value="Otros">Otros</option>
+                                        <option value="otros">Otros</option>
                                    </select>
                               </div>
                               {formik.touched.tags && formik.errors.tags ? (
@@ -283,7 +272,19 @@ const Registerform = () => {
                                         id="endDate"
                                         placeholder="Seleccione la fecha"
                                         value={formik.values.endDate}
-                                        onChange={formik.handleChange}
+                                        onChange={(e) => {
+                                             // 2. Actualiza el estado de la fecha convertida cada vez que cambie la fecha
+                                             const fechaOriginal =
+                                                  e.target.value;
+                                             const fechaConvertida = new Date(
+                                                  fechaOriginal +
+                                                       'T00:00:00.000Z'
+                                             ).toISOString();
+                                             setFechaConvertida(
+                                                  fechaConvertida
+                                             );
+                                             formik.handleChange(e); // Importante: También llama a handleChange de Formik para que maneje el valor en formik.values
+                                        }}
                                         onBlur={formik.handleBlur}
                                    />
 
