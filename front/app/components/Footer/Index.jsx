@@ -8,13 +8,13 @@ const Footer = () => {
                     <img src="/footer.svg" alt="Logo" className="w-24 h-24" />
 
                     <div className="space-x-4 sm:space-x-0 sm:mt-4 sm:flex text-green-700 mx-4">
-                         <Link href="#">
+                         <Link href="/TermsAndConditionsPage">
                               <p className="mx-4">Términos y condiciones</p>
                          </Link>
-                         <Link href="#">
+                         <Link href="/PrivacyPolicyPage">
                               <p className="mx-4">Política de privacidad</p>
                          </Link>
-                         <Link href="#">
+                         <Link href="/HelpPage">
                               <p className="mx-4">Ayuda</p>
                          </Link>
                     </div>
