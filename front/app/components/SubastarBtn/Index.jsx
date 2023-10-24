@@ -6,7 +6,7 @@ const SubastarBtn = () => {
      const router = useRouter();
 
      const handleRegister = () => {
-          router.push('/');
+          router.push('/SubastarPage');
      };
      return (
           <div className="  flex flex-wrap justify-center mt-12 mb-12 font-poppins">

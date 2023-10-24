@@ -24,7 +24,7 @@ function Category() {
                     <div className="flex flex-col lg:flex-row lg:mt-4 justify-center items-center flex-wrap gap-6 lg:gap-8">
                          <li
                               className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
-                              onClick={() => onClick('artes')}>
+                              onClick={() => onClick('arte')}>
                               <img
                                    src="/artes.avif"
                                    alt="artes"
