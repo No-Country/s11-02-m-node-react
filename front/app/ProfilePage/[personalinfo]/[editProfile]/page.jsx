@@ -97,7 +97,7 @@ const editProfile = () => {
 
      useEffect(() => {
           if (cityInput) {
-               fetch(`http://localhost:3001/users/get-city?q=${cityInput}`)
+               fetch(`${mainRoute}/users/get-city?q=${cityInput}`)
                     .then((response) => {
                          if (!response.ok) {
                               throw new Error('Error en la solicitud');
@@ -105,7 +105,6 @@ const editProfile = () => {
                          return response.json();
                     })
                     .then((data) => {
-                         console.log(data);
                          setCityResults(data);
                     })
                     .catch((error) => {
@@ -141,7 +140,7 @@ const editProfile = () => {
                                    type="text"
                                    id="firstName"
                                    name="firstName"
-                                   placeholder={loggedUser.firstName}
+                                   placeholder="John"
                                    className="p-3 w-full border border-black"
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
@@ -167,7 +166,7 @@ const editProfile = () => {
                                    type="text"
                                    id="lastName"
                                    name="lastName"
-                                   placeholder={loggedUser.lastName}
+                                   placeholder="Doe"
                                    className="p-3 w-full border border-black"
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
@@ -193,7 +192,7 @@ const editProfile = () => {
                                    type="email"
                                    id="email"
                                    name="email"
-                                   placeholder={loggedUser.email}
+                                   placeholder="mail@mail.com"
                                    className="p-3 w-full border border-black"
                                    onChange={formik.handleChange}
                                    onBlur={formik.handleBlur}
@@ -218,7 +217,7 @@ const editProfile = () => {
                                    type="text"
                                    name="city"
                                    id="city"
-                                   placeholder="Ingrese su ciudad"
+                                   placeholder="TANDIL, Tandil, Buenos Aires"
                                    className="p-3 w-full border border-black"
                                    value={cityInput}
                                    onChange={(e) =>
