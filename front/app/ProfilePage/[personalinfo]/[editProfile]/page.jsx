@@ -51,8 +51,8 @@ const editProfile = () => {
                     .required('La contraseña es obligatoria')
                     .min(6, 'La contraseña debe tener 6 carecteres'),
           }),
+
           onSubmit: async (values) => {
-               // const { confirmpass, ...userData } = values;
                const { ...userData } = values;
                try {
                     const response = await fetch(
@@ -121,7 +121,7 @@ const editProfile = () => {
           <div className="flex items-center justify-center md:mt-8 mb-8">
                <div className="max-w-2xl px-6 py-8 w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
                     <div className="flex justify-start">
-                         <Link href="/ProfilePage">
+                         <Link href="/ProfilePage/personalInfo">
                               <h4 className="text-md font-bold mb-4 text-Fern/green flex ">
                                    {' '}
                                    <ChevronLeft />

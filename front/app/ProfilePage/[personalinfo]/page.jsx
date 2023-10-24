@@ -6,6 +6,7 @@ import { ChevronLeft } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import mainRoute from '@/route';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const PersonalInfo = () => {
      const loggedUser = useSelector((state) => state.user);
@@ -14,6 +15,7 @@ const PersonalInfo = () => {
      const [userData, setUserData] = useState(loggedUser);
 
      useEffect(() => {
+          Loading.standard('Cargando...');
           async function fetchUserData() {
                try {
                     const response = await fetch(
@@ -34,8 +36,10 @@ const PersonalInfo = () => {
 
                     setUserData(userData);
                     dispatch(updateUser(userData));
+                    Loading.remove();
                } catch (error) {
                     console.error('Error en la solicitud:', error);
+                    Loading.remove();
                }
           }
 
