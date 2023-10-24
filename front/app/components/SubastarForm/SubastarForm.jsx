@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import mainRoute from '@/route';
-import { useState, useEffect } from 'react';
-import { Cloudinary } from '@cloudinary/url-gen';
 
 const Registerform = () => {
      const loggedUser = useSelector((state) => state.user);
