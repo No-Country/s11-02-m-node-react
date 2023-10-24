@@ -121,11 +121,12 @@ const Registerform = () => {
           try {
                const formData = new FormData();
                formData.append('file', imageFile);
+               formData.append('upload_preset', 'images');
 
                const response = await fetch(CLOUDINARY_API_URL, {
                     method: 'POST',
                     headers: {
-                         'Content-Type': 'application/json',
+                         //  'Content-Type': 'multipart/form-data',
                          Authorization: `Bearer ${accessToken}`,
                     },
                     body: formData,
@@ -135,7 +136,7 @@ const Registerform = () => {
                     const data = await response.json();
                     return data;
                } else {
-                    console.error('Error al cargar la imagen a Cloudinary');
+                    console.error('No se pudo cargar la imagen a Cloudinary');
                     return null;
                }
           } catch (error) {

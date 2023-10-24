@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
 import ProfileView from '../components/Profile/ProfileView';
+import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 
 const Profile = () => {
      return (
-          <div>
+          <PrivateRoute>
                <ProfileView />
-          </div>
+          </PrivateRoute>
      );
 };
 
