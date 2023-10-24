@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ import mainRoute from '@/route';
 const Registerform = () => {
      const loggedUser = useSelector((state) => state.user);
      const accessToken = localStorage.getItem('access_token');
-
+     const [fechaConvertida, setFechaConvertida] = useState('');
      const router = useRouter();
      const formik = useFormik({
           initialValues: {
@@ -53,9 +53,7 @@ const Registerform = () => {
                          // Si la carga de la imagen en Cloudinary fue exitosa
                          const productData = {
                               ...values,
-                              endDate: new Date(
-                                   values.endDate + 'T00:00:00.000Z'
-                              ),
+                              endDate: fechaConvertida,
                               img: [cloudinaryResponse.urlImg], //] Usar la URL de la imagen desde Cloudinary
                               tags: [values.tags],
                          };
@@ -69,7 +67,7 @@ const Registerform = () => {
                               },
                               body: JSON.stringify(productData),
                          });
-                         //console.log('data!!', JSON.stringify(productData));
+                         console.log('data!!', JSON.stringify(productData));
                          if (!response.ok) {
                               throw new Error(
                                    'Error en la solicitud al backend'
