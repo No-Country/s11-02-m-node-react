@@ -102,7 +102,7 @@ const Registerform = () => {
 
      useEffect(() => {
           if (cityInput) {
-               fetch(`http://localhost:3001/users/get-city?q=${cityInput}`)
+               fetch(`${mainRoute}/users/get-city?q=${cityInput}`)
                     .then((response) => {
                          if (!response.ok) {
                               throw new Error('Error en la solicitud');
@@ -139,7 +139,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-fern/border-Fern/green text-black"
                                         id="firstName"
                                         placeholder="Ingrese su nombre"
                                         value={formik.values.firstName}
@@ -165,7 +165,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-fern/border-Fern/green text-black"
                                         id="lastName"
                                         placeholder="Ingrese su apellido"
                                         value={formik.values.lastName}
@@ -191,7 +191,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-fern/border-Fern/green text-black"
                                         id="city"
                                         placeholder="Ingrese su ciudad"
                                         value={cityInput}
@@ -241,7 +241,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="text"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
                                         id="email"
                                         placeholder="mail@mail.com"
                                         value={formik.values.email}
@@ -267,7 +267,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
                                         id="password"
                                         placeholder="Ingrese su contraseña"
                                         value={formik.values.password}
@@ -292,7 +292,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="password"
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
+                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-Fern/green outline-none focus:ring-1 focus:ring-Fern/green text-black"
                                         id="confirmpass"
                                         placeholder="Confirme su contraseña"
                                         value={formik.values.confirmpass}
@@ -325,7 +325,7 @@ const Registerform = () => {
                                    <div className="flex justify-center mt-4 text-base">
                                         ¿Ya tienes cuenta?
                                         <Link href="LoginPage">
-                                             <span className=" font-medium cursor-pointer text-base hover:text-green-700 ml-1">
+                                             <span className=" font-medium cursor-pointer text-base hover:text-Fern/green ml-1">
                                                   Inicia sesión
                                              </span>
                                         </Link>
