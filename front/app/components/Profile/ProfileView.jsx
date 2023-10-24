@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { Clock4, Lock, User2, Info, ChevronRight } from 'lucide-react';
 import mainRoute from '@/route';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const ProfileView = () => {
      const loggedUser = useSelector((state) => state.user);
@@ -14,6 +15,7 @@ const ProfileView = () => {
      const [userData, setUserData] = useState(loggedUser);
 
      useEffect(() => {
+          Loading.standard('Cargando...');
           async function fetchUserData() {
                try {
                     const response = await fetch(
@@ -34,8 +36,10 @@ const ProfileView = () => {
 
                     setUserData(userData);
                     dispatch(updateUser(userData));
+                    Loading.remove();
                } catch (error) {
                     console.error('Error en la solicitud:', error);
+                    Loading.remove();
                }
           }
 
@@ -72,8 +76,8 @@ const ProfileView = () => {
                     <div className="text-center">
                          <div className="mb-4">
                               <Link href="ProfilePage/personalInfo">
-                                   <div className="flex items-center">
-                                        <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-green-900">
+                                   <div className="flex items-center h-28 justify-around">
+                                        <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-Fern/green">
                                              <User2
                                                   size={24}
                                                   className="text-Fern/green"
@@ -83,13 +87,12 @@ const ProfileView = () => {
                                              <p className="text-lg">
                                                   Información Personal
                                                   <p>
-                                                       Información de tu
-                                                       documento de identidad y
-                                                       de tu cuenta.
+                                                       Visualiza y edita tus
+                                                       datos personales.
                                                   </p>
                                              </p>
                                         </div>
-                                        <div className="mx-8">
+                                        <div className="mx-8 ">
                                              <ChevronRight />
                                         </div>
                                    </div>
@@ -97,8 +100,8 @@ const ProfileView = () => {
                          </div>
                          <div className="text-center">
                               <div className="mb-4">
-                                   <Link href="/historial-de-compras">
-                                        <div className="flex items-center h-28">
+                                   <Link href="#">
+                                        <div className="flex items-center h-28 justify-around">
                                              <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-Fern/green">
                                                   <Clock4
                                                        size={24}
@@ -107,12 +110,11 @@ const ProfileView = () => {
                                              </div>
                                              <div className="flex flex-col">
                                                   <p className="text-lg">
-                                                       Información Personal
+                                                       Historial
                                                        <p>
-                                                            Información de tu
-                                                            documento de
-                                                            identidad y de tu
-                                                            cuenta.
+                                                            Tus productos
+                                                            comprados y
+                                                            vendidos.
                                                        </p>
                                                   </p>
                                              </div>
@@ -125,8 +127,8 @@ const ProfileView = () => {
                          </div>
                          <div className="text-center">
                               <div className="mb-4">
-                                   <Link href="/seguridad">
-                                        <div className="flex items-center h-28">
+                                   <Link href="/PrivacyPolicyPage">
+                                        <div className="flex items-center h-28 justify-around">
                                              <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-Fern/green">
                                                   <Lock
                                                        size={24}
@@ -135,12 +137,10 @@ const ProfileView = () => {
                                              </div>
                                              <div className="flex flex-col">
                                                   <p className="text-lg">
-                                                       Información Personal
+                                                       Seguridad
                                                        <p>
-                                                            Información de tu
-                                                            documento de
-                                                            identidad y de tu
-                                                            cuenta.
+                                                            Preferencias sobre
+                                                            el uso de tus datos.
                                                        </p>
                                                   </p>
                                              </div>
@@ -153,8 +153,8 @@ const ProfileView = () => {
                          </div>
                          <div className="text-center">
                               <div className="mb-4">
-                                   <Link href="/ayuda">
-                                        <div className="flex items-center  h-28">
+                                   <Link href="/HelpPage">
+                                        <div className="flex items-center h-28 justify-around">
                                              <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-Fern/green">
                                                   <Info
                                                        size={24}
@@ -163,12 +163,10 @@ const ProfileView = () => {
                                              </div>
                                              <div className="flex flex-col">
                                                   <p className="text-lg">
-                                                       Información Personal
+                                                       Ayuda
                                                        <p>
-                                                            Información de tu
-                                                            documento de
-                                                            identidad y de tu
-                                                            cuenta.
+                                                            Resolvé tus dudas
+                                                            sobre Ecosubastas.
                                                        </p>
                                                   </p>
                                              </div>
