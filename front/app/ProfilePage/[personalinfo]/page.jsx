@@ -32,9 +32,6 @@ const PersonalInfo = () => {
 
                     const userData = await response.json();
 
-                    console.log('Datos del usuario:', userData);
-                    console.log(userData.user.firstName);
-
                     setUserData(userData);
                     dispatch(updateUser(userData));
                } catch (error) {
@@ -63,17 +60,28 @@ const PersonalInfo = () => {
                               <h3 className="text-lg font-semibold mb-2">
                                    Nombre y apellido
                               </h3>
-                              <h3 className="text-gray-600 mb-4">
-                                   {/* {userData.user.firstName} */}
-                              </h3>
+                              {userData && userData.user && (
+                                   <h3 className="text-gray-600 mb-4">
+                                        {userData.user.firstName}{' '}
+                                        {userData.user.lastName}
+                                   </h3>
+                              )}
                               <h3 className="text-lg font-semibold mb-2">
                                    Email
                               </h3>
-                              <h3 className="text-gray-600 mb-4"></h3>
+                              {userData && userData.user && (
+                                   <h3 className="text-gray-600 mb-4">
+                                        {userData.user.email}
+                                   </h3>
+                              )}
                               <h3 className="text-lg font-semibold mb-2">
                                    Localidad
                               </h3>
-                              <h3 className="text-gray-600 mb-4"></h3>
+                              {userData && userData.user && (
+                                   <h3 className="text-gray-600 mb-4">
+                                        {userData.user.city}
+                                   </h3>
+                              )}
                               <Link href="personalInfo/editProfile">
                                    <button className="text-Fern/green font-bold ">
                                         Modificar

@@ -1,11 +1,46 @@
 'use client';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { Clock4, Lock, User2, Info, ChevronRight } from 'lucide-react';
+import mainRoute from '@/route';
 
 const ProfileView = () => {
      const loggedUser = useSelector((state) => state.user);
+     const dispatch = useDispatch();
+
+     const [userData, setUserData] = useState(loggedUser);
+
+     useEffect(() => {
+          async function fetchUserData() {
+               try {
+                    const response = await fetch(
+                         `${mainRoute}/users/${loggedUser.id}`,
+                         {
+                              method: 'GET',
+                              headers: {
+                                   'Content-Type': 'application/json',
+                              },
+                         }
+                    );
+
+                    if (!response.ok) {
+                         throw new Error('Error en la solicitud al servidor');
+                    }
+
+                    const userData = await response.json();
+
+                    setUserData(userData);
+                    dispatch(updateUser(userData));
+               } catch (error) {
+                    console.error('Error en la solicitud:', error);
+               }
+          }
+
+          fetchUserData();
+     }, [loggedUser.id, dispatch]);
 
      return (
           <div className="min-h-screen flex items-center justify-center">
@@ -19,13 +54,17 @@ const ProfileView = () => {
                               />
 
                               <div className="ml-4">
-                                   <h2 className="text-lg font-bold mt-2 text-white">
-                                        {loggedUser.firstName}
-                                   </h2>
-                                   <p className="text-md text-white">
-                                        {' '}
-                                        {loggedUser.email}
-                                   </p>
+                                   {userData && userData.user && (
+                                        <h2 className="text-lg font-bold mt-2 text-white">
+                                             {userData.user.firstName}
+                                        </h2>
+                                   )}
+                                   {userData && userData.user && (
+                                        <p className="text-md text-white">
+                                             {' '}
+                                             {userData.user.email}
+                                        </p>
+                                   )}
                               </div>
                          </div>
                     </div>
