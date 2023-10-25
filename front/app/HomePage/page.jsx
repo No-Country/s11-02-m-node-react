@@ -12,7 +12,10 @@ const Home = () => {
 
      return (
           <div>
-               <SearchBar onCategoryChange={handleCategoryChange} />
+               <SearchBar
+                    onCategoryChange={handleCategoryChange}
+                    category={category}
+               />
                <SubastarBtn />
                <Products category={category} />
           </div>

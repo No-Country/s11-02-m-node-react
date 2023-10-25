@@ -1,22 +1,34 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi';
-import Image from 'next/image';
 import CategoryBtn from './CategoryBtn';
-import buscadorBcnd from '@/public/buscadorBcnd.png';
+import { photoLinks } from './photoLinks';
 
-const SearchBar = ({ onCategoryChange }) => {
+const SearchBar = ({ onCategoryChange, category }) => {
+     const [photo, setPhoto] = useState(photoLinks[8]);
      const router = useRouter();
      const handleBack = () => {
           router.back();
      };
 
+     useEffect(() => {
+          if (category) {
+               const selectedPhoto = photoLinks.find(
+                    (photo) => photo.category === category
+               );
+               setPhoto(selectedPhoto);
+          } else {
+               setPhoto(photoLinks[8]);
+          }
+     }, [category]);
+
+     console.log('pic', photo);
      return (
           <div className="min-h-128 p-4 rounded-md text-center relative">
-               <Image
-                    src={buscadorBcnd}
-                    alt="buscador background"
+               <img
+                    src={photo.img}
+                    alt={category}
                     className="absolute inset-0 w-full h-full object-cover"
                />
                <button
