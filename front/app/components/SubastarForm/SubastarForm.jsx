@@ -1,17 +1,27 @@
 'use client';
 import React, { useState } from 'react';
+import Select from 'react-select';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import mainRoute from '@/route';
+import { options } from './options';
 
 const Registerform = () => {
      const loggedUser = useSelector((state) => state.user);
      const accessToken = localStorage.getItem('access_token');
      const [fechaConvertida, setFechaConvertida] = useState('');
      const router = useRouter();
+     const today = new Date();
+     today.setHours(0, 0, 0, 0);
+
+     const handleChange = (selected) => {
+          setSelectedOptions(selected);
+     };
+
+     const formattedToday = today.toISOString().split('T')[0];
      const formik = useFormik({
           initialValues: {
                name: '',
@@ -20,7 +30,7 @@ const Registerform = () => {
                currentOffer: '',
                sellerId: loggedUser.id,
                endDate: '',
-               tags: '',
+               tags: [],
                status: 'ACTIVE',
           },
           validationSchema: Yup.object({
@@ -36,8 +46,7 @@ const Registerform = () => {
                endDate: Yup.date().required(
                     'La fecha de caducidad es obligatoria'
                ),
-
-               tags: Yup.string().required('La categoría es obligatoria'),
+               tags: Yup.array().min(1, 'Selecciona al menos una categoría'),
                img: Yup.mixed().required('La imagen es obligatoria'),
           }),
 
@@ -55,7 +64,6 @@ const Registerform = () => {
                               ...values,
                               endDate: fechaConvertida,
                               img: [cloudinaryResponse.urlImg], //] Usar la URL de la imagen desde Cloudinary
-                              tags: [values.tags],
                          };
 
                          // Realizar la solicitud para crear un nuevo producto en tu backend
@@ -102,7 +110,7 @@ const Registerform = () => {
           },
      });
      const uploadImageToCloudinary = async (imageFile) => {
-          //console.log('imagen', imageFile);
+          console.log('imagen', imageFile);
           const CLOUDINARY_API_URL =
                'https://reutilizzappapi.onrender.com/cloudinary/upload';
 
@@ -129,7 +137,7 @@ const Registerform = () => {
                return null;
           }
      };
-
+     console.log('tags', formik.touched.tags);
      return (
           <div className="flex justify-center md:mt-8 mb-8">
                <div className="w-full max-w-xl">
@@ -196,29 +204,28 @@ const Registerform = () => {
                                         className="block text-black text-md  mb-2">
                                         Categoría
                                    </label>
-                                   <select
+                                   <Select
                                         id="tags"
                                         name="tags"
-                                        value={formik.values.tags}
-                                        onChange={formik.handleChange}
+                                        options={options}
+                                        isMulti
+                                        value={options.filter((option) =>
+                                             formik.values.tags.includes(
+                                                  option.value
+                                             )
+                                        )}
                                         onBlur={formik.handleBlur}
-                                        className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black">
-                                        <option value="">
-                                             Selecciona una categoría
-                                        </option>
-                                        <option value="muebles">Muebles</option>
-                                        <option value="electrodomesticos">
-                                             Electrodomésticos
-                                        </option>
-                                        <option value="ropa">Ropa</option>
-                                        <option value="hogar">
-                                             Deco & Hogar
-                                        </option>
-                                        <option value="belleza">Belleza</option>
-                                        <option value="arte">Arte</option>
-                                        <option value="cartas">Cartas</option>
-                                        <option value="otros">Otros</option>
-                                   </select>
+                                        onChange={(selectedOptions) => {
+                                             const selectedValues =
+                                                  selectedOptions.map(
+                                                       (option) => option.value
+                                                  );
+                                             formik.setFieldValue(
+                                                  'tags',
+                                                  selectedValues
+                                             );
+                                        }}
+                                   />
                               </div>
                               {formik.touched.tags && formik.errors.tags ? (
                                    <div className="my-2 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 absolute">
@@ -264,6 +271,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="date"
+                                        min={formattedToday}
                                         className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
                                         id="endDate"
                                         placeholder="Seleccione la fecha"
