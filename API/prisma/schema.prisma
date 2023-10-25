@@ -54,7 +54,7 @@ model Wallet {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   userId       String        @unique @db.ObjectId
   user         User?         @relation(fields: [userId], references: [id])
-  amount       Float          @default(0)
+  amount       Float
   transactions Transaction[]
 }
 
