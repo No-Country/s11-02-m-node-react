@@ -2,6 +2,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { MercadoPagoConfig, Preference, Payment } from 'mercadopago';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePaymentDto } from './dto/create-payment.dto';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class MercadopagoService {
@@ -15,6 +16,8 @@ export class MercadopagoService {
     createPaymentDto: CreatePaymentDto,
   ): Promise<{ link: string; message: string }> {
     try {
+      const errors = await validate(createPaymentDto);
+      if (errors.length > 0) throw new BadRequestException(errors);
       const preference = new Preference(this.client);
 
       const result = await preference.create({
