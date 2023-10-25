@@ -100,7 +100,7 @@ const ProfileView = () => {
                          </div>
                          <div className="text-center">
                               <div className="mb-4">
-                                   <Link href="#">
+                                   <Link href="/ProfilePage/history">
                                         <div className="flex items-center h-28 justify-around">
                                              <div className="bg-white rounded-full w-12 h-12 mx-4 flex items-center justify-center border border-Fern/green">
                                                   <Clock4
