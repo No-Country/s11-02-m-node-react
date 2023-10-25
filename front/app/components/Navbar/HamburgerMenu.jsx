@@ -32,11 +32,15 @@ const HamburgerMenu = ({ isUserAuthenticated, handleLogOut }) => {
                                    </Link>
                               </li>
                               {isUserAuthenticated ? (
-                                   <li className="mb-2">
-                                        <Link href="/" onClick={handleLogOut}>
-                                             Cerrar sesión
-                                        </Link>
-                                   </li>
+                                   <>
+                                        <li className="mb-2">
+                                             <Link
+                                                  href="/"
+                                                  onClick={handleLogOut}>
+                                                  Cerrar sesión
+                                             </Link>
+                                        </li>
+                                   </>
                               ) : (
                                    <>
                                         <li className="mb-2">

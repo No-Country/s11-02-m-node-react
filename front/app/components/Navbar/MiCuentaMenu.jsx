@@ -29,15 +29,21 @@ const MiCuentaMenu = ({ handleLogOut }) => {
                     <div className="hidden md:block z-50 absolute top-8  mt-10 mr-6 p-6 bg-white max-w-full border-2 shadow-lg">
                          <ul className="text-Gunmetal/2 text-sm  ">
                               <li className="mb-3">
-                                   <Link href="/ProfilePage">Mi perfil</Link>
+                                   <Link
+                                        href="/ProfilePage"
+                                        onClick={toggleMenu}>
+                                        Mi perfil
+                                   </Link>
                               </li>
-                              <li className="mb-3 border-b border-gray-300">
+                              {/* <li className="mb-3 border-b border-gray-300">
                                    <Link href="/">Configuración</Link>
-                              </li>
+                              </li> */}
                               <li className="mb-3">
-                                   <Link href="/">Ayuda</Link>
+                                   <Link href="/HelpPage" onClick={toggleMenu}>
+                                        Ayuda
+                                   </Link>
                               </li>
-                              <li className="">
+                              <li className="" onClick={toggleMenu}>
                                    <Link href="/" onClick={handleLogOut}>
                                         Cerrar sesión
                                    </Link>
