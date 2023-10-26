@@ -59,10 +59,10 @@ export const getUsers = async (id) => {
 };
 
 //subastar
-export const auction = async (body, id) => {
+export const auction = async (body) => {
      try {
-          const response = await fetch(`${backendURL}/products/${id}`, {
-               method: 'PATCH',
+          const response = await fetch(`${backendURL}/products/create-offer`, {
+               method: 'POST',
                body: JSON.stringify(body),
                headers: {
                     'Content-type': 'application/json',

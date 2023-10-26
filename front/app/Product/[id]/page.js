@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { getProduct } from '@/app/utils/getProducts';
 import { getUsers } from '@/app/utils/getProducts';
@@ -12,12 +13,13 @@ function Product({ params }) {
      const [product, setProduct] = useState({});
      const [seller, setSeller] = useState('');
      const [like, setLike] = useState(0);
-
      const LoginToken = localStorage.getItem('access_token');
      const getUser = JSON.parse(localStorage.getItem('persist:root'));
      const user = JSON.parse(getUser.user);
+     const loggedUser = useSelector((state) => state.user);
      const [isLoggedIn, setIsLoggedIn] = useState(LoginToken ? true : false);
      const [price, setPrice] = useState(0);
+     const sameUserOffer = product.sellerId === loggedUser.id;
      if (Object.keys(product).length === 0) {
           Loading.circle('Cargando Producto :D');
      }
@@ -53,16 +55,14 @@ function Product({ params }) {
      }
      function sendNewPrice() {
           if (price > number) {
-               auction(
-                    {
-                         currentOffer: price,
-                         currentBuyerId: user.id,
-                    },
-                    params.id
-               )
+               auction({
+                    productId: params.id,
+                    userId: user.id,
+                    newOffer: price,
+               })
                     .then((e) => {
                          Report.success(
-                              '¡Subasta realizada con éxito! ',
+                              '¡Subasta realizada con éxito!! ',
                               'Te avisaremos por email con información del ganador cuando termine el período de subasta. ¡Gracias por participar!',
                               'Listo',
                               () => {
@@ -162,7 +162,9 @@ function Product({ params }) {
                                         />
                                         <button
                                              className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
-                                             disabled={!isLoggedIn}
+                                             disabled={
+                                                  !isLoggedIn || sameUserOffer
+                                             }
                                              onClick={sendNewPrice}>
                                              Subastar
                                         </button>
@@ -171,6 +173,12 @@ function Product({ params }) {
                                         <p className="text-center mt-2 text-red-500 text-sm">
                                              Debe de iniciar sesion para poder
                                              subastar
+                                        </p>
+                                   )}
+                                   {sameUserOffer && (
+                                        <p className="text-center mt-2 text-red-500 text-sm">
+                                             No puedes ofertar en tu propia
+                                             publicación!
                                         </p>
                                    )}
                               </div>
