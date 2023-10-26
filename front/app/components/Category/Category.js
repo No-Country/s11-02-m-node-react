@@ -16,7 +16,7 @@ function Category() {
                               Categorias mas populares
                          </h1>
                          <button
-                              onClick={() => router.push(`/ProductsPage`)}
+                              onClick={() => router.push(`/HomePage`)}
                               className="border-[#6F9F77] border-2 rounded-full w-24 p-2">
                               ver todo
                          </button>
