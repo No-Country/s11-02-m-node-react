@@ -1,11 +1,59 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import { getProduct } from '@/app/utils/getProducts';
 import { formattedTime } from './../../components/Products/formattedTime';
+import SuccessModal from '../SuccessModal';
 
 function Product({ params }) {
      const [product, setProduct] = useState({});
      const [like, setLike] = useState(0);
+     const [showModal, setShowModal] = useState(false);
+     const loggedUser = useSelector((state) => state.user);
+     const router = useRouter();
+     const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
+     const formattedNumber = number.toLocaleString('es-ES', {
+          minimumFractionDigits: 0,
+     });
+     const [price, setPrice] = useState('');
+     function Likes() {
+          setLike(like + 1);
+     }
+     const handleModalClose = () => {
+          setShowModal(false);
+          router.push('/ProductsPage');
+     };
+     const handleSubmit = async (event) => {
+          event.preventDefault();
+          const productId = params.id;
+          const data = {
+               currentBuyerId: loggedUser.id,
+               currentOffer: parseInt(price),
+          };
+          console.log('data', data);
+          try {
+               const response = await fetch(
+                    `https://reutilizzappapi.onrender.com/products/${productId}`,
+                    {
+                         method: 'PATCH',
+                         headers: {
+                              'Content-Type': 'application/json',
+                         },
+                         body: JSON.stringify(data),
+                    }
+               );
+
+               if (response.ok) {
+                    console.log('Solicitud PATCH exitosa');
+                    setShowModal(true);
+               } else {
+                    console.error('Error en la solicitud PATCH');
+               }
+          } catch (error) {
+               console.error('Error al procesar la solicitud PATCH', error);
+          }
+     };
 
      useEffect(() => {
           const fetchData = async () => {
@@ -19,15 +67,6 @@ function Product({ params }) {
 
           fetchData();
      }, []);
-     const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
-     const formattedNumber = number.toLocaleString('es-ES', {
-          minimumFractionDigits: 0,
-     });
-
-     function Likes() {
-          setLike(like + 1);
-     }
-
      return (
           <main className="py-32 mx-28">
                <section className="flex justify-center gap-20 w-full">
@@ -81,25 +120,45 @@ function Product({ params }) {
                                         {formattedTime(product.endDate)}
                                    </h1>
                                    <h1 className="text-3xl text-[#517957] ml-1">
-                                        ${formattedNumber}
+                                        ${formattedNumber} ARS
                                    </h1>
                                    <p className="text-[#517957] ">
                                         Último precio ofertado
                                    </p>
                               </div>
-                              <div className="flex flex-col justify-center items-center px-5">
+                              <form
+                                   className="flex flex-col justify-center items-center px-5"
+                                   onSubmit={handleSubmit}>
                                    <input
                                         type="text"
                                         name="price"
                                         placeholder="Establecer otro precio..."
-                                        className=" border-2 rounded-full border-[#517957] p-3 w-full mt-4 placeholder:text-[#517957]  "
+                                        className=" border-2 rounded-full border-[#517957] p-3 w-full mt-4 placeholder:text-[#517957]"
+                                        value={price}
+                                        onChange={(e) => {
+                                             const inputText = e.target.value;
+                                             const numericValue =
+                                                  inputText.replace(
+                                                       /[^0-9]/g,
+                                                       ''
+                                                  );
+                                             setPrice(numericValue);
+                                        }}
                                    />
-                                   <button
+                                   <input
+                                        type="submit"
                                         className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
-                                        disabled={true}>
-                                        Subastar
-                                   </button>
-                              </div>
+                                        disabled={
+                                             !price ||
+                                             parseInt(price) === 0 ||
+                                             parseInt(price) <= formattedNumber
+                                        }
+                                        value="Subastar"
+                                   />
+                              </form>
+                              {showModal && (
+                                   <SuccessModal onClose={handleModalClose} />
+                              )}
                          </div>
                     </article>
                </section>
