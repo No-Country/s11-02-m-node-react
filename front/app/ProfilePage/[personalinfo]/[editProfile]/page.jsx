@@ -23,7 +23,6 @@ const editProfile = () => {
                lastName: '',
                city: '',
                email: '',
-               password: '',
           },
           validationSchema: Yup.object({
                firstName: Yup.string()
@@ -46,10 +45,6 @@ const editProfile = () => {
                     .email('El email no es válido')
                     .matches(/.*@.*\.com/, 'El email no es válido')
                     .required('El email es obligatorio'),
-
-               password: Yup.string()
-                    .required('La contraseña es obligatoria')
-                    .min(6, 'La contraseña debe tener 6 carecteres'),
           }),
 
           onSubmit: async (values) => {
@@ -256,32 +251,6 @@ const editProfile = () => {
                                    </p>
                               </div>
                          ) : null}
-
-                         <div className="mb-10">
-                              <label
-                                   htmlFor="password"
-                                   className="block font-semibold mt-2 mb-3">
-                                   Contraseña
-                              </label>
-                              <input
-                                   type="password"
-                                   id="password"
-                                   name="password"
-                                   placeholder="Modifique su contraseña"
-                                   className="p-3 w-full border border-black"
-                                   onChange={formik.handleChange}
-                                   onBlur={formik.handleBlur}
-                              />
-
-                              {formik.touched.password &&
-                              formik.errors.password ? (
-                                   <div className="my-1 bg-gray-200 border-l-4 border-red-500 text-red-700 px-1 py-1 text-center absolute">
-                                        <p className="text-sm">
-                                             {formik.errors.password}
-                                        </p>
-                                   </div>
-                              ) : null}
-                         </div>
 
                          <input
                               type="submit"
