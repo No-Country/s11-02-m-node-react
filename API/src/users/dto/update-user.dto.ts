@@ -21,6 +21,26 @@ export class UpdateUserDto {
   @IsString({ message: 'The "coords" field must be a string' })
   coords: string;
 
+  // @IsOptional()
+  // @IsArray({ message: 'The "sellingProducts" field must be a array' })
+  // sellingProducts: string[];
+
+  // @IsOptional()
+  // @IsArray({ message: 'The "soldProducts" field must be a array' })
+  // soldProducts: string[];
+
+  // @IsOptional()
+  // @IsArray({ message: 'The "buyingProducts" field must be a array' })
+  // buyingProducts: string[];
+
+  // @IsOptional()
+  // @IsArray({ message: 'The "purchasedProducts" field must be a array' })
+  // purchasedProducts: string[];
+
+  // @IsOptional()
+  // @IsArray({ message: 'The "losingProducts" field must be a array' })
+  // losingProducts: string[];
+
   @IsOptional()
   @IsString({ message: 'The "reviews" field must be a string' })
   reviews: string;
