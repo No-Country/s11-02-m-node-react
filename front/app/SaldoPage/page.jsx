@@ -1,5 +1,5 @@
 import React from 'react';
-import MiSaldo from '../components/Saldo';
+import MiSaldo from '../components/Saldo/MiSaldo';
 
 const Saldo = () => {
      return (
