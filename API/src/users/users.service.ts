@@ -88,7 +88,6 @@ export class UsersService {
       throw new BadRequestException(errors);
     }
     try {
-      delete updateUserDto.password;
       const user = await this.prisma.user.findUnique({
         where: {
           id: id,
