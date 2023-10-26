@@ -1,19 +1,37 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { getProduct } from '@/app/utils/getProducts';
+import { getUsers } from '@/app/utils/getProducts';
 import { formattedTime } from './../../components/Products/formattedTime';
+import { Report, Loading } from 'notiflix';
+import { auction } from '@/app/utils/getProducts';
+import { useRouter } from 'next/navigation';
 
 function Product({ params }) {
+     const router = useRouter();
      const [product, setProduct] = useState({});
+     const [seller, setSeller] = useState('');
      const [like, setLike] = useState(0);
+     const LoginToken = localStorage.getItem('access_token');
+     const getUser = JSON.parse(localStorage.getItem('persist:root'));
+     const user = JSON.parse(getUser.user);
+     const [isLoggedIn, setIsLoggedIn] = useState(LoginToken ? true : false);
+     const [price, setPrice] = useState(0);
+     if (Object.keys(product).length === 0) {
+          Loading.circle('Cargando Producto :D');
+     }
 
      useEffect(() => {
           const fetchData = async () => {
                try {
-                    const data = await getProduct(params.id);
-                    setProduct(data);
+                    const dataProduct = await getProduct(params.id);
+                    setProduct(dataProduct);
+                    const getSeller = await getUsers(dataProduct.sellerId);
+                    setSeller(getSeller);
+                    Loading.remove();
                } catch (error) {
                     console.error('Error al obtener productos', error);
+                    Loading.remove();
                }
           };
 
@@ -28,16 +46,57 @@ function Product({ params }) {
           setLike(like + 1);
      }
 
+     function newPrice(e) {
+          setPrice(parseFloat(e.target.value));
+     }
+     function sendNewPrice() {
+          if (price > number) {
+               auction(
+                    {
+                         currentOffer: price,
+                         currentBuyerId: user.id,
+                    },
+                    params.id
+               )
+                    .then((e) => {
+                         Report.success(
+                              '¡Subasta realizada con éxito! ',
+                              'Te avisaremos por email con información del ganador cuando termine el período de subasta. ¡Gracias por participar!',
+                              'Listo',
+                              () => {
+                                   router.push('/ProfilePage');
+                              },
+                              {
+                                   width: '500px',
+                                   height: '600px',
+                                   svgSize: '200px',
+                                   fontFamily: 'Poppins',
+                                   titleFontSize: '24px',
+                                   messageFontSize: '15px',
+                                   className: ' display:flex',
+                                   success: {
+                                        titleColor: '#517957',
+                                        buttonBackground: '#517957',
+                                   },
+                              }
+                         );
+                    })
+                    .catch((e) => {
+                         console.log(e);
+                    });
+          }
+     }
+
      return (
-          <main className="py-32 mx-28">
-               <section className="flex justify-center gap-20 w-full">
-                    <article className="flex flex-col justify-center w-3/5">
+          <main className="lg:py-32 py-8  lg:mx-28">
+               <section className="flex lg:flex-row flex-col justify-center lg:gap-20 w-full">
+                    <article className="flex flex-col justify-center lg:w-3/5 ">
                          <h1 className="text-2xl mb-3">{product.name}</h1>
                          <div className="relative">
                               <img
                                    src={product.img}
                                    alt={product.name}
-                                   className=" w-full object-cover h-96"
+                                   className=" w-full object-cover h-96 "
                               />
                               <div className="absolute top-2  right-2  rounded-full  border-2 p-2 px-4 flex justify-center items-center gap-2 cursor-pointer z-10">
                                    <img
@@ -54,18 +113,18 @@ function Product({ params }) {
                                         `/${product.img?.length}`}
                               </div>
                          </div>
-                         <div className="flex flex-col justify-center gap-8 mt-4">
+                         <div className="flex flex-col justify-center lg:gap-8 gap-4 mt-4 px-4 ">
                               <h2 className="text-xl">Descripción</h2>
                               <p>{product.description}</p>
                          </div>
-                         <ul className="flex justify-between w-1/2 mt-8">
-                              <div className="tracking-[.2rem] flex flex-col justify-center gap-4">
+                         <ul className="flex justify-between lg:w-1/2 my-8 ">
+                              <div className="tracking-[.2rem] flex flex-col justify-center lg:gap-4 gap-2 px-4">
                                    <li>Marca</li>
                                    <li>Color</li>
                                    <li>Tipo de objeto</li>
                                    <li>Estado</li>
                               </div>
-                              <div className="flex flex-col justify-center gap-4">
+                              <div className="flex flex-col justify-center lg:gap-4 gap-2 lg:w-full w-1/4 px-4 ">
                                    <li>-</li>
                                    <li>-</li>
                                    <li>-</li>
@@ -73,32 +132,62 @@ function Product({ params }) {
                               </div>
                          </ul>
                     </article>
-                    <article className="w-2/5 border-[#6F9F77] border-2 rounded-2xl  h-80 mt-10 ">
-                         <div className="flex flex-col justify-center ">
-                              <div className="flex flex-col justify-center p-4 gap-2">
-                                   <h1 className="text-[#1D262B] text-lg">
-                                        Cierra en{' '}
-                                        {formattedTime(product.endDate)}
-                                   </h1>
-                                   <h1 className="text-3xl text-[#517957] ml-1">
-                                        ${formattedNumber}
-                                   </h1>
-                                   <p className="text-[#517957] ">
-                                        Último precio ofertado
-                                   </p>
+                    <article className="lg:w-2/5">
+                         <div className=" border-[#6F9F77] border-2 rounded-2xl  h-80 lg:mt-10 m-4  ">
+                              <div className="flex flex-col justify-center ">
+                                   <div className="flex flex-col justify-center p-4 gap-2">
+                                        <h1 className="text-[#1D262B] text-lg">
+                                             Cierra en{' '}
+                                             {formattedTime(product.endDate)}
+                                        </h1>
+                                        <h1 className="text-3xl text-[#517957] ml-1">
+                                             ${formattedNumber}
+                                        </h1>
+                                        <p className="text-[#517957] ">
+                                             Último precio ofertado
+                                        </p>
+                                   </div>
+                                   <div className="flex flex-col justify-center items-center px-5">
+                                        <input
+                                             type="number"
+                                             name="price"
+                                             value={price}
+                                             onChange={newPrice}
+                                             required
+                                             placeholder="Establecer otro precio..."
+                                             className=" border-2 rounded-full border-[#517957] p-3 w-full mt-4 placeholder:text-[#517957]  "
+                                             min={number ?? 0}
+                                        />
+                                        <button
+                                             className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
+                                             disabled={!isLoggedIn}
+                                             onClick={sendNewPrice}>
+                                             Subastar
+                                        </button>
+                                   </div>
+                                   {!isLoggedIn && (
+                                        <p className="text-center mt-2 text-red-500 text-sm">
+                                             Debe de iniciar sesion para poder
+                                             subastar
+                                        </p>
+                                   )}
                               </div>
-                              <div className="flex flex-col justify-center items-center px-5">
-                                   <input
-                                        type="text"
-                                        name="price"
-                                        placeholder="Establecer otro precio..."
-                                        className=" border-2 rounded-full border-[#517957] p-3 w-full mt-4 placeholder:text-[#517957]  "
-                                   />
-                                   <button
-                                        className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
-                                        disabled={true}>
-                                        Subastar
-                                   </button>
+                         </div>
+                         <div className="flex justify-start items-center gap-4 ml-6">
+                              <img
+                                   src="https://this-person-does-not-exist.com/img/avatar-gen87cb681c5548f55224b176606f8d82e6.jpg"
+                                   alt="avatar"
+                                   className="h-16 rounded-full p-1 bg-[#6F9F77]"
+                              />
+                              <div>
+                                   <h2 className="text-[#27343A] text-xl">
+                                        Precio estimado a partir de{' '}
+                                        {formattedNumber}{' '}
+                                   </h2>
+                                   <p className="text-[#517957]">
+                                        por {seller.user?.firstName}{' '}
+                                        {seller.user?.lastName}
+                                   </p>
                               </div>
                          </div>
                     </article>

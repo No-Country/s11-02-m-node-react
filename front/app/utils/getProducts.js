@@ -43,3 +43,34 @@ export const getProduct = async (id) => {
           return [];
      }
 };
+
+export const getUsers = async (id) => {
+     try {
+          const response = await fetch(`${backendURL}/users/${id}`);
+          if (!response.ok) {
+               throw new Error('No se encontro el usuario');
+          }
+          const data = await response.json();
+          return data;
+     } catch (error) {
+          console.error('Error al encontrar el usuario', error);
+          return [];
+     }
+};
+
+//subastar
+export const auction = async (body, id) => {
+     try {
+          const response = await fetch(`${backendURL}/products/${id}`, {
+               method: 'PATCH',
+               body: JSON.stringify(body),
+               headers: {
+                    'Content-type': 'application/json',
+               },
+          });
+          if (response.ok)
+               console.log(`se ha actualizado correctamente ${body}`);
+     } catch (error) {
+          console.error('Error al actualizar los datos', error);
+     }
+};
