@@ -7,8 +7,6 @@ import { getUsers } from '@/app/utils/getProducts';
 import { formattedTime } from './../../components/Products/formattedTime';
 import { Report, Loading } from 'notiflix';
 import { auction } from '@/app/utils/getProducts';
-import { useRouter } from 'next/navigation';
-
 
 function Product({ params }) {
      const router = useRouter();
@@ -24,7 +22,6 @@ function Product({ params }) {
      if (Object.keys(product).length === 0) {
           Loading.circle('Cargando Producto :D');
      }
-
 
      useEffect(() => {
           const fetchData = async () => {
@@ -92,7 +89,6 @@ function Product({ params }) {
                     });
           }
      }
-
 
      return (
           <main className="lg:py-32 py-8  lg:mx-28">
@@ -196,7 +192,6 @@ function Product({ params }) {
                                         {seller.user?.lastName}
                                    </p>
                               </div>
-
                          </div>
                     </article>
                </section>
