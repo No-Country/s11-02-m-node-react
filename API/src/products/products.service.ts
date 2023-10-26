@@ -138,12 +138,10 @@ export class ProductsService {
 
   async createOffer(createOfferDto: CreateOfferDto): Promise<ProductEntity> {
     try {
-      if (
-        !isMongoId(createOfferDto.productId) ||
-        !isMongoId(createOfferDto.userId)
-      )
-        throw new BadRequestException('Id must be a mongodb id');
-
+      const errors = await validate(createOfferDto);
+      if (errors.length > 0) {
+        throw new BadRequestException(errors);
+      }
       const product = await this.findOne(createOfferDto.productId);
       if (!product) throw new NotFoundException('Product not found');
 

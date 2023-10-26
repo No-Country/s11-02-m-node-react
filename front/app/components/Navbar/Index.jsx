@@ -61,9 +61,9 @@ const Navbar = () => {
                          />
 
                          {isUserAuthenticated ? (
-                              <div className="flex flex-row">
+                              <div className="flex flex-row items-center">
                                    <Link
-                                        className=" text-Gunmetal/2  px-10 py-2 text-md  hover:bg-green "
+                                        className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-md  hover:bg-green "
                                         href={'/HomePage'}>
                                         Subastas
                                    </Link>

@@ -1,5 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import { getProduct } from '@/app/utils/getProducts';
 import { getUsers } from '@/app/utils/getProducts';
 import { formattedTime } from './../../components/Products/formattedTime';
@@ -7,11 +9,13 @@ import { Report, Loading } from 'notiflix';
 import { auction } from '@/app/utils/getProducts';
 import { useRouter } from 'next/navigation';
 
+
 function Product({ params }) {
      const router = useRouter();
      const [product, setProduct] = useState({});
      const [seller, setSeller] = useState('');
      const [like, setLike] = useState(0);
+
      const LoginToken = localStorage.getItem('access_token');
      const getUser = JSON.parse(localStorage.getItem('persist:root'));
      const user = JSON.parse(getUser.user);
@@ -20,6 +24,7 @@ function Product({ params }) {
      if (Object.keys(product).length === 0) {
           Loading.circle('Cargando Producto :D');
      }
+
 
      useEffect(() => {
           const fetchData = async () => {
@@ -37,6 +42,7 @@ function Product({ params }) {
 
           fetchData();
      }, []);
+
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
      const formattedNumber = number.toLocaleString('es-ES', {
           minimumFractionDigits: 0,
@@ -86,6 +92,7 @@ function Product({ params }) {
                     });
           }
      }
+
 
      return (
           <main className="lg:py-32 py-8  lg:mx-28">
@@ -189,6 +196,7 @@ function Product({ params }) {
                                         {seller.user?.lastName}
                                    </p>
                               </div>
+
                          </div>
                     </article>
                </section>
