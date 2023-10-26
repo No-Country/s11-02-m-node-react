@@ -26,7 +26,7 @@ function Category() {
                               className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('arte')}>
                               <img
-                                   src="/artes.avif"
+                                   src="/artes.png"
                                    alt="artes"
                                    className="categoryImg h-[12rem] lg:h-full w-[14rem] lg:w-[18rem]"
                               />
@@ -36,7 +36,7 @@ function Category() {
                               className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('cartas')}>
                               <img
-                                   src="/cartas.avif"
+                                   src="/cartas.png"
                                    alt="cartas"
                                    className="categoryImg lg:h-full h-[12rem] w-[21rem] lg:w-[18rem]"
                               />
@@ -46,7 +46,7 @@ function Category() {
                               className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('electrodomesticos')}>
                               <img
-                                   src="consolas.avif"
+                                   src="consolas.png"
                                    alt="consolas"
                                    className="categoryImg h-[12rem] lg:h-full w-[16rem] lg:w-[18rem]"
                               />
@@ -56,7 +56,7 @@ function Category() {
                               className="categoryDiv lg:h-[30rem] lg:hover:scale-105"
                               onClick={() => onClick('belleza')}>
                               <img
-                                   src="/belleza.avif"
+                                   src="/belleza.png"
                                    alt="libros"
                                    className="categoryImg h-[12rem] lg:h-full w-[12rem] lg:w-[18rem]"
                               />

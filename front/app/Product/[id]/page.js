@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
 import { getProduct } from '@/app/utils/getProducts';
 import { getUsers } from '@/app/utils/getProducts';
 import { formattedTime } from './../../components/Products/formattedTime';
