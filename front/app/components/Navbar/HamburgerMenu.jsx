@@ -35,6 +35,13 @@ const HamburgerMenu = ({ isUserAuthenticated, handleLogOut }) => {
                                    <>
                                         <li className="mb-2">
                                              <Link
+                                                  href="/SaldoPage"
+                                                  onClick={toggleMenu}>
+                                                  Mi saldo
+                                             </Link>
+                                        </li>
+                                        <li className="mb-2">
+                                             <Link
                                                   href="/"
                                                   onClick={handleLogOut}>
                                                   Cerrar sesión

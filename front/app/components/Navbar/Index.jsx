@@ -64,6 +64,17 @@ const Navbar = () => {
                               <div className="flex flex-row items-center">
                                    <Link
                                         className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-md  hover:bg-green "
+                                        href={'/SaldoPage'}>
+                                        Tu saldo{'  '}
+                                        <span className="text-Fern/green ">
+                                             $0,00
+                                        </span>
+                                   </Link>
+                                   <span className="hidden md:inline mx-4 ">
+                                        |
+                                   </span>
+                                   <Link
+                                        className="hidden md:inline text-Gunmetal/2  px-10 py-2 text-md  hover:bg-green "
                                         href={'/HomePage'}>
                                         Subastas
                                    </Link>
