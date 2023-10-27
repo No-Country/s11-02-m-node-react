@@ -16,8 +16,12 @@ const userSlice = createSlice({
                     return state;
                }
           },
+          clearUser: (state) => {
+               // Esta acción se utiliza para desloguear al usuario
+               return null; // Establece el estado del usuario en null
+          },
      },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;

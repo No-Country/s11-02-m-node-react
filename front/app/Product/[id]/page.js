@@ -19,7 +19,7 @@ function Product({ params }) {
      const loggedUser = useSelector((state) => state.user);
      const [isLoggedIn, setIsLoggedIn] = useState(LoginToken ? true : false);
      const [price, setPrice] = useState(0);
-     const sameUserOffer = product.sellerId === loggedUser.id;
+     const sameUserOffer = product.sellerId === (loggedUser && loggedUser.id);
      if (Object.keys(product).length === 0) {
           Loading.circle('Cargando Producto :D');
      }
@@ -88,7 +88,7 @@ function Product({ params }) {
                     });
           }
      }
-
+     console.log('logueado', loggedUser);
      return (
           <main className="lg:py-32 py-8  lg:mx-28">
                <section className="flex lg:flex-row flex-col justify-center lg:gap-20 w-full">

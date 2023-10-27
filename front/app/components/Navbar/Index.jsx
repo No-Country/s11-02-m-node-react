@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setUser } from '@/app/store/userSlice';
+import { clearUser } from '@/app/store/userSlice';
 import { logout } from '@/app/store/authSlice';
 import { logOutUser } from '../../utils/logOut';
 import HamburgerMenu from './HamburgerMenu';
@@ -35,7 +35,7 @@ const Navbar = () => {
      };
      const handleLogOut = () => {
           logOutUser();
-          dispatch(setUser(null));
+          dispatch(clearUser());
           dispatch(logout());
           router.push('/');
           localStorage.clear();
