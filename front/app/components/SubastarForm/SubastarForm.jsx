@@ -137,7 +137,7 @@ const Registerform = () => {
                return null;
           }
      };
-     console.log('tags', formik.touched.tags);
+
      return (
           <div className="flex justify-center md:mt-8 mb-8">
                <div className="w-full max-w-xl">
