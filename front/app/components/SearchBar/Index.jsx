@@ -1,9 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { BiSearch } from 'react-icons/bi';
+
 import CategoryBtn from './CategoryBtn';
 import { photoLinks } from './photoLinks';
+import SearchFilter from '../SearchFilter/SearchFilter';
 
 const SearchBar = ({ onCategoryChange, category }) => {
      const [photo, setPhoto] = useState(photoLinks[8]);
@@ -37,19 +38,8 @@ const SearchBar = ({ onCategoryChange, category }) => {
                     {'<'}
                </button>
                <div className="relative h-full md:pl-42 md:pr-42 lg:pl-64 lg:pr-64 lg:pb-44  text-black w-full mt-8 sm:mt-10 md:mt-40 items-center">
-                    <input
-                         type="text"
-                         placeholder="Buscador"
-                         className="w-full rounded-xl pl-12 pr-4 py-4 bg-white border-2 border-black focus:outline-none text-xl text-black placeholder-black::placeholder"
-                    />
-                    <div className="absolute right-4 md:right-40 lg:right-72 xl:right-90 top-5">
-                         <BiSearch
-                              size={28}
-                              className=""
-                              //onClick={handleButtonClick}
-                              tabIndex="0"
-                         />
-                    </div>
+                    <SearchFilter />
+
                     <CategoryBtn onCategoryChange={onCategoryChange} />
                </div>
           </div>
