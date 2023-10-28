@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import mainRoute from '@/route';
 import { useRouter } from 'next/navigation';
@@ -7,6 +7,7 @@ const SearchFilter = () => {
      const [searchQuery, setSearchQuery] = useState('');
      const [searchResults, setSearchResults] = useState([]);
      const route = useRouter();
+     const searchFilterRef = useRef(null);
 
      useEffect(() => {
           const fetchData = async () => {
@@ -48,8 +49,24 @@ const SearchFilter = () => {
           route.push(`/Product/${productId}`);
      };
 
+     useEffect(() => {
+          const handleClickOutside = (event) => {
+               if (
+                    searchFilterRef.current &&
+                    !searchFilterRef.current.contains(event.target)
+               ) {
+                    setSearchQuery('');
+               }
+          };
+          document.addEventListener('click', handleClickOutside);
+
+          return () => {
+               document.removeEventListener('click', handleClickOutside);
+          };
+     }, []);
+
      return (
-          <div>
+          <div ref={searchFilterRef}>
                <input
                     type="text"
                     placeholder="Buscador"
@@ -71,7 +88,7 @@ const SearchFilter = () => {
                          {searchResults.map((product) => (
                               <li
                                    key={product.id}
-                                   className=" py-1 max-w-2xl px-4 text-md bg-gray-300 cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:scale-105 hover:rounded-md active:bg-gray-100 active:scale-95"
+                                   className=" py-1 max-w-2xl px-4 text-lg bg-gray-300 cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:scale-105 hover:rounded-md active:bg-gray-100 active:scale-95"
                                    onClick={() =>
                                         handleResultClick(product.id)
                                    }>
