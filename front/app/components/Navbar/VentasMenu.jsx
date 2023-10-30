@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GoTriangleDown } from 'react-icons/go';
 import Link from 'next/link';
 
 const VentasMenu = () => {
      const [menuOpen, setMenuOpen] = useState(false);
+     const menuVentasRef = useRef(null);
 
      const toggleMenu = () => {
           setMenuOpen(!menuOpen);
      };
 
+     const handleButtonClick = (e) => {
+          e.stopPropagation();
+          toggleMenu();
+     };
+
+     useEffect(() => {
+          const closeMenuOnClickOutside = (e) => {
+               if (menuOpen && !menuVentasRef.current.contains(e.target)) {
+                    setMenuOpen(false);
+               }
+          };
+
+          if (menuOpen) {
+               window.addEventListener('click', closeMenuOnClickOutside);
+          }
+
+          return () => {
+               window.removeEventListener('click', closeMenuOnClickOutside);
+          };
+     }, [menuOpen]);
+
      return (
-          <div className=" flex items-center">
+          <div className=" flex items-center justify-center">
                {/* Botón de hamburguesa */}
                <button
-                    className="text-black px-10 py-2 text-md hidden md:block"
-                    onClick={toggleMenu}>
+                    className="text-black px-8 py-2 text-md hidden md:block"
+                    onClick={handleButtonClick}>
                     <div className="flex items-center">
                          <span>Historial</span>
                          <GoTriangleDown
@@ -27,19 +49,25 @@ const VentasMenu = () => {
 
                {/* Menú desplegable */}
                {menuOpen && (
-                    <div className="hidden md:block z-50 absolute top-8 mt-10 mr-2 p-6 bg-white max-w-full border-2 shadow-lg">
+                    <div
+                         ref={menuVentasRef}
+                         className="hidden md:block z-50 absolute top-8 mt-10 p-2 bg-white  border-2 shadow-lg">
                          <ul className="text-Gunmetal/2 text-sm ">
-                              <Link href="/AuctionedPage" className="">
-                                   <li className="mb-2">Productos Ofertados</li>
-                              </Link>
-                              <Link href="/ProfilePage/history">
-                                   <li className="mb-2">
+                              <li className="mb-3">
+                                   <Link href="/AuctionedPage" className="">
+                                        Productos Ofertados
+                                   </Link>
+                              </li>
+                              <li className="mb-3">
+                                   <Link href="/ProfilePage/history">
                                         Productos Publicados
-                                   </li>
-                              </Link>
-                              <Link href="/ProfilePage/purchaseHistory">
-                                   <li className="mb-2">Productos Comprados</li>
-                              </Link>
+                                   </Link>
+                              </li>
+                              <li className="mb-3">
+                                   <Link href="/ProfilePage/purchaseHistory">
+                                        Productos Comprados
+                                   </Link>
+                              </li>
                          </ul>
                     </div>
                )}
