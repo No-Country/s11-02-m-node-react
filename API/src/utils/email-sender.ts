@@ -21,7 +21,7 @@ export async function sendEmailNotification(
       <h2>¡Felicidades ${user.firstName}! Has ganado la subasta</h2>
       <img src="${product.img[0]}" alt="imagen del producto" />
       <p>Título del producto: ${product.name}</p>
-      <p>Precio del producto: 100 $ARS</p>
+      <p>Precio del producto: ${product.currentOffer} $ARS</p>
       <a href="${frontend_url}/Product/${product.id}" style="text-decoration: none; background-color: #007BFF; color: #fff; padding: 10px 20px; border-radius: 5px; margin-top: 10px; display: inline-block;">Ver Producto</a>
     </div>
   `,
