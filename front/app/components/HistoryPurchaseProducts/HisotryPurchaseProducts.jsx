@@ -48,47 +48,81 @@ const HistoryPurchaseProducts = () => {
 
      return (
           <div>
-               <div className="flex justify-start">
+               <div className="flex justify-center mt-8 mb-12">
                     <Link href="/ProfilePage">
-                         <h4 className="text-lg font-bold my-4 text-Fern/green flex ">
+                         <h4 className="text-lg font-bold text-Fern/green flex ">
                               {' '}
                               <ChevronLeft />
                               Volver
                          </h4>
                     </Link>
                </div>
-               <div className="flex justify-around">
-                    <h1 className="text-2xl font-bold mb-8 text-green my-4 text-center lg:text-left">
-                         Productos comprados:
-                    </h1>
+
+               <div className="flex justify-center mt-4 mb-10">
+                    <h4 className="">Productos publicados</h4>
                </div>
 
-               <div className="flex flex-wrap justify-center text-center -mx-4">
-                    {userData.user && userData.user.purchasedProducts ? (
-                         userData.user.purchasedProducts.map((product) => (
-                              <div
-                                   key={product.id}
-                                   className="w-full lg:w-1/2 px-2 mb-4 max-h-42">
-                                   <div className="bg-white max-w-l rounded-lg p-4 shadow-md">
-                                        <h2 className="text-xl font-semibold">
-                                             {product.name}
-                                        </h2>
-                                        <p className="text-gray-600">
-                                             {product.description}
-                                        </p>
-                                        {product.img && (
-                                             <img
-                                                  src={product.img[0]}
-                                                  alt={product.name}
-                                                  className="max-w-xs max-h-40 rounded-lg mx-auto"
-                                             />
-                                        )}
-                                   </div>
-                              </div>
-                         ))
-                    ) : (
-                         <p>No hay productos en venta disponibles.</p>
-                    )}
+               <div className="flex justify-center text-center">
+                    <div className="w-full lg:w-1/2 px-2 max-h-42">
+                         <div>
+                              {userData.user &&
+                              userData.user.purchasedProducts ? (
+                                   userData.user.purchasedProducts.map(
+                                        (product, index) => (
+                                             <div
+                                                  key={product.id}
+                                                  className="w-full  mb-4">
+                                                  <div className="bg-Gunmetal/2 text-white">
+                                                       {product.status ===
+                                                       'ACTIVE' ? (
+                                                            <p className="">
+                                                                 Activo
+                                                            </p>
+                                                       ) : (
+                                                            <p>Finalizado</p>
+                                                       )}
+                                                  </div>
+                                                  <div className="bg-white rounded-lg p-4 shadow-md border flex justify-around">
+                                                       <div className="">
+                                                            <img
+                                                                 src={
+                                                                      product
+                                                                           .img[0]
+                                                                 }
+                                                                 alt={
+                                                                      product.name
+                                                                 }
+                                                                 className="max-w-xs max-h-40 rounded-lg mx-auto mb-4"
+                                                            />
+                                                       </div>
+
+                                                       <div className="">
+                                                            <h2 className="text-xl font-semibold mt-4">
+                                                                 {product.name}
+                                                            </h2>
+                                                            <p className="text-gray-600">
+                                                                 {
+                                                                      product.description
+                                                                 }
+                                                            </p>
+                                                       </div>
+                                                       <div>
+                                                            <Link
+                                                                 href={`/Product/${product.id}`}>
+                                                                 <button className="border border-Fern/green rounded-xl px-8 my-12">
+                                                                      Ver compra
+                                                                 </button>
+                                                            </Link>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        )
+                                   )
+                              ) : (
+                                   <p>No hay productos en venta disponibles.</p>
+                              )}
+                         </div>
+                    </div>
                </div>
           </div>
      );
