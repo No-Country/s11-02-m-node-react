@@ -15,7 +15,7 @@ const VentasMenu = () => {
                     className="text-black px-10 py-2 text-md hidden md:block"
                     onClick={toggleMenu}>
                     <div className="flex items-center">
-                         <span>Ventas</span>
+                         <span>Historial</span>
                          <GoTriangleDown
                               className={`ml-2 ${
                                    menuOpen ? 'transform rotate-180' : ''

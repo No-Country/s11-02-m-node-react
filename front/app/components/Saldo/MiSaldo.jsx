@@ -12,8 +12,14 @@ const MiSaldo = () => {
      const loggedUser = useSelector((state) => state.user);
      const dispatch = useDispatch();
      const router = useRouter();
-     const [saldo, setSaldo] = useState(0);
+     const [saldo, setSaldo] = useState('');
      const [platform, setPlatform] = useState('');
+     const formattedNumber = (num) => {
+          return num.toLocaleString('es-AR', {
+               minimumFractionDigits: 2,
+               maximumFractionDigits: 2,
+          });
+     };
 
      const handleSaldoChange = (e) => {
           setSaldo(e.target.value);
@@ -101,7 +107,9 @@ const MiSaldo = () => {
                                    {loggedUser &&
                                    loggedUser.wallet &&
                                    loggedUser.wallet.amount
-                                        ? loggedUser.wallet.amount
+                                        ? formattedNumber(
+                                               loggedUser.wallet.amount
+                                          )
                                         : '0,00'}
                                    ARS
                               </h1>
