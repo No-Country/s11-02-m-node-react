@@ -14,6 +14,7 @@ import { MercadopagoController } from './mercadopago/mercadopago.controller';
 import { MercadopagoModule } from './mercadopago/mercadopago.module';
 import { MercadopagoService } from './mercadopago/mercadopago.service';
 import { StripeModule } from './stripe/stripe.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { StripeModule } from './stripe/stripe.module';
     CloudinaryModule,
     MercadopagoModule,
     StripeModule,
+    ConfigModule.forRoot(),
   ],
   controllers: [AppController, AuthController, MercadopagoController],
   providers: [
