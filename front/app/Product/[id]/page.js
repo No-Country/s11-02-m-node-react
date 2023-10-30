@@ -20,6 +20,10 @@ function Product({ params }) {
      const [isLoggedIn, setIsLoggedIn] = useState(LoginToken ? true : false);
      const [price, setPrice] = useState(0);
      const sameUserOffer = product.sellerId === (loggedUser && loggedUser.id);
+     const userWallet =
+          loggedUser && loggedUser.wallet && loggedUser.wallet.amount;
+
+     const [cantPay, setCantPay] = useState(false);
      if (Object.keys(product).length === 0) {
           Loading.circle('Cargando Producto :D');
      }
@@ -41,6 +45,16 @@ function Product({ params }) {
           fetchData();
      }, []);
 
+     useEffect(() => {
+          if (loggedUser) {
+               const noFunds =
+                    loggedUser.wallet &&
+                    loggedUser.wallet.amount <
+                         (product && product.currentOffer);
+               setCantPay(noFunds);
+          }
+     }, [loggedUser, product]);
+
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
      const formattedNumber = number.toLocaleString('es-ES', {
           minimumFractionDigits: 0,
@@ -51,44 +65,55 @@ function Product({ params }) {
      }
 
      function newPrice(e) {
+          setCantPay(false);
           setPrice(parseFloat(e.target.value));
      }
      function sendNewPrice() {
+          let saldo =
+               loggedUser && loggedUser.wallet && loggedUser.wallet.amount;
+
           if (price > number) {
-               auction({
-                    productId: params.id,
-                    userId: user.id,
-                    newOffer: price,
-               })
-                    .then((e) => {
-                         Report.success(
-                              '¡Subasta realizada con éxito!! ',
-                              'Te avisaremos por email con información del ganador cuando termine el período de subasta. ¡Gracias por participar!',
-                              'Listo',
-                              () => {
-                                   router.push('/ProfilePage');
-                              },
-                              {
-                                   width: '500px',
-                                   height: '600px',
-                                   svgSize: '200px',
-                                   fontFamily: 'Poppins',
-                                   titleFontSize: '24px',
-                                   messageFontSize: '15px',
-                                   className: ' display:flex',
-                                   success: {
-                                        titleColor: '#517957',
-                                        buttonBackground: '#517957',
-                                   },
-                              }
-                         );
+               if (price > userWallet) {
+                    console.log('precio', price);
+                    console.log('wallet', userWallet);
+                    setCantPay(true);
+               } else
+                    auction({
+                         productId: params.id,
+                         userId: user.id,
+                         newOffer: price,
                     })
-                    .catch((e) => {
-                         console.log(e);
-                    });
+                         .then((e) => {
+                              Report.success(
+                                   '¡Subasta realizada con éxito!! ',
+                                   'Te avisaremos por email con información del ganador cuando termine el período de subasta. ¡Gracias por participar!',
+                                   'Listo',
+                                   () => {
+                                        router.push('/ProfilePage');
+                                   },
+                                   {
+                                        width: '500px',
+                                        height: '600px',
+                                        svgSize: '200px',
+                                        fontFamily: 'Poppins',
+                                        titleFontSize: '24px',
+                                        messageFontSize: '15px',
+                                        className: ' display:flex',
+                                        success: {
+                                             titleColor: '#517957',
+                                             buttonBackground: '#517957',
+                                        },
+                                   }
+                              );
+                         })
+                         .catch((e) => {
+                              console.log(e);
+                         });
+          } else {
+               saldo < number ? setCantPay(true) : console.log('hola');
           }
      }
-     console.log('logueado', loggedUser);
+
      return (
           <main className="lg:py-32 py-8  lg:mx-28">
                <section className="flex lg:flex-row flex-col justify-center lg:gap-20 w-full">
@@ -163,7 +188,9 @@ function Product({ params }) {
                                         <button
                                              className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
                                              disabled={
-                                                  !isLoggedIn || sameUserOffer
+                                                  !isLoggedIn ||
+                                                  sameUserOffer ||
+                                                  cantPay
                                              }
                                              onClick={sendNewPrice}>
                                              Subastar
@@ -179,6 +206,12 @@ function Product({ params }) {
                                         <p className="text-center mt-2 text-red-500 text-sm">
                                              No puedes ofertar en tu propia
                                              publicación!
+                                        </p>
+                                   )}
+                                   {cantPay && loggedUser && (
+                                        <p className="text-center mt-2 text-red-500 text-sm">
+                                             No tienes fondos suficientes para
+                                             ofertar!
                                         </p>
                                    )}
                               </div>
