@@ -41,6 +41,7 @@ const Navbar = () => {
           localStorage.clear();
           console.log('hola');
      };
+
      console.log('usuario', isUserAuthenticated);
      console.log('usuario completo', loggedUser);
      return (
@@ -67,7 +68,12 @@ const Navbar = () => {
                                         href={'/SaldoPage'}>
                                         Tu saldo{'  '}
                                         <span className="text-Fern/green ">
-                                             $0,00
+                                             ${' '}
+                                             {loggedUser &&
+                                             loggedUser.wallet &&
+                                             loggedUser.wallet.amount
+                                                  ? loggedUser.wallet.amount
+                                                  : '0,00'}
                                         </span>
                                    </Link>
                                    <span className="hidden md:inline mx-4 ">
