@@ -74,8 +74,6 @@ function Product({ params }) {
 
           if (price > number) {
                if (price > userWallet) {
-                    console.log('precio', price);
-                    console.log('wallet', userWallet);
                     setCantPay(true);
                } else
                     auction({

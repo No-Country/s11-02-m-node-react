@@ -7,7 +7,11 @@ export const fetchProducts = async () => {
                throw new Error('No se pudo obtener la lista de productos');
           }
           const data = await response.json();
-          return data.products;
+          const activeProducts = data.products.filter(
+               (product) => product.status === 'ACTIVE'
+          );
+
+          return activeProducts;
      } catch (error) {
           console.error('Error al obtener productos', error);
           return [];
@@ -23,7 +27,11 @@ export const fetchProductsFilter = async (category) => {
                throw new Error('No se pudo obtener la lista de productos');
           }
           const data = await response.json();
-          return data.products;
+          const activeProducts = data.products.filter(
+               (product) => product.status === 'ACTIVE'
+          );
+
+          return activeProducts;
      } catch (error) {
           console.error('Error al obtener productos', error);
           return [];
