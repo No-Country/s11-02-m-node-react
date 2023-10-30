@@ -10,7 +10,6 @@ import { logout } from '@/app/store/authSlice';
 import { logOutUser } from '../../utils/logOut';
 import HamburgerMenu from './HamburgerMenu';
 import MiCuentaMenu from './MiCuentaMenu';
-import ComprasMenu from './ComprasMenu';
 import VentasMenu from './VentasMenu';
 import ecoLogo from '@/public/ecoLogo.png';
 
@@ -21,6 +20,12 @@ const Navbar = () => {
      const isUserAuthenticated = useSelector(
           (state) => state.auth.isUserAuthenticated
      );
+     const formattedNumber = (num) => {
+          return num.toLocaleString('es-AR', {
+               minimumFractionDigits: 2,
+               maximumFractionDigits: 2,
+          });
+     };
      const handleInicio = () => {
           router.push('/');
      };
@@ -41,6 +46,7 @@ const Navbar = () => {
           localStorage.clear();
           console.log('hola');
      };
+
      console.log('usuario', isUserAuthenticated);
      console.log('usuario completo', loggedUser);
      return (
@@ -67,7 +73,15 @@ const Navbar = () => {
                                         href={'/SaldoPage'}>
                                         Tu saldo{'  '}
                                         <span className="text-Fern/green ">
-                                             $0,00
+                                             $
+                                             {loggedUser &&
+                                             loggedUser.wallet &&
+                                             loggedUser.wallet.amount
+                                                  ? formattedNumber(
+                                                         loggedUser.wallet
+                                                              .amount
+                                                    )
+                                                  : '0,00'}
                                         </span>
                                    </Link>
                                    <span className="hidden md:inline mx-4 ">
@@ -78,7 +92,7 @@ const Navbar = () => {
                                         href={'/HomePage'}>
                                         Subastas
                                    </Link>
-                                   <ComprasMenu />
+
                                    <VentasMenu />
                                    <MiCuentaMenu handleLogOut={handleLogOut} />
                               </div>

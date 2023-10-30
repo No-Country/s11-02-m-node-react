@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { login } from '@/app/store/authSlice';
-import { setUser } from '@/app/store/userSlice';
+import { setUser, setInfoUser } from '@/app/store/userSlice';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
@@ -55,7 +55,28 @@ const Loginform = () => {
 
                     dispatch(login());
                     dispatch(setUser(data.user));
-                    //console.log('data!!', data);
+                    console.log('data!!', data);
+
+                    if (data.user.id) {
+                         const secondResponse = await fetch(
+                              `${mainRoute}/users/${data.user.id}`,
+                              {
+                                   method: 'GET', // O el método necesario
+                                   headers: {
+                                        'Content-Type': 'application/json',
+                                   },
+                              }
+                         );
+
+                         if (secondResponse.ok) {
+                              const secondData = await secondResponse.json();
+                              console.log(
+                                   'Respuesta de la segunda solicitud:',
+                                   secondData
+                              );
+                              dispatch(setInfoUser(secondData.user));
+                         }
+                    }
 
                     toast.success('Inicio de sesión exitoso', {
                          position: 'bottom-right',
