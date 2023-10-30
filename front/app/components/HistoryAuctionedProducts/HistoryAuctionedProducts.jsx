@@ -7,8 +7,9 @@ import Link from 'next/link';
 import mainRoute from '@/route';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { ChevronLeft } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-const HistoryPurchaseProducts = () => {
+const HistoryAuctionedProducts = () => {
      const loggedUser = useSelector((state) => state.user);
      const dispatch = useDispatch();
 
@@ -59,15 +60,14 @@ const HistoryPurchaseProducts = () => {
                </div>
 
                <div className="flex justify-center mt-4 mb-10">
-                    <h4 className="">Productos comprados</h4>
+                    <h4 className="">Productos ofertados</h4>
                </div>
 
                <div className="flex justify-center text-center">
                     <div className="w-full lg:w-1/2 px-2 max-h-42">
                          <div>
-                              {userData.user &&
-                              userData.user.purchasedProducts ? (
-                                   userData.user.purchasedProducts.map(
+                              {userData.user && userData.user.buyingProducts ? (
+                                   userData.user.buyingProducts.map(
                                         (product, index) => (
                                              <div
                                                   key={product.id}
@@ -119,7 +119,9 @@ const HistoryPurchaseProducts = () => {
                                         )
                                    )
                               ) : (
-                                   <p>No hay productos en venta disponibles.</p>
+                                   <p>
+                                        No hay productos ofertados disponibles.
+                                   </p>
                               )}
                          </div>
                     </div>
@@ -128,4 +130,4 @@ const HistoryPurchaseProducts = () => {
      );
 };
 
-export default HistoryPurchaseProducts;
+export default HistoryAuctionedProducts;
