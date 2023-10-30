@@ -10,8 +10,9 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
      title: 'EcoSubasta',
-     description: 'Economía Circular',
-     favicon: '../public/recycle.svg',
+     icons: {
+          icon: ['../public/favicon.ico'],
+     },
 };
 
 export default function RootLayout({ children }) {
@@ -20,11 +21,7 @@ export default function RootLayout({ children }) {
                <head>
                     <title>{metadata.title}</title>
                     <meta name="description" content={metadata.description} />
-                    <link
-                         rel="icon"
-                         type="image/x-icon"
-                         href={metadata.favicon}
-                    />
+                    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
                </head>
 
                <body>
