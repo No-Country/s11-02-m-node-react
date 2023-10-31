@@ -119,6 +119,17 @@ export class ProductsController {
     }
   }
 
+  @Patch('finalize-product/:id')
+  async finalizeProduct(
+    @Param('id') id: string,
+  ): Promise<{ message: string; finishedProduct: ProductEntity }> {
+    try {
+      return await this.productsService.finalizeProduct(id);
+    } catch (error) {
+      handleErrors(error);
+    }
+  }
+
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<{ message: string }> {
     try {
