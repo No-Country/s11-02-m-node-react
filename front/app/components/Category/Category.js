@@ -13,7 +13,7 @@ function Category() {
                <ul className="flex flex-col gap-4  flex-wrap w-full">
                     <div className="flex items-center lg:justify-between justify-center gap-8 p-2 ">
                          <h1 className="text-black lg:text-4xl lg:m-0 ">
-                              Categorias mas populares
+                              Categorías más populares
                          </h1>
                          <button
                               onClick={() => router.push(`/HomePage`)}
