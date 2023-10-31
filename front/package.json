@@ -12,6 +12,8 @@
     "@reduxjs/toolkit": "^1.9.7",
     "formik": "^2.4.5",
     "lucide-react": "^0.288.0",
+    "moment": "^2.29.4",
+    "moment-with-locales-es6": "^1.0.1",
     "next": "13.5.4",
     "notiflix": "^3.2.6",
     "react": "^18",
