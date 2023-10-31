@@ -23,8 +23,8 @@ function ProductCard({ product, className }) {
           <div
                onClick={handleClick}
                key={product.id}
-               className={`bg-white border cursor-pointer p-2 md:p-8 rounded-2xl shadow-md hover:shadow-lg w-64 md:w-150 ${className}`}
-               style={{ height: '450px' }} // Establece una altura fija en píxeles
+               className={`bg-white border cursor-pointer p-2 md:p-8 rounded-2xl shadow-md hover:shadow-lg  md:w-150 ${className}`}
+               style={{ height: '450px', maxWidth: '320px' }} // Establece una altura fija en píxeles
           >
                <div className="bg-Tea/green pt-1 pb-1 text-center text-sm md:text-md">
                     {`Cierra en ${diferenciaFechas}`}
@@ -33,7 +33,7 @@ function ProductCard({ product, className }) {
                     <Image
                          src={product.img[0]}
                          alt={product.name}
-                         className="w-full h-full object-cover"
+                         className=" md:w-full h-full object-cover"
                          width={300} // Especifica el ancho deseado en píxeles
                          height={200}
                     />
