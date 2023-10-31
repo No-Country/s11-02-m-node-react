@@ -7,6 +7,12 @@ moment.locale('es');
 function ProductCard({ product, className }) {
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
      const router = useRouter();
+     const endDate = moment(product.endDate);
+     const currentDate = moment();
+     const duration = moment.duration(endDate.diff(currentDate));
+     const days = duration.days();
+     const hours = duration.hours();
+     const diferenciaFechas = `${days} días y ${hours} horas`;
      const formattedNumber = number.toLocaleString('es-ES', {
           minimumFractionDigits: 0,
      });
@@ -21,9 +27,7 @@ function ProductCard({ product, className }) {
                style={{ height: '450px' }} // Establece una altura fija en píxeles
           >
                <div className="bg-Tea/green pt-1 pb-1 text-center text-sm md:text-md">
-                    {`Cierra en ${moment(product.endDate)
-                         .endOf('day')
-                         .fromNow(true)}`}
+                    {`Cierra en ${diferenciaFechas}`}
                </div>
                <div className="w-full h-52 mx-auto">
                     <Image

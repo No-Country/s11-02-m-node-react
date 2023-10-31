@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { getProduct } from '@/app/utils/getProducts';
 import { getUsers } from '@/app/utils/getProducts';
-import { formattedTime } from './../../components/Products/formattedTime';
 import { Report, Loading } from 'notiflix';
 import { auction } from '@/app/utils/getProducts';
+import moment from 'moment-with-locales-es6';
+moment.locale('es');
 
 function Product({ params }) {
      const router = useRouter();
@@ -20,6 +21,12 @@ function Product({ params }) {
      const [isLoggedIn, setIsLoggedIn] = useState(LoginToken ? true : false);
      const [price, setPrice] = useState(0);
      const sameUserOffer = product.sellerId === (loggedUser && loggedUser.id);
+     const endDate = moment(product.endDate);
+     const currentDate = moment();
+     const duration = moment.duration(endDate.diff(currentDate));
+     const days = duration.days();
+     const hours = duration.hours();
+     const diferenciaFechas = `${days} días y ${hours} horas`;
      const userWallet =
           loggedUser && loggedUser.wallet && loggedUser.wallet.amount;
 
@@ -150,8 +157,7 @@ function Product({ params }) {
                               <div className="flex flex-col justify-center ">
                                    <div className="flex flex-col justify-center p-4 gap-2">
                                         <h1 className="text-[#1D262B] text-lg">
-                                             Cierra en{' '}
-                                             {formattedTime(product.endDate)}
+                                             {`Cierra en ${diferenciaFechas}`}
                                         </h1>
                                         <h1 className="text-3xl text-[#517957] ml-1">
                                              ${formattedNumber}
