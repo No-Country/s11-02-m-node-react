@@ -1,6 +1,6 @@
 export const formattedTime = (unformatDate) => {
      const endDate = new Date(unformatDate);
-
+     console.log('end', endDate);
      // Obtén la fecha y hora actual
      const currentDate = new Date();
 

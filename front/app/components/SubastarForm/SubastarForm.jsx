@@ -14,18 +14,14 @@ const Registerform = () => {
      const accessToken = localStorage.getItem('access_token');
      const [fechaConvertida, setFechaConvertida] = useState('');
      const router = useRouter();
+     const now = new Date();
+     const isoString = now.toISOString();
+     const horaParte = isoString.slice(10, 24);
 
      const handleChange = (selected) => {
           setSelectedOptions(selected);
      };
-     // const today = new Date();
-     // today.setHours(0, 0, 0, 0);
-     // const tomorrow = today.setDate(today.getDate() + 1);
-     // const formattedToday = tomorrow.toISOString().split('T')[0];
-     // //const today = new Date();
-     // today.setDate(today.getDate() + 1); // Suma 1 día a la fecha actual
 
-     // const formattedTomorrow = today.toISOString().split('T')[0];
      const today = new Date();
      const tomorrow = new Date(today);
      tomorrow.setDate(today.getDate() + 1);
@@ -35,6 +31,7 @@ const Registerform = () => {
      const day = tomorrow.getDate().toString().padStart(2, '0');
 
      const formattedTomorrow = `${year}-${month}-${day}`;
+
      const formik = useFormik({
           initialValues: {
                name: '',
@@ -150,7 +147,7 @@ const Registerform = () => {
                return null;
           }
      };
-
+     console.log('hora', horaParte);
      return (
           <div className="flex justify-center md:mt-8 mb-8">
                <div className="w-full max-w-xl">
@@ -294,8 +291,7 @@ const Registerform = () => {
                                              const fechaOriginal =
                                                   e.target.value;
                                              const fechaConvertida = new Date(
-                                                  fechaOriginal +
-                                                       'T00:00:00.000Z'
+                                                  fechaOriginal + horaParte
                                              ).toISOString();
                                              setFechaConvertida(
                                                   fechaConvertida
