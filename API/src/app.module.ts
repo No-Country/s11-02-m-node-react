@@ -15,6 +15,7 @@ import { MercadopagoModule } from './mercadopago/mercadopago.module';
 import { MercadopagoService } from './mercadopago/mercadopago.service';
 import { StripeModule } from './stripe/stripe.module';
 import { ConfigModule } from '@nestjs/config';
+import { WalletModule } from './wallet/wallet.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigModule } from '@nestjs/config';
     MercadopagoModule,
     StripeModule,
     ConfigModule.forRoot(),
+    WalletModule,
   ],
   controllers: [AppController, AuthController, MercadopagoController],
   providers: [
