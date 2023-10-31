@@ -1,7 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { formattedTime } from './formattedTime';
+import moment from 'moment-with-locales-es6';
+moment.locale('es');
 
 function ProductCard({ product, className }) {
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número
@@ -12,7 +13,6 @@ function ProductCard({ product, className }) {
      const handleClick = () => {
           router.push(`/Product/${product.id}`);
      };
-
      return (
           <div
                onClick={handleClick}
@@ -21,7 +21,9 @@ function ProductCard({ product, className }) {
                style={{ height: '450px' }} // Establece una altura fija en píxeles
           >
                <div className="bg-Tea/green pt-1 pb-1 text-center text-sm md:text-md">
-                    {formattedTime(product.endDate)}
+                    {`Cierra en ${moment(product.endDate)
+                         .endOf('day')
+                         .fromNow(true)}`}
                </div>
                <div className="w-full h-52 mx-auto">
                     <Image
