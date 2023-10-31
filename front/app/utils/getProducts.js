@@ -1,4 +1,6 @@
 const backendURL = 'https://reutilizzappapi.onrender.com';
+import moment from 'moment-with-locales-es6';
+moment.locale('es');
 
 export const fetchProducts = async () => {
      try {
@@ -7,6 +9,23 @@ export const fetchProducts = async () => {
                throw new Error('No se pudo obtener la lista de productos');
           }
           const data = await response.json();
+
+          const currentDate = moment(); // Obtener la fecha actual
+
+          // Iterar a través de los productos y realizar la lógica antes de la declaración de activeProducts
+          for (const product of data.products) {
+               if (product.status === 'ACTIVE') {
+                    const productEndDate = moment(product.endDate);
+
+                    // Comparar la fecha de finalización con la fecha actual
+                    if (productEndDate.isBefore(currentDate)) {
+                         // Hacer una solicitud PATCH para finalizar el producto
+                         await finalizeProduct(product.id);
+                    }
+               }
+          }
+
+          // Filtrar los productos que tienen estado 'ACTIVE' después de la verificación de la fecha
           const activeProducts = data.products.filter(
                (product) => product.status === 'ACTIVE'
           );
@@ -15,6 +34,26 @@ export const fetchProducts = async () => {
      } catch (error) {
           console.error('Error al obtener productos', error);
           return [];
+     }
+};
+
+// Función para hacer una solicitud PATCH para finalizar un producto
+const finalizeProduct = async (productId) => {
+     try {
+          const response = await fetch(
+               `${backendURL}/products/finalize-product/${productId}`,
+               {
+                    method: 'PATCH',
+                    headers: {
+                         'Content-Type': 'application/json',
+                    },
+               }
+          );
+          if (!response.ok) {
+               throw new Error('No se pudo finalizar el producto');
+          }
+     } catch (error) {
+          console.error('Error al finalizar el producto', error);
      }
 };
 

@@ -50,8 +50,10 @@ const ProductsPage = () => {
 
                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
                     {productsToDisplay.map((product, index) => (
-                         <div onClick={() => seeProduct(product.id)}>
-                              <ProductCard product={product} key={index} />
+                         <div
+                              onClick={() => seeProduct(product.id)}
+                              key={index}>
+                              <ProductCard product={product} />
                          </div>
                     ))}
                </div>

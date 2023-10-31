@@ -170,12 +170,14 @@ function Product({ params }) {
                                         <input
                                              type="number"
                                              name="price"
-                                             value={price}
+                                             value={
+                                                  price ? parseInt(price) : ''
+                                             }
                                              onChange={newPrice}
                                              required
                                              placeholder="Establecer otro precio..."
                                              className=" border-2 rounded-full border-[#517957] p-3 w-full mt-4 placeholder:text-[#517957]  "
-                                             min={number ?? 0}
+                                             min={number ? number : 0}
                                         />
                                         <button
                                              className="bg-[#517957] text-white border-2 rounded-full border-[#517957] p-3 w-full mt-4 disabled:opacity-75 "
