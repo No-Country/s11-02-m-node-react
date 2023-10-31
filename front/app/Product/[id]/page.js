@@ -74,8 +74,6 @@ function Product({ params }) {
 
           if (price > number) {
                if (price > userWallet) {
-                    console.log('precio', price);
-                    console.log('wallet', userWallet);
                     setCantPay(true);
                } else
                     auction({
@@ -115,15 +113,17 @@ function Product({ params }) {
      }
 
      return (
-          <main className="lg:py-32 py-8  lg:mx-28">
+          <main className="lg:py-32 py-8 mx-8 lg:mx-28">
                <section className="flex lg:flex-row flex-col justify-center lg:gap-20 w-full">
                     <article className="flex flex-col justify-center lg:w-3/5 ">
-                         <h1 className="text-2xl mb-3">{product.name}</h1>
+                         <h1 className="text-2xl mb-3 md:ml-4">
+                              {product.name}
+                         </h1>
                          <div className="relative">
                               <img
                                    src={product.img}
                                    alt={product.name}
-                                   className=" w-full object-cover h-96 "
+                                   className=" w-full object-contain h-96"
                               />
                               <div className="absolute top-2  right-2  rounded-full  border-2 p-2 px-4 flex justify-center items-center gap-2 cursor-pointer z-10">
                                    <img

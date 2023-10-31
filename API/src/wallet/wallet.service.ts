@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { isMongoId } from 'class-validator';
 import { PrismaService } from '../prisma/prisma.service';
 import { createTransaction } from 'src/stripe/interface/createTransaction.interface';
 
@@ -24,14 +25,23 @@ export class WalletService {
   }
 
   async getWalletByUserId(userId: string) {
-    return this.prisma.wallet.findUnique({
-      where: {
-        userId,
-      },
-      include: {
-        transactions: true,
-      },
-    });
+    try {
+      if (!isMongoId(userId))
+        throw new BadRequestException('Id must be a mongodb id');
+
+      const wallet = await this.prisma.wallet.findUnique({
+        where: {
+          userId,
+        },
+        include: {
+          transactions: true,
+        },
+      });
+      if (!wallet) throw new BadRequestException('wallet not found');
+      return wallet;
+    } catch (error) {
+      throw error;
+    }
   }
 
   async saveTransaction(createTransaction: createTransaction) {

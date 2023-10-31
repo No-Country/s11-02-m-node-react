@@ -13,12 +13,12 @@ function Category() {
                <ul className="flex flex-col gap-4  flex-wrap w-full">
                     <div className="flex items-center lg:justify-between justify-center gap-8 p-2 ">
                          <h1 className="text-black lg:text-4xl lg:m-0 ">
-                              Categorias mas populares
+                              Categorías más populares
                          </h1>
                          <button
                               onClick={() => router.push(`/HomePage`)}
                               className="border-[#6F9F77] border-2 rounded-full w-24 p-2">
-                              ver todo
+                              Ver todo
                          </button>
                     </div>
                     <div className="flex flex-col lg:flex-row lg:mt-4 justify-center items-center flex-wrap gap-6 lg:gap-8">

@@ -3,11 +3,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import Link from 'next/link';
 import mainRoute from '@/route';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { ChevronLeft } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import AuctionedCard from './AuctionedCard';
+import Link from 'next/link';
 
 const HistoryAuctionedProducts = () => {
      const loggedUser = useSelector((state) => state.user);
@@ -69,53 +69,10 @@ const HistoryAuctionedProducts = () => {
                               {userData.user && userData.user.buyingProducts ? (
                                    userData.user.buyingProducts.map(
                                         (product, index) => (
-                                             <div
-                                                  key={product.id}
-                                                  className="w-full  mb-4">
-                                                  <div className="bg-Gunmetal/2 text-white">
-                                                       {product.status ===
-                                                       'ACTIVE' ? (
-                                                            <p className="">
-                                                                 Activo
-                                                            </p>
-                                                       ) : (
-                                                            <p>Finalizado</p>
-                                                       )}
-                                                  </div>
-                                                  <div className="bg-white rounded-lg p-4 shadow-md border flex justify-around">
-                                                       <div className="">
-                                                            <img
-                                                                 src={
-                                                                      product
-                                                                           .img[0]
-                                                                 }
-                                                                 alt={
-                                                                      product.name
-                                                                 }
-                                                                 className="max-w-xs max-h-40 rounded-lg mx-auto mb-4"
-                                                            />
-                                                       </div>
-
-                                                       <div className="">
-                                                            <h2 className="text-xl font-semibold mt-4">
-                                                                 {product.name}
-                                                            </h2>
-                                                            <p className="text-gray-600">
-                                                                 {
-                                                                      product.description
-                                                                 }
-                                                            </p>
-                                                       </div>
-                                                       <div>
-                                                            <Link
-                                                                 href={`/Product/${product.id}`}>
-                                                                 <button className="border border-Fern/green rounded-xl px-8 my-12">
-                                                                      Ver compra
-                                                                 </button>
-                                                            </Link>
-                                                       </div>
-                                                  </div>
-                                             </div>
+                                             <AuctionedCard
+                                                  product={product}
+                                                  key={index}
+                                             />
                                         )
                                    )
                               ) : (

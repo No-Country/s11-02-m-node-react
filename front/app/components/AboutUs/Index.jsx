@@ -14,7 +14,9 @@ function AboutUs() {
                               className="w-full h-auto rounded-md md:hidden"
                          />
 
-                         <p className="mb-2 mt-4 text-xl md:text-2xl">
+                         <p
+                              className="mb-2 mt-4 text-xl md:text-2xl"
+                              style={{ textAlign: 'justify' }}>
                               En Eco subasta, creemos en un futuro sostenible y
                               en la importancia de reutilizar objetos que aún
                               tienen vida útil. Nuestra plataforma de subastas

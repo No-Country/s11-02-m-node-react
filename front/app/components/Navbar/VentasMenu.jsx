@@ -54,17 +54,24 @@ const VentasMenu = () => {
                          className="hidden md:block z-50 absolute top-8 mt-10 p-2 bg-white  border-2 shadow-lg">
                          <ul className="text-Gunmetal/2 text-sm ">
                               <li className="mb-3">
-                                   <Link href="/AuctionedPage" className="">
+                                   <Link
+                                        href="/AuctionedPage"
+                                        className=""
+                                        onClick={toggleMenu}>
                                         Productos Ofertados
                                    </Link>
                               </li>
                               <li className="mb-3">
-                                   <Link href="/ProfilePage/history">
+                                   <Link
+                                        href="/ProfilePage/history"
+                                        onClick={toggleMenu}>
                                         Productos Publicados
                                    </Link>
                               </li>
                               <li className="mb-3">
-                                   <Link href="/ProfilePage/purchaseHistory">
+                                   <Link
+                                        href="/ProfilePage/purchaseHistory"
+                                        onClick={toggleMenu}>
                                         Productos Comprados
                                    </Link>
                               </li>

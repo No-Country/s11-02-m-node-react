@@ -9,6 +9,7 @@ import { CreateOfferDto } from './dto/create-offer.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ProductEntity } from './entities/product.entity';
 import { isMongoId, validate } from 'class-validator';
+import { sendEmailNotification } from 'src/utils/email-sender';
 
 @Injectable()
 export class ProductsService {
@@ -151,20 +152,91 @@ export class ProductsService {
         );
 
       if (createOfferDto.newOffer > product.currentOffer) {
-        const updateProduct = await this.prisma.product.update({
+        const wallet = await this.prisma.wallet.findUnique({
           where: {
-            id: createOfferDto.productId,
-          },
-          data: {
-            currentBuyerId: createOfferDto.userId,
-            currentOffer: createOfferDto.newOffer,
+            userId: createOfferDto.userId,
           },
         });
-        return updateProduct;
+        if (wallet.amount >= product.currentOffer) {
+          const updateProduct = await this.prisma.product.update({
+            where: {
+              id: createOfferDto.productId,
+            },
+            data: {
+              currentBuyerId: createOfferDto.userId,
+              currentOffer: createOfferDto.newOffer,
+            },
+          });
+          return updateProduct;
+        } else
+          throw new BadRequestException(
+            'there is not that amount in the wallet',
+          );
       } else
         throw new BadRequestException(
           'the new offer does not exceed the current offer',
         );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async finalizeProduct(
+    id: string,
+  ): Promise<{ message: string; finishedProduct: ProductEntity }> {
+    try {
+      if (!isMongoId(id))
+        throw new BadRequestException('Id must be a mongodb id');
+
+      const product = await this.prisma.product.findUnique({
+        where: {
+          id: id,
+        },
+      });
+
+      if (!product) throw new BadRequestException('product not found');
+
+      const wallet = await this.prisma.wallet.findUnique({
+        where: {
+          userId: product.currentBuyerId,
+        },
+      });
+
+      if (!wallet) throw new BadRequestException('wallet not found');
+
+      const newAmount = wallet.amount - product.currentOffer;
+
+      await this.prisma.wallet.update({
+        where: {
+          id: wallet.id,
+        },
+        data: {
+          amount: newAmount,
+        },
+      });
+
+      const updatedProduct = await this.prisma.product.update({
+        where: {
+          id: id,
+        },
+        data: {
+          purchasedById: product.currentBuyerId,
+          status: 'ENDED',
+        },
+      });
+
+      const user = await this.prisma.user.findUnique({
+        where: {
+          id: product.currentBuyerId,
+        },
+      });
+
+      await sendEmailNotification(user, product);
+
+      return {
+        message: 'finished product and email sent to the buyer',
+        finishedProduct: updatedProduct,
+      };
     } catch (error) {
       throw error;
     }

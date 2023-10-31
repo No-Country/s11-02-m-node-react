@@ -14,14 +14,27 @@ const Registerform = () => {
      const accessToken = localStorage.getItem('access_token');
      const [fechaConvertida, setFechaConvertida] = useState('');
      const router = useRouter();
-     const today = new Date();
-     today.setHours(0, 0, 0, 0);
 
      const handleChange = (selected) => {
           setSelectedOptions(selected);
      };
+     // const today = new Date();
+     // today.setHours(0, 0, 0, 0);
+     // const tomorrow = today.setDate(today.getDate() + 1);
+     // const formattedToday = tomorrow.toISOString().split('T')[0];
+     // //const today = new Date();
+     // today.setDate(today.getDate() + 1); // Suma 1 día a la fecha actual
 
-     const formattedToday = today.toISOString().split('T')[0];
+     // const formattedTomorrow = today.toISOString().split('T')[0];
+     const today = new Date();
+     const tomorrow = new Date(today);
+     tomorrow.setDate(today.getDate() + 1);
+
+     const year = tomorrow.getFullYear();
+     const month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+     const day = tomorrow.getDate().toString().padStart(2, '0');
+
+     const formattedTomorrow = `${year}-${month}-${day}`;
      const formik = useFormik({
           initialValues: {
                name: '',
@@ -271,7 +284,7 @@ const Registerform = () => {
                                    </label>
                                    <input
                                         type="date"
-                                        min={formattedToday}
+                                        min={formattedTomorrow}
                                         className="w-full border border-gray-300 py-3 px-4 rounded-lg focus:border-green-700 outline-none focus:ring-1 focus:ring-green-700 text-black"
                                         id="endDate"
                                         placeholder="Seleccione la fecha"
