@@ -4,11 +4,11 @@
 
 ¿Tenés muebles, juguetes, electrodomésticos u otros objetos acumulando polvo en tu casa? ¿Qué dirías si te dijéramos que ahora tenes una forma de revivirlos, cuidando el medio ambiente y pudiendo sacar alguna ganancia?
 
-Bienvenido a **EcoSubasta**: la plataforma de recolección y reutilización colaborativa que está transformando la forma en que interactuamos con objetos usados. En Ecosubasta, creamos un espacio virtual donde las personas pueden dar una segunda vida a sus artículos en buen estado, vendiéndolos a precios simbólicos a través de subastas programadas. Tanto vendedores como compradores se unen en esta comunidad, con el vendedor recibiendo el monto total recaudado. Nuestra misión es promover el cuidado del medio ambiente y la solidaridad, reduciendo el impacto ambiental al tiempo que ayudamos a quienes más lo necesitan.
+Bienvenidos a **EcoSubasta**: la plataforma de recolección y reutilización colaborativa que está transformando la forma en que interactuamos con objetos usados. En Ecosubasta, creamos un espacio virtual donde las personas pueden dar una segunda vida a sus artículos en buen estado, vendiéndolos a precios simbólicos a través de subastas programadas. Tanto vendedores como compradores se unen en esta comunidad, con el vendedor recibiendo el monto total recaudado. Nuestra misión es promover el cuidado del medio ambiente y la solidaridad, reduciendo el impacto ambiental al tiempo que ayudamos a quienes más lo necesitan.
 
 ¿Cómo lo logramos? Facilitamos la reutilización de objetos, reduciendo el desperdicio y fomentando la sostenibilidad. Gracias a **Ecosubasta**, el vendedor puede liberar espacio y contribuir al cuidado del planeta, mientras que el comprador encuentra productos asequibles y de calidad. Desde nuestra pantalla de inicio hasta el proceso de subasta y pagos, cada aspecto de la plataforma está diseñado para hacer de la experiencia de **EcoSubasta** una solución conveniente y sostenible. Únete a nosotros en este viaje hacia un mundo más ecológico y solidario. 
 
-¡Descubre más en [!**EcoSubasta**](https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/) ahora!
+¡Descubre más en [**EcoSubasta**](https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/) ahora!
 
 
 ## Demo
