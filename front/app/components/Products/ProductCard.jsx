@@ -17,7 +17,7 @@ function ProductCard({ product, className }) {
           <div
                onClick={handleClick}
                key={product.id}
-               className={`bg-white border cursor-pointer p-2 md:p-8 rounded-2xl shadow-md hover:shadow-lg w-150 ${className}`}
+               className={`bg-white border cursor-pointer p-2 md:p-8 rounded-2xl shadow-md hover:shadow-lg w-64 md:w-150 ${className}`}
                style={{ height: '450px' }} // Establece una altura fija en píxeles
           >
                <div className="bg-Tea/green pt-1 pb-1 text-center text-sm md:text-md">
@@ -32,7 +32,9 @@ function ProductCard({ product, className }) {
                          height={200}
                     />
                </div>
-               <p className="md:text-lg mb-8 mt-6">{product.name}</p>
+               <p className="md:text-lg mb-8 mt-6 text-overflow-ellipsis line-clamp-2">
+                    {product.name}
+               </p>
                <p className="text-sm md:text-md text-gray-500">
                     Último precio ofertado
                </p>

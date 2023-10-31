@@ -144,20 +144,6 @@ function Product({ params }) {
                               <h2 className="text-xl">Descripción</h2>
                               <p>{product.description}</p>
                          </div>
-                         <ul className="flex justify-between lg:w-1/2 my-8 ">
-                              <div className="tracking-[.2rem] flex flex-col justify-center lg:gap-4 gap-2 px-4">
-                                   <li>Marca</li>
-                                   <li>Color</li>
-                                   <li>Tipo de objeto</li>
-                                   <li>Estado</li>
-                              </div>
-                              <div className="flex flex-col justify-center lg:gap-4 gap-2 lg:w-full w-1/4 px-4 ">
-                                   <li>-</li>
-                                   <li>-</li>
-                                   <li>-</li>
-                                   <li>-</li>
-                              </div>
-                         </ul>
                     </article>
                     <article className="lg:w-2/5">
                          <div className=" border-[#6F9F77] border-2 rounded-2xl  h-80 lg:mt-10 m-4  ">
