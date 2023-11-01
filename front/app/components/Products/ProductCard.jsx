@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import moment from 'moment-with-locales-es6';
-moment.locale('es');
+import moment from 'moment';
 
 function ProductCard({ product, className }) {
      const number = parseInt(product.currentOffer, 10); // Convierte el string a un número

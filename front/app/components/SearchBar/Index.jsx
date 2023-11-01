@@ -10,7 +10,7 @@ const SearchBar = ({ onCategoryChange, category }) => {
      const [photo, setPhoto] = useState(photoLinks[8]);
      const router = useRouter();
      const handleBack = () => {
-          router.back();
+          router.push('/');
      };
 
      useEffect(() => {
@@ -24,7 +24,6 @@ const SearchBar = ({ onCategoryChange, category }) => {
           }
      }, [category]);
 
-     console.log('pic', photo);
      return (
           <div className="min-h-128 p-4 rounded-md text-center relative">
                <img

@@ -7,8 +7,7 @@ import { getUsers } from '@/app/utils/getProducts';
 import { Report, Loading } from 'notiflix';
 import { auction } from '@/app/utils/getProducts';
 import Link from 'next/link';
-import moment from 'moment-with-locales-es6';
-moment.locale('es');
+import moment from 'moment';
 
 function Product({ params }) {
      const router = useRouter();
@@ -95,7 +94,7 @@ function Product({ params }) {
                                    'Te avisaremos por email con información del ganador cuando termine el período de subasta. ¡Gracias por participar!',
                                    'Listo',
                                    () => {
-                                        router.push('/ProfilePage');
+                                        router.push('/AuctionedPage');
                                    },
                                    {
                                         width: '500px',

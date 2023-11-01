@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { setInfoUser } from '@/app/store/userSlice';
 import mainRoute from '@/route';
 import { useRouter } from 'next/navigation';
-import { Report } from 'notiflix';
 import { getUserInfo } from '@/app/utils/getUserInfo';
 
 const MiSaldo = () => {
@@ -66,28 +65,7 @@ const MiSaldo = () => {
                console.log(data);
 
                // Redirige a la página de destino después de un éxito
-               window.open(data.paymentLink, '_blank');
-
-               // Llama a Report.success después de una respuesta exitosa
-               Report.success(
-                    'Tu dinero fue ingresado con éxito ',
-                    'Puede tardar unos minutos en verse reflejado dentro de la web!',
-                    'Listo',
-                    handleSuccess,
-                    {
-                         width: '500px',
-                         height: '600px',
-                         svgSize: '200px',
-                         fontFamily: 'Poppins',
-                         titleFontSize: '24px',
-                         messageFontSize: '15px',
-                         className: 'display:flex',
-                         success: {
-                              titleColor: '#517957',
-                              buttonBackground: '#517957',
-                         },
-                    }
-               );
+               router.push(data.paymentLink);
           } catch (error) {
                console.log(error);
           }

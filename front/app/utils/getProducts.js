@@ -1,6 +1,5 @@
 const backendURL = 'https://reutilizzappapi.onrender.com';
-import moment from 'moment-with-locales-es6';
-moment.locale('es');
+import moment from 'moment';
 
 export const fetchProducts = async () => {
      try {
@@ -29,7 +28,7 @@ export const fetchProducts = async () => {
           const activeProducts = data.products.filter(
                (product) => product.status === 'ACTIVE'
           );
-
+          //console.log(activeProducts);
           return activeProducts;
      } catch (error) {
           console.error('Error al obtener productos', error);
@@ -39,6 +38,7 @@ export const fetchProducts = async () => {
 
 // Función para hacer una solicitud PATCH para finalizar un producto
 const finalizeProduct = async (productId) => {
+     //console.log('id', productId);
      try {
           const response = await fetch(
                `${backendURL}/products/finalize-product/${productId}`,
