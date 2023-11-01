@@ -53,7 +53,7 @@ const HamburgerMenu = ({ isUserAuthenticated, handleLogOut }) => {
                               </li>
                               <li className="mb-2">
                                    <Link href="/HomePage" onClick={toggleMenu}>
-                                        Home
+                                        Subastas
                                    </Link>
                               </li>
                               {isUserAuthenticated ? (

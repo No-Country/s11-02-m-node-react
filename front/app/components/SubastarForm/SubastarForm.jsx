@@ -61,7 +61,6 @@ const Registerform = () => {
           }),
 
           onSubmit: async (values) => {
-               console.log('submiting!');
                try {
                     // Subir la imagen a Cloudinary
                     const cloudinaryResponse = await uploadImageToCloudinary(
@@ -85,7 +84,7 @@ const Registerform = () => {
                               },
                               body: JSON.stringify(productData),
                          });
-                         console.log('data!!', JSON.stringify(productData));
+
                          if (!response.ok) {
                               throw new Error(
                                    'Error en la solicitud al backend'
@@ -101,8 +100,17 @@ const Registerform = () => {
                               closeOnClick: true,
                               pauseOnHover: true,
                          });
+                         const redirect = await fetch(`${mainRoute}/products`);
+                         const dataRedirect = await redirect.json();
+                         const uploadedProduct = dataRedirect.products.find(
+                              (product) => product.name === productData.name
+                         );
 
-                         router.push('/ProductsPage');
+                         if (uploadedProduct) {
+                              router.push(`/Product/${uploadedProduct.id}`);
+                         } else {
+                              router.push('/HomePage');
+                         }
                     } else {
                          toast.error('Error al publicar producto');
                     }
