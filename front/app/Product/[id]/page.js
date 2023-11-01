@@ -125,8 +125,11 @@ function Product({ params }) {
                <div className="flex justify-start items-center gap-4 ml-6 mb-4">
                     <Link href="/"> Inicio {'>'} </Link>
                     <Link href="/ProductsPage"> productos {'>'}</Link>
-                    <Link href={`/ProductsPage/${product.tags}`}>
-                         {product.tags} {'>'}
+                    <Link
+                         href={`/ProductsPage/${
+                              product.tags && product.tags[0]
+                         }`}>
+                         {product.tags && product.tags[0]} {'>'}
                     </Link>
                     <span>{product.name}</span>
                </div>
