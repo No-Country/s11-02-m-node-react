@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.1.1",
     "@nestjs/mapped-types": "*",
@@ -35,13 +36,16 @@
     "class-validator": "^0.14.0",
     "cloudinary": "^1.41.0",
     "dotenv": "^16.3.1",
+    "mercadopago": "^2.0.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "prisma": "^5.4.1",
     "reflect-metadata": "^0.1.13",
+    "resend": "^1.1.0",
     "rxjs": "^7.8.1",
-    "streamifier": "^0.1.1"
+    "streamifier": "^0.1.1",
+    "stripe": "^14.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

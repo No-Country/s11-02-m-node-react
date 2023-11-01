@@ -9,15 +9,13 @@ export class UpdateUserDto {
   @IsString({ message: 'The "lastName" field must be a string' })
   lastName: string;
 
-  password: string;
-
   @IsOptional()
   @IsString({ message: 'The "email" field must be a string' })
   email: string;
 
   @IsOptional()
   @IsString({ message: 'The "address" field must be a string' })
-  address: string;
+  city: string;
 
   @IsOptional()
   @IsString({ message: 'The "coords" field must be a string' })

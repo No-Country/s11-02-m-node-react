@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Quicksand:wght@300;400;600;700&family=Roboto:wght@300;400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,18 +28,23 @@ body {
 }
 
 .categoryDiv {
-     border-top-left-radius: 0.75rem;
-     border-bottom-right-radius: 0.75rem;
-     background-color: white;
-     height: 10rem;
-     width: 10rem;
+     position: relative;
      display: flex;
      justify-content: center;
      align-items: center;
      cursor: pointer;
      transition: ease-in, 0.3s;
 }
+.categoryImg {
+     border-top-left-radius: 0.75rem;
+     border-bottom-right-radius: 0.75rem;
+     object-fit: cover;
+}
 
-.categoryDiv:hover {
-     transform: scale(1.05);
+.vertical-bar {
+     height: 28px; /* Altura de la barra vertical */
+     width: 1px; /* Ancho de la barra vertical */
+     background-color: #000; /* Color de la barra vertical */
+     /* Permite alinearla verticalmente con los botones */
+     margin: 0 10px; /* Espacio entre la barra y los botones */
 }

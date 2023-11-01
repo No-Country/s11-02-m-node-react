@@ -3,5 +3,8 @@
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": [
+    "app/components/Saldo/MiSaldo.jsx"
+  ]
 }

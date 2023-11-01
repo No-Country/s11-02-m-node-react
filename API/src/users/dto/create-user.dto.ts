@@ -18,18 +18,7 @@ export class CreateUserDto {
   @IsString({ message: 'The "password" field must be a string' })
   password: string;
 
-  @IsNotEmpty({ message: 'The "address" field is required' })
-  @IsString({ message: 'The "address" field must be a string' })
-  address: string;
-
-  // @IsArray({ message: '' })
-  // sellingProducts: string[];
-  // @IsOptional()
-  // soldProducts: string[];
-  // @IsOptional()
-  // buyingProducts: string[];
-  // @IsOptional()
-  // purchasedProducts: string[];
-  // @IsOptional()
-  // losingProducts: string[];
+  @IsNotEmpty({ message: 'The "city" field is required' })
+  @IsString({ message: 'The "city" field must be a string' })
+  city: string;
 }
