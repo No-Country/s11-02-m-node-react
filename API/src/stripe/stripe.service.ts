@@ -42,8 +42,8 @@ export class StripeService {
         },
       ],
       mode: 'payment',
-      success_url: `${successUrl}/donation`,
-      cancel_url: `${cancelUrl}/donation`,
+      success_url: `${successUrl}`,
+      cancel_url: `${cancelUrl}`,
       payment_intent_data: {
         metadata: {
           // Add metadata with info about user
