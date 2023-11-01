@@ -1,7 +1,24 @@
+'use client';
 import React from 'react';
-import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setInfoUser } from '@/app/store/userSlice';
+import { useRouter } from 'next/navigation';
+import { getUserInfo } from '@/app/utils/getUserInfo';
 
 const SuccessfullPayment = () => {
+     const router = useRouter();
+     const dispatch = useDispatch();
+     const loggedUser = useSelector((state) => state.user);
+     const handleSuccess = async () => {
+          const userInfo = await getUserInfo(loggedUser.id);
+          if (userInfo) {
+               console.log('Información del usuario:', userInfo);
+               dispatch(setInfoUser(userInfo));
+          }
+          router.push('/');
+     };
+
      return (
           <div class="flex mt-20 justify-center ">
                <div class="p-8 px-4 md:px-20 shadow-2xl rounded-3xl">
@@ -19,11 +36,13 @@ const SuccessfullPayment = () => {
                          Puede tardar unos minutos en verse reflejado dentro de
                          la web!
                     </p>
-                    <Link href="/" class="flex justify-center my-4">
-                         <button class="bg-Fern/green rounded-3xl px-4 md:px-24 py-2 text-sm md:text-md text-white transform hover:scale-105 transition duration-300 ease-in-out">
+                    <div class="flex justify-center my-4">
+                         <button
+                              onClick={handleSuccess}
+                              class="bg-Fern/green rounded-3xl px-4 md:px-24 py-2 text-sm md:text-md text-white transform hover:scale-105 transition duration-300 ease-in-out">
                               Volver al inicio
                          </button>
-                    </Link>
+                    </div>
                </div>
           </div>
      );

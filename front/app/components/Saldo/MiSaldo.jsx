@@ -1,15 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { setInfoUser } from '@/app/store/userSlice';
 import mainRoute from '@/route';
 import { useRouter } from 'next/navigation';
-import { getUserInfo } from '@/app/utils/getUserInfo';
 
 const MiSaldo = () => {
      const loggedUser = useSelector((state) => state.user);
-     const dispatch = useDispatch();
      const router = useRouter();
      const [saldo, setSaldo] = useState('');
      const [platform, setPlatform] = useState('');
@@ -26,14 +22,6 @@ const MiSaldo = () => {
 
      const handlePlatformChange = (e) => {
           setPlatform(e.target.value);
-     };
-     const handleSuccess = async () => {
-          const userInfo = await getUserInfo(loggedUser.id);
-          if (userInfo) {
-               console.log('Información del usuario:', userInfo);
-               dispatch(setInfoUser(userInfo));
-          }
-          router.push('/ProfilePage');
      };
 
      const handleSubmit = async (e) => {
