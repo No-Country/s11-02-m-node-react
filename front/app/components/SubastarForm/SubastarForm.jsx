@@ -13,6 +13,7 @@ const Registerform = () => {
      const loggedUser = useSelector((state) => state.user);
      const accessToken = localStorage.getItem('access_token');
      const [fechaConvertida, setFechaConvertida] = useState('');
+     const [isSubmitting, setIsSubmitting] = useState(false);
      const router = useRouter();
      const now = new Date();
      const isoString = now.toISOString();
@@ -61,6 +62,14 @@ const Registerform = () => {
           }),
 
           onSubmit: async (values) => {
+               if (isSubmitting) {
+                    // Si el formulario ya se está enviando, no hagas nada
+                    return;
+               }
+
+               // Marca el formulario como enviado
+               setIsSubmitting(true);
+
                try {
                     // Subir la imagen a Cloudinary
                     const cloudinaryResponse = await uploadImageToCloudinary(
@@ -72,7 +81,7 @@ const Registerform = () => {
                          const productData = {
                               ...values,
                               endDate: fechaConvertida,
-                              img: [cloudinaryResponse.urlImg], //] Usar la URL de la imagen desde Cloudinary
+                              img: [cloudinaryResponse.urlImg], // Usar la URL de la imagen desde Cloudinary
                          };
 
                          // Realizar la solicitud para crear un nuevo producto en tu backend
@@ -93,13 +102,14 @@ const Registerform = () => {
 
                          const data = await response.json();
 
-                         toast.success('Subasta publicada con éxito.', {
+                         toast.success('Subasta publicada con éxito', {
                               position: 'bottom-right',
                               autoClose: 3000,
                               hideProgressBar: false,
                               closeOnClick: true,
                               pauseOnHover: true,
                          });
+
                          const redirect = await fetch(`${mainRoute}/products`);
                          const dataRedirect = await redirect.json();
                          const uploadedProduct = dataRedirect.products.find(
@@ -124,6 +134,9 @@ const Registerform = () => {
                          closeOnClick: true,
                          pauseOnHover: true,
                     });
+               } finally {
+                    // Restablece el estado de envío del formulario después de la lógica
+                    setIsSubmitting(false);
                }
           },
      });
@@ -348,12 +361,15 @@ const Registerform = () => {
                                         type="submit"
                                         className={`bg-green-800 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full w-full cursor-pointer mt-4 ease-in-out duration-300 ${
                                              (!formik.isValid ||
-                                                  !formik.dirty) &&
+                                                  !formik.dirty ||
+                                                  isSubmitting) &&
                                              'bg-green-500 cursor-not-allowed opacity-60 hover:cursor-not-allowed'
                                         }`}
                                         value="Subastar"
                                         disabled={
-                                             !formik.isValid || !formik.dirty
+                                             !formik.isValid ||
+                                             !formik.dirty ||
+                                             isSubmitting
                                         }
                                    />
                               </div>
