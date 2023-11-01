@@ -255,7 +255,7 @@ export class ProductsService {
         await sendEmailNotification(user, product);
 
         return {
-          message: 'finished product and email sent to the buyer',
+          message: 'finished product, the product was not offered',
           finishedProduct: updatedProduct,
         };
       }
