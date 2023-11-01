@@ -196,47 +196,69 @@ export class ProductsService {
 
       if (!product) throw new BadRequestException('product not found');
 
-      const wallet = await this.prisma.wallet.findUnique({
-        where: {
-          userId: product.currentBuyerId,
-        },
-      });
+      if (product.currentBuyerId) {
+        const wallet = await this.prisma.wallet.findUnique({
+          where: {
+            userId: product.currentBuyerId,
+          },
+        });
 
-      if (!wallet) throw new BadRequestException('wallet not found');
+        if (!wallet) throw new BadRequestException('wallet not found');
 
-      const newAmount = wallet.amount - product.currentOffer;
+        const newAmount = wallet.amount - product.currentOffer;
 
-      await this.prisma.wallet.update({
-        where: {
-          id: wallet.id,
-        },
-        data: {
-          amount: newAmount,
-        },
-      });
+        await this.prisma.wallet.update({
+          where: {
+            id: wallet.id,
+          },
+          data: {
+            amount: newAmount,
+          },
+        });
 
-      const updatedProduct = await this.prisma.product.update({
-        where: {
-          id: id,
-        },
-        data: {
-          purchasedById: product.currentBuyerId,
-          status: 'ENDED',
-        },
-      });
+        const updatedProduct = await this.prisma.product.update({
+          where: {
+            id: id,
+          },
+          data: {
+            purchasedById: product.currentBuyerId,
+            status: 'ENDED',
+          },
+        });
 
-      const user = await this.prisma.user.findUnique({
-        where: {
-          id: product.currentBuyerId,
-        },
-      });
+        const user = await this.prisma.user.findUnique({
+          where: {
+            id: product.currentBuyerId,
+          },
+        });
+        await sendEmailNotification(user, product);
 
-      await sendEmailNotification(user, product);
+        return {
+          message: 'finished product and email sent to the buyer',
+          finishedProduct: updatedProduct,
+        };
+      } else {
+        const updatedProduct = await this.prisma.product.update({
+          where: {
+            id: id,
+          },
+          data: {
+            status: 'ENDED',
+          },
+        });
 
-      return {
-        message: 'finished product and email sent to the buyer',
-        finishedProduct: updatedProduct,
-      };
+        const user = await this.prisma.user.findUnique({
+          where: {
+            id: product.sellerId,
+          },
+        });
+        await sendEmailNotification(user, product);
+
+        return {
+          message: 'finished product and email sent to the buyer',
+          finishedProduct: updatedProduct,
+        };
+      }
     } catch (error) {
       throw error;
     }
