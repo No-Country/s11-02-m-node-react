@@ -66,25 +66,28 @@ const SearchFilter = () => {
      }, []);
 
      return (
-          <div ref={searchFilterRef}>
-               <input
-                    type="text"
-                    placeholder="Buscador"
-                    value={searchQuery}
-                    onChange={handleSearchInputChange}
-                    className="w-full rounded-xl pl-12 pr-4 py-4 bg-white border-2 border-black focus:outline-none text-xl text-black placeholder-black::placeholder"
-               />
-               <button className="absolute right-4 md:right-40 lg:right-72 xl:right-90 top-5">
-                    <div className="cursor-pointer">
-                         <BiSearch
-                              size={28}
-                              className="cursor-pointer"
-                              tabIndex="0"
-                         />
-                    </div>
-               </button>
-               <div className="absolute w-full ">
-                    <ul className="w-full z-20">
+          <div ref={searchFilterRef} className="relative">
+               <div className="relative flex items-center">
+                    <input
+                         type="text"
+                         placeholder="Buscador"
+                         value={searchQuery}
+                         onChange={handleSearchInputChange}
+                         className="flex-1 w-1/6 md:w-1/2 lg:w-3/4 xl:w-4/5 rounded-full pl-4 pr-12 py-4 bg-white border-2 border-Fern/green focus:outline-none text-xl text-black placeholder-black::placeholder"
+                    />
+                    <button className="absolute right-8 h-full">
+                         <div className="cursor-pointer">
+                              <BiSearch
+                                   size={28}
+                                   className="cursor-pointer"
+                                   tabIndex="0"
+                              />
+                         </div>
+                    </button>
+               </div>
+
+               <div className="absolute top-full left-28 w-full">
+                    <ul className="z-20">
                          {searchResults.map((product) => (
                               <li
                                    key={product.id}

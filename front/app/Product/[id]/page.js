@@ -6,6 +6,7 @@ import { getProduct } from '@/app/utils/getProducts';
 import { getUsers } from '@/app/utils/getProducts';
 import { Report, Loading } from 'notiflix';
 import { auction } from '@/app/utils/getProducts';
+import Link from 'next/link';
 import moment from 'moment-with-locales-es6';
 moment.locale('es');
 
@@ -120,7 +121,15 @@ function Product({ params }) {
      }
 
      return (
-          <main className="lg:py-32 py-8 mx-8 lg:mx-28">
+          <main className="lg:py-20  mx-8 lg:mx-28 ">
+               <div className="flex justify-start items-center gap-4 ml-6 mb-4">
+                    <Link href="/"> Inicio {'>'} </Link>
+                    <Link href="/ProductsPage"> productos {'>'}</Link>
+                    <Link href={`/ProductsPage/${product.tags}`}>
+                         {product.tags} {'>'}
+                    </Link>
+                    <span>{product.name}</span>
+               </div>
                <section className="flex lg:flex-row flex-col justify-center lg:gap-20 w-full">
                     <article className="flex flex-col justify-center lg:w-3/5 ">
                          <h1 className="text-2xl mb-3 md:ml-4">
