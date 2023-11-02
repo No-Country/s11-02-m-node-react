@@ -39,11 +39,11 @@ https://ecosubasta.vercel.app/
 | Rama          | Tecnologías                                                  |
 | :------------ | :----------------------------------------------------------- |
 | UX/UI         | ![Figma][figma]                                              |
-| Front End     | ![Next JS][nextjs] ![React][react] ![TypeScript][typescript] |
-| Back End      | ![NodeJS][node] ![Nest.js][nest]                       |
+| Front End     | ![Next JS][nextjs] ![React][react] ![JavaScript][javascript] |
+| Back End      | ![NodeJS][node] ![Nest.js][nest]  ![TypeScript][typescript]  |
 | Base de datos | ![MongoDB][mongodb] ![Prisma][prisma]                                         |
 | Deployment    | ![Vercel][vercel] ![Render][render]                                           |
-| Testing |  ![TestLink][testlink] |
+| Testing |  ![Postman][postman] ![TestLink][testlink] ![Trello][trello] |
 
 [behance]: https://img.shields.io/badge/Behance-1769ff?style=for-the-badge&logo=behance&logoColor=white
 [linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
@@ -55,9 +55,12 @@ https://ecosubasta.vercel.app/
 [express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
 [vercel]: https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white
 [typescript]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+[javascript]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
 [mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
 [nest]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
 [render]: https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white
 [prisma]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
+[postman]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
 [testlink]: https://img.shields.io/badge/test_link-blue
+[trello]: https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white
 
