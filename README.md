@@ -43,7 +43,7 @@ https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
 | Back End      | ![NodeJS][node] ![Nest.js][nest]                       |
 | Base de datos | ![MongoDB][mongodb] ![Prisma][prisma]                                         |
 | Deployment    | ![Vercel][vercel] ![Render][render]                                           |
-| Testing |  [TestLink](https://files.slack.com/files-tmb/T032Y55Q6VC-F063VPNU6EP-600770628e/image_360.png) |
+| Testing |  ![TestLink][testlink] |
 
 [behance]: https://img.shields.io/badge/Behance-1769ff?style=for-the-badge&logo=behance&logoColor=white
 [linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
@@ -59,4 +59,5 @@ https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
 [nest]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
 [render]: https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white
 [prisma]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
+[testlink]: https://img.shields.io/badge/any_text-you_like-blue
 
