@@ -15,6 +15,9 @@ Bienvenidos a **EcoSubasta**: la plataforma de recolección y reutilización col
 
 https://ecosubasta.vercel.app/
 
+## Evidencia de pruebas
+
+https://github.com/No-Country/s11-02-m-node-react/blob/main/Pruebas%20Manuales%20Eco%20Subasta.pdf
 
 ## Autores
 
