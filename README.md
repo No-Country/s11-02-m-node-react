@@ -59,5 +59,5 @@ https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
 [nest]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
 [render]: https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white
 [prisma]: https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white
-[testlink]: https://img.shields.io/badge/any_text-you_like-blue
+[testlink]: https://img.shields.io/badge/test_link-blue
 
