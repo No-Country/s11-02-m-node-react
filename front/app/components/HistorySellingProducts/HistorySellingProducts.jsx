@@ -11,9 +11,14 @@ import { useRouter } from 'next/navigation';
 
 const HistorySellingProducts = () => {
      const loggedUser = useSelector((state) => state.user);
+     const router = useRouter();
      const dispatch = useDispatch();
 
      const [userData, setUserData] = useState(loggedUser);
+
+     const handleClick = () => {
+          router.back();
+     };
 
      useEffect(() => {
           Loading.standard('Cargando...');
@@ -50,13 +55,13 @@ const HistorySellingProducts = () => {
      return (
           <div>
                <div className="flex justify-center mt-8 mb-12">
-                    <Link href="/ProfilePage">
-                         <h4 className="text-lg font-bold text-Fern/green flex ">
-                              {' '}
-                              <ChevronLeft />
-                              Volver
-                         </h4>
-                    </Link>
+                    <button
+                         onClick={handleClick}
+                         className="text-lg font-bold text-Fern/green flex ">
+                         {' '}
+                         <ChevronLeft />
+                         Volver
+                    </button>
                </div>
 
                <div className="flex justify-center mt-4 mb-10">

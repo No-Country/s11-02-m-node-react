@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import mainRoute from '@/route';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { ChevronLeft } from 'lucide-react';
@@ -12,8 +12,13 @@ import Link from 'next/link';
 const HistoryAuctionedProducts = () => {
      const loggedUser = useSelector((state) => state.user);
      const dispatch = useDispatch();
+     const router = useRouter();
 
      const [userData, setUserData] = useState(loggedUser);
+
+     const handleClick = () => {
+          router.back();
+     };
 
      useEffect(() => {
           Loading.standard('Cargando...');
@@ -50,13 +55,13 @@ const HistoryAuctionedProducts = () => {
      return (
           <div>
                <div className="flex justify-center mt-8 mb-12">
-                    <Link href="/ProfilePage">
-                         <h4 className="text-lg font-bold text-Fern/green flex ">
-                              {' '}
-                              <ChevronLeft />
-                              Volver
-                         </h4>
-                    </Link>
+                    <button
+                         onClick={handleClick}
+                         className="text-lg font-bold text-Fern/green flex ">
+                         {' '}
+                         <ChevronLeft />
+                         Volver
+                    </button>
                </div>
 
                <div className="flex justify-center mt-4 mb-10">
