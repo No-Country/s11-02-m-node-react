@@ -20,19 +20,19 @@ https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
 
 | Rol               | Nombre              | Redes                                                                                                                    |
 | :---------------- | :------------------ | :----------------------------------------------------------------------------------------------------------------------- |
-| `Project Manager` | Ana Colorado             | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)                        |
-| `UX/UI Designer`  | Leandro Mancilla         | [![behance]](https://www.behance.com) [![linkedin]](https://www.linkedin.com/in/)                                        |
-| `UX/UI Designer`  | Natalia Funes           | [![behance]](https://www.behance.com) [![linkedin]](https://www.linkedin.com/in/)                                        |
-| `UX/UI Designer`  | Sofía Dolcemáscolo      | [![behance]](https://www.behance.com) [![linkedin]](https://www.linkedin.com/in/)                                        |
-| `UX/UI Designer`  | Noelia Arteaga         | [![behance]](https://www.behance.com) [![linkedin]](https://www.linkedin.com/in/)                                        |
+| `Project Manager` | Ana Colorado             | [![linkedin]](https://www.linkedin.com/in/ana-cbedoya/)                        |
+| `UX/UI Designer`  | Leandro Mancilla         | [![behance]](https://www.behance.net/leomancilla) [![linkedin]](https://www.linkedin.com/in/leomancilla/)                                        |
+| `UX/UI Designer`  | Natalia Funes           | [![behance]](https://www.behance.net/nataliafunes) [![linkedin]](https://www.linkedin.com/in/natalia-funes-/)                                        |
+| `UX/UI Designer`  | Sofía Dolcemáscolo      | [![behance]](https://www.behance.net/sofiadolcemascolo) [![linkedin]](https://www.linkedin.com/in/sofia-dolcemascolo/)                                        |
+| `UX/UI Designer`  | Noelia Arteaga         | [![behance]](https://www.behance.net/emelynoelia) [![linkedin]](https://www.linkedin.com/in/emelynoeliaarteaga/)                                        |
 | `Front End`       | Arón Díaz               | [![GitHub]](https://github.com/arondiaz) [![linkedin]](https://www.linkedin.com/in/arondiaz/)                            |
-| `Front End`       | Tomás Gordyn            | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)                      |
-| `Front End`       | José Cardozo             | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)                       |
-| `Front End`       | Marcelo Díaz           | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)                       |
-| `Back End`        | Christian Herrera        | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)            |
+| `Front End`       | Tomás Gordyn            | [![GitHub]](https://github.com/tgordyn) [![linkedin]](https://www.linkedin.com/in/tomasgordyn/)                      |
+| `Front End`       | José Cardozo             | [![GitHub]](https://github.com/DashPower) [![linkedin]](https://www.linkedin.com/in/cardozjg/)                       |
+| `Front End`       | Marcelo Díaz           | [![GitHub]](https://github.com/diazarm) [![linkedin]](https://www.linkedin.com/in/marcelo-a-diaz-6a7926223/)                       |
+| `Back End`        | Christian Herrera        | [![GitHub]](https://github.com/cahov) [![linkedin]](https://www.linkedin.com/in/cahodev/)            |
 | `Back End`        | Santiago Aquino         | [![GitHub]](https://github.com/Santiago-Aquino) [![linkedin]](https://www.linkedin.com/in/santiagoaquino-desarrollador/) |
 | `Back End`        | Sergio Sarmiento        | [![GitHub]](https://github.com/gersiomarsiento) [![linkedin]](https://www.linkedin.com/in/sergioezequielsarmiento/)      |
-| `Testing`        | Andrea Ceballos Alcaraz  | [![GitHub]](https://github.com/) [![linkedin]](https://www.linkedin.com/in/)      |
+| `Testing`        | Andrea Ceballos Alcaraz  | [![GitHub]](https://github.com/andreAlcaraz) [![linkedin]](https://www.linkedin.com/in/andreaceballosalcaraz/)      |
 
 ## Stack Tecnológico
 
