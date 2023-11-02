@@ -8,12 +8,12 @@ Bienvenidos a **EcoSubasta**: la plataforma de recolección y reutilización col
 
 ¿Cómo lo logramos? Facilitamos la reutilización de objetos, reduciendo el desperdicio y fomentando la sostenibilidad. Gracias a **Ecosubasta**, el vendedor puede liberar espacio y contribuir al cuidado del planeta, mientras que el comprador encuentra productos asequibles y de calidad. Desde nuestra pantalla de inicio hasta el proceso de subasta y pagos, cada aspecto de la plataforma está diseñado para hacer de la experiencia de **EcoSubasta** una solución conveniente y sostenible. Únete a nosotros en este viaje hacia un mundo más ecológico y solidario. 
 
-¡Descubre más en [**EcoSubasta**](https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/) ahora!
+¡Descubre más en [**EcoSubasta**](https://ecosubasta.vercel.app/) ahora!
 
 
 ## Demo
 
-https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
+https://ecosubasta.vercel.app/
 
 
 ## Autores
