@@ -43,6 +43,7 @@ https://s11-02-m-node-react-git-develop-reutilizapp.vercel.app/
 | Back End      | ![NodeJS][node] ![Nest.js][nest]                       |
 | Base de datos | ![MongoDB][mongodb] ![Prisma][prisma]                                         |
 | Deployment    | ![Vercel][vercel] ![Render][render]                                           |
+| Testing |  [TestLink](https://files.slack.com/files-tmb/T032Y55Q6VC-F063VPNU6EP-600770628e/image_360.png) |
 
 [behance]: https://img.shields.io/badge/Behance-1769ff?style=for-the-badge&logo=behance&logoColor=white
 [linkedin]: https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white
