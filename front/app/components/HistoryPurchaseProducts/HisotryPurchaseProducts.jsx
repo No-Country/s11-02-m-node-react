@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import mainRoute from '@/route';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
@@ -10,9 +11,14 @@ import { ChevronLeft } from 'lucide-react';
 
 const HistoryPurchaseProducts = () => {
      const loggedUser = useSelector((state) => state.user);
+     const router = useRouter();
      const dispatch = useDispatch();
 
      const [userData, setUserData] = useState(loggedUser);
+
+     const handleClick = () => {
+          router.back();
+     };
 
      useEffect(() => {
           Loading.standard('Cargando...');
@@ -49,13 +55,13 @@ const HistoryPurchaseProducts = () => {
      return (
           <div>
                <div className="flex justify-center mt-8 mb-12">
-                    <Link href="/ProfilePage">
+                    <button onClick={handleClick}>
                          <h4 className="text-lg font-bold text-Fern/green flex ">
                               {' '}
                               <ChevronLeft />
                               Volver
                          </h4>
-                    </Link>
+                    </button>
                </div>
 
                <div className="flex justify-center mt-4 mb-10">
